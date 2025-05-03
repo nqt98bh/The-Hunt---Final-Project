@@ -3,8 +3,24 @@
   "WorkspaceRootPath": "C:\\Unitylearn\\The Hunt - Final Project\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|c:\\unitylearn\\the hunt - final project\\assets\\scripts\\charactermovement.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:assets\\scripts\\charactermovement.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{3C0093BC-07FB-AE48-C4B8-741161000A55}|Assembly-CSharp.csproj|c:\\unitylearn\\the hunt - final project\\assets\\scripts\\character\\characteranimcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3C0093BC-07FB-AE48-C4B8-741161000A55}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\character\\characteranimcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3C0093BC-07FB-AE48-C4B8-741161000A55}|Assembly-CSharp.csproj|C:\\Unitylearn\\The Hunt - Final Project\\assets\\scripts\\character\\charactermovement.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3C0093BC-07FB-AE48-C4B8-741161000A55}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\character\\charactermovement.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3C0093BC-07FB-AE48-C4B8-741161000A55}|Assembly-CSharp.csproj|C:\\Unitylearn\\The Hunt - Final Project\\assets\\hero knight - pixel art\\demo\\sensor_heroknight.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3C0093BC-07FB-AE48-C4B8-741161000A55}|Assembly-CSharp.csproj|solutionrelative:assets\\hero knight - pixel art\\demo\\sensor_heroknight.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3C0093BC-07FB-AE48-C4B8-741161000A55}|Assembly-CSharp.csproj|C:\\Unitylearn\\The Hunt - Final Project\\assets\\hero knight - pixel art\\demo\\heroknight.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3C0093BC-07FB-AE48-C4B8-741161000A55}|Assembly-CSharp.csproj|solutionrelative:assets\\hero knight - pixel art\\demo\\heroknight.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3C0093BC-07FB-AE48-C4B8-741161000A55}|Assembly-CSharp.csproj|C:\\Unitylearn\\The Hunt - Final Project\\assets\\scripts\\character\\characterjump.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3C0093BC-07FB-AE48-C4B8-741161000A55}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\character\\characterjump.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Unitylearn\\The Hunt - Final Project\\Library\\PackageCache\\com.unity.render-pipelines.universal@14.0.11\\Shaders\\2D\\Sprite-Lit-Default.shader||{3B902123-F8A7-4915-9F01-361F908088D0}",
@@ -23,19 +39,68 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "CharacterMovement.cs",
-              "DocumentMoniker": "C:\\Unitylearn\\The Hunt - Final Project\\Assets\\Scripts\\CharacterMovement.cs",
-              "RelativeDocumentMoniker": "Assets\\Scripts\\CharacterMovement.cs",
-              "ToolTip": "C:\\Unitylearn\\The Hunt - Final Project\\Assets\\Scripts\\CharacterMovement.cs",
-              "RelativeToolTip": "Assets\\Scripts\\CharacterMovement.cs",
-              "ViewState": "AgIAAAUAAAAAAAAAAAAxwCMAAAAeAAAAAAAAAA==",
+              "Title": "CharacterAnimController.cs",
+              "DocumentMoniker": "C:\\Unitylearn\\The Hunt - Final Project\\Assets\\Scripts\\Character\\CharacterAnimController.cs",
+              "RelativeDocumentMoniker": "Assets\\Scripts\\Character\\CharacterAnimController.cs",
+              "ToolTip": "C:\\Unitylearn\\The Hunt - Final Project\\Assets\\Scripts\\Character\\CharacterAnimController.cs",
+              "RelativeToolTip": "Assets\\Scripts\\Character\\CharacterAnimController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAAsAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-02T08:03:49.241Z",
+              "WhenOpened": "2025-05-03T15:54:15.706Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 1,
+              "Title": "CharacterMovement.cs",
+              "DocumentMoniker": "C:\\Unitylearn\\The Hunt - Final Project\\Assets\\Scripts\\Character\\CharacterMovement.cs",
+              "RelativeDocumentMoniker": "Assets\\Scripts\\Character\\CharacterMovement.cs",
+              "ToolTip": "C:\\Unitylearn\\The Hunt - Final Project\\Assets\\Scripts\\Character\\CharacterMovement.cs",
+              "RelativeToolTip": "Assets\\Scripts\\Character\\CharacterMovement.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAEAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-02T16:15:15.745Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Sensor_HeroKnight.cs",
+              "DocumentMoniker": "C:\\Unitylearn\\The Hunt - Final Project\\Assets\\Hero Knight - Pixel Art\\Demo\\Sensor_HeroKnight.cs",
+              "RelativeDocumentMoniker": "Assets\\Hero Knight - Pixel Art\\Demo\\Sensor_HeroKnight.cs",
+              "ToolTip": "C:\\Unitylearn\\The Hunt - Final Project\\Assets\\Hero Knight - Pixel Art\\Demo\\Sensor_HeroKnight.cs",
+              "RelativeToolTip": "Assets\\Hero Knight - Pixel Art\\Demo\\Sensor_HeroKnight.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAwB4AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-03T15:08:35.952Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "HeroKnight.cs",
+              "DocumentMoniker": "C:\\Unitylearn\\The Hunt - Final Project\\Assets\\Hero Knight - Pixel Art\\Demo\\HeroKnight.cs",
+              "RelativeDocumentMoniker": "Assets\\Hero Knight - Pixel Art\\Demo\\HeroKnight.cs",
+              "ToolTip": "C:\\Unitylearn\\The Hunt - Final Project\\Assets\\Hero Knight - Pixel Art\\Demo\\HeroKnight.cs",
+              "RelativeToolTip": "Assets\\Hero Knight - Pixel Art\\Demo\\HeroKnight.cs",
+              "ViewState": "AgIAAIcAAAAAAAAAAAAqwKsAAAA0AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-03T13:17:35.186Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "CharacterJump.cs",
+              "DocumentMoniker": "C:\\Unitylearn\\The Hunt - Final Project\\Assets\\Scripts\\Character\\CharacterJump.cs",
+              "RelativeDocumentMoniker": "Assets\\Scripts\\Character\\CharacterJump.cs",
+              "ToolTip": "C:\\Unitylearn\\The Hunt - Final Project\\Assets\\Scripts\\Character\\CharacterJump.cs",
+              "RelativeToolTip": "Assets\\Scripts\\Character\\CharacterJump.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABIAAAAFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-02T16:11:22.626Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
               "Title": "Sprite-Lit-Default.shader",
               "DocumentMoniker": "C:\\Unitylearn\\The Hunt - Final Project\\Library\\PackageCache\\com.unity.render-pipelines.universal@14.0.11\\Shaders\\2D\\Sprite-Lit-Default.shader",
               "RelativeDocumentMoniker": "Library\\PackageCache\\com.unity.render-pipelines.universal@14.0.11\\Shaders\\2D\\Sprite-Lit-Default.shader",

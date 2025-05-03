@@ -5,7 +5,7 @@ using UnityEngine;
 public class CharacterJump : MonoBehaviour
 {
     Rigidbody2D rb;
-    Animator animator;
+    CharacterAnimController anim;
     [SerializeField] private float jumpForce = 5f;
     [SerializeField] private Transform groundCheck;
     [SerializeField] private float distance;
@@ -15,7 +15,7 @@ public class CharacterJump : MonoBehaviour
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
-        animator = GetComponent<Animator>();
+        anim = GetComponent<CharacterAnimController>();
     }
 
     private void Update()
@@ -24,7 +24,8 @@ public class CharacterJump : MonoBehaviour
         if(isGrounded && Input.GetButtonDown("Jump"))
         {
             rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
-            animator.SetTrigger("isJumping");
+            anim.SetJumping();
+            anim.SetFall(rb.velocity.y);
             isGrounded = false;
         }
     }
