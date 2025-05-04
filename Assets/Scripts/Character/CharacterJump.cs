@@ -24,8 +24,8 @@ public class CharacterJump : MonoBehaviour
         if(isGrounded && Input.GetButtonDown("Jump"))
         {
             rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
-            anim.SetJumping();
-            anim.SetFall(rb.velocity.y);
+            anim.SetTriggerJumping();
+            anim.SetAirSpeedY(rb.velocity.y);
             isGrounded = false;
         }
     }

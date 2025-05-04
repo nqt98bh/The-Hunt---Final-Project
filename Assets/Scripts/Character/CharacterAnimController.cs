@@ -11,11 +11,15 @@ public class CharacterAnimController : MonoBehaviour
     {
         animator = GetComponent<Animator>();
     }
+    public void SetBoolIsGrounded(bool isGrounded)
+    {
+        animator.SetBool("isGrounded",isGrounded);
+    }
     public void SetRuning(bool isRuning)
     {
         animator.SetBool("isRunning",isRuning);
     }
-    public void SetJumping()
+    public void SetTriggerJumping()
     {
         animator.SetTrigger("isJumping");
     }
@@ -27,9 +31,9 @@ public class CharacterAnimController : MonoBehaviour
     {
         animator.SetTrigger("Attack"+attackNum);
     }
-    public void SetFall(float AirSpeedY)
+    public void SetAirSpeedY(float AirSpeedY)
     {
-        animator.SetFloat("isFalling", AirSpeedY);
+        animator.SetFloat("AirSpeedY", AirSpeedY);
     }
     public void SetHurt()
     {
@@ -38,6 +42,14 @@ public class CharacterAnimController : MonoBehaviour
     public void SetDeath()
     {
         animator.SetTrigger("isDeath");
+    }
+    public void SetTriggerBlock()
+    {
+        animator.SetTrigger("Block");
+    }
+    public void SetBoolIdleBlock(bool blockState)
+    {
+        animator.SetBool("IdleBlock", blockState);
     }
 
 }
