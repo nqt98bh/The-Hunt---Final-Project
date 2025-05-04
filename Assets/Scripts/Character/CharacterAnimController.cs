@@ -51,5 +51,9 @@ public class CharacterAnimController : MonoBehaviour
     {
         animator.SetBool("IdleBlock", blockState);
     }
+    public void SetBoolSliding(bool isSliding)
+    {
+        animator.SetBool("isSliding", isSliding);
+    }
 
 }

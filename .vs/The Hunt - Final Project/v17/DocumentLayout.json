@@ -3,32 +3,32 @@
   "WorkspaceRootPath": "C:\\Unitylearn\\The Hunt - Final Project\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{3C0093BC-07FB-AE48-C4B8-741161000A55}|Assembly-CSharp.csproj|C:\\Unitylearn\\The Hunt - Final Project\\assets\\scripts\\character\\charactermovement.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{3C0093BC-07FB-AE48-C4B8-741161000A55}|Assembly-CSharp.csproj|c:\\unitylearn\\the hunt - final project\\assets\\scripts\\character\\charactermovement.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{3C0093BC-07FB-AE48-C4B8-741161000A55}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\character\\charactermovement.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{3C0093BC-07FB-AE48-C4B8-741161000A55}|Assembly-CSharp.csproj|C:\\Unitylearn\\The Hunt - Final Project\\assets\\scripts\\character\\characterinput.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{3C0093BC-07FB-AE48-C4B8-741161000A55}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\character\\characterinput.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{3C0093BC-07FB-AE48-C4B8-741161000A55}|Assembly-CSharp.csproj|c:\\unitylearn\\the hunt - final project\\assets\\scripts\\character\\sensor_character.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{3C0093BC-07FB-AE48-C4B8-741161000A55}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\character\\sensor_character.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{3C0093BC-07FB-AE48-C4B8-741161000A55}|Assembly-CSharp.csproj|C:\\Unitylearn\\The Hunt - Final Project\\assets\\scripts\\character\\characteranimcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{3C0093BC-07FB-AE48-C4B8-741161000A55}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\character\\characteranimcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{3C0093BC-07FB-AE48-C4B8-741161000A55}|Assembly-CSharp.csproj|C:\\Unitylearn\\The Hunt - Final Project\\assets\\hero knight - pixel art\\demo\\heroknight.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{3C0093BC-07FB-AE48-C4B8-741161000A55}|Assembly-CSharp.csproj|solutionrelative:assets\\hero knight - pixel art\\demo\\heroknight.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{3C0093BC-07FB-AE48-C4B8-741161000A55}|Assembly-CSharp.csproj|c:\\unitylearn\\the hunt - final project\\assets\\hero knight - pixel art\\demo\\sensor_heroknight.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{3C0093BC-07FB-AE48-C4B8-741161000A55}|Assembly-CSharp.csproj|solutionrelative:assets\\hero knight - pixel art\\demo\\sensor_heroknight.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{3C0093BC-07FB-AE48-C4B8-741161000A55}|Assembly-CSharp.csproj|C:\\Unitylearn\\The Hunt - Final Project\\assets\\scripts\\character\\characterinput.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3C0093BC-07FB-AE48-C4B8-741161000A55}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\character\\characterinput.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3C0093BC-07FB-AE48-C4B8-741161000A55}|Assembly-CSharp.csproj|C:\\Unitylearn\\The Hunt - Final Project\\assets\\scripts\\character\\characteranimcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3C0093BC-07FB-AE48-C4B8-741161000A55}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\character\\characteranimcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{3C0093BC-07FB-AE48-C4B8-741161000A55}|Assembly-CSharp.csproj|C:\\Unitylearn\\The Hunt - Final Project\\assets\\scripts\\character\\characterjump.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{3C0093BC-07FB-AE48-C4B8-741161000A55}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\character\\characterjump.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3C0093BC-07FB-AE48-C4B8-741161000A55}|Assembly-CSharp.csproj|C:\\Unitylearn\\The Hunt - Final Project\\assets\\scripts\\character\\sensor_character.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3C0093BC-07FB-AE48-C4B8-741161000A55}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\character\\sensor_character.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3C0093BC-07FB-AE48-C4B8-741161000A55}|Assembly-CSharp.csproj|C:\\Unitylearn\\The Hunt - Final Project\\assets\\hero knight - pixel art\\demo\\sensor_heroknight.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3C0093BC-07FB-AE48-C4B8-741161000A55}|Assembly-CSharp.csproj|solutionrelative:assets\\hero knight - pixel art\\demo\\sensor_heroknight.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -42,7 +42,7 @@
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 5,
               "Title": "Sensor_Character.cs",
               "DocumentMoniker": "C:\\Unitylearn\\The Hunt - Final Project\\Assets\\Scripts\\Character\\Sensor_Character.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\Character\\Sensor_Character.cs",
@@ -50,12 +50,11 @@
               "RelativeToolTip": "Assets\\Scripts\\Character\\Sensor_Character.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABkAAAAFAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-04T02:16:00.408Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-05-04T02:16:00.408Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 2,
               "Title": "CharacterInput.cs",
               "DocumentMoniker": "C:\\Unitylearn\\The Hunt - Final Project\\Assets\\Scripts\\Character\\CharacterInput.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\Character\\CharacterInput.cs",
@@ -74,7 +73,7 @@
               "RelativeDocumentMoniker": "Assets\\Scripts\\Character\\CharacterAnimController.cs",
               "ToolTip": "C:\\Unitylearn\\The Hunt - Final Project\\Assets\\Scripts\\Character\\CharacterAnimController.cs",
               "RelativeToolTip": "Assets\\Scripts\\Character\\CharacterAnimController.cs",
-              "ViewState": "AgIAABEAAAAAAAAAAAAnwDQAAAAFAAAAAAAAAA==",
+              "ViewState": "AgIAABEAAAAAAAAAAIA4wDYAAAAFAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-05-03T15:54:15.706Z",
               "EditorCaption": ""
@@ -87,27 +86,27 @@
               "RelativeDocumentMoniker": "Assets\\Scripts\\Character\\CharacterMovement.cs",
               "ToolTip": "C:\\Unitylearn\\The Hunt - Final Project\\Assets\\Scripts\\Character\\CharacterMovement.cs",
               "RelativeToolTip": "Assets\\Scripts\\Character\\CharacterMovement.cs",
-              "ViewState": "AgIAAG4AAAAAAAAAAAAcwJYAAAAJAAAAAAAAAA==",
+              "ViewState": "AgIAAH0AAAAAAAAAAAAuwJUAAAAJAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-05-02T16:15:15.745Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 1,
               "Title": "HeroKnight.cs",
               "DocumentMoniker": "C:\\Unitylearn\\The Hunt - Final Project\\Assets\\Hero Knight - Pixel Art\\Demo\\HeroKnight.cs",
               "RelativeDocumentMoniker": "Assets\\Hero Knight - Pixel Art\\Demo\\HeroKnight.cs",
               "ToolTip": "C:\\Unitylearn\\The Hunt - Final Project\\Assets\\Hero Knight - Pixel Art\\Demo\\HeroKnight.cs",
               "RelativeToolTip": "Assets\\Hero Knight - Pixel Art\\Demo\\HeroKnight.cs",
-              "ViewState": "AgIAAHIAAAAAAAAAAAAawI4AAAAqAAAAAAAAAA==",
+              "ViewState": "AgIAADkAAAAAAAAAAAAawFwAAAAiAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-05-03T13:17:35.186Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 4,
               "Title": "CharacterJump.cs",
               "DocumentMoniker": "C:\\Unitylearn\\The Hunt - Final Project\\Assets\\Scripts\\Character\\CharacterJump.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\Character\\CharacterJump.cs",
@@ -120,7 +119,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 6,
               "Title": "Sensor_HeroKnight.cs",
               "DocumentMoniker": "C:\\Unitylearn\\The Hunt - Final Project\\Assets\\Hero Knight - Pixel Art\\Demo\\Sensor_HeroKnight.cs",
               "RelativeDocumentMoniker": "Assets\\Hero Knight - Pixel Art\\Demo\\Sensor_HeroKnight.cs",
@@ -128,8 +127,7 @@
               "RelativeToolTip": "Assets\\Hero Knight - Pixel Art\\Demo\\Sensor_HeroKnight.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABUAAAArAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-03T15:08:35.952Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-05-03T15:08:35.952Z"
             }
           ]
         }

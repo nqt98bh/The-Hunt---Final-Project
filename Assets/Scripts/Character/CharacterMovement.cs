@@ -16,7 +16,8 @@ public class CharacterMovement : MonoBehaviour
     CharacterAnimController anim;
     CharacterInput input;
 
-    [SerializeField] Sensor_Character wallSensor;
+    [SerializeField] Sensor_Character wallSensor1;
+    [SerializeField] Sensor_Character wallSensor2;
     [SerializeField] Sensor_Character GroundSensor;
 
     private bool isGrounded = false;
@@ -35,21 +36,19 @@ public class CharacterMovement : MonoBehaviour
         rb2d = GetComponent<Rigidbody2D>();
         input = GetComponent<CharacterInput>();
         anim = GetComponent<CharacterAnimController>();
-        wallSensor = GetComponentInChildren<Sensor_Character>();
-        GroundSensor = GetComponentInChildren<Sensor_Character>();
+       
     }
 
 
     void Update()
     {
         anim.SetAirSpeedY(rb2d.velocity.y);
-
-        CheckGround();
-       
         Jump();
         Roll();
         Attack();
         Block();
+        WallSliding();
+        CheckGround();
     }
     private void FixedUpdate()
     {
@@ -73,6 +72,7 @@ public class CharacterMovement : MonoBehaviour
 
     void Movement()
     {
+        
         rb2d.velocity = new Vector2(input.HorizontalInput * speed, rb2d.velocity.y);
         
         if (input.HorizontalInput < 0 && facingRight || input.HorizontalInput > 0 && !facingRight)
@@ -122,7 +122,6 @@ public class CharacterMovement : MonoBehaviour
         if (currentTimeRolling > rollDuration)
         {
             isRolling = false;
-            Debug.Log("isRolling: " + isRolling);
         }
     }
     
@@ -149,6 +148,11 @@ public class CharacterMovement : MonoBehaviour
         {
             anim.SetBoolIdleBlock(false);
         }
+    }
+    void WallSliding()
+    {
+        isSliding = (wallSensor1.State() && wallSensor1.State());
+        anim.SetBoolSliding(isSliding);
     }
 }
 
