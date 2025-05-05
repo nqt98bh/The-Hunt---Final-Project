@@ -13,8 +13,10 @@ public class CharacterMovement : MonoBehaviour
     [SerializeField] private float rollForce = 5f;
 
     Rigidbody2D rb2d;
+    CapsuleCollider2D capsuleCollider;
     CharacterAnimController anim;
     CharacterInput input;
+
 
     [SerializeField] Sensor_Character wallSensor1;
     [SerializeField] Sensor_Character wallSensor2;
@@ -27,19 +29,31 @@ public class CharacterMovement : MonoBehaviour
 
     private float delayToIlde = 0f;
     private float currentTimeRolling;
-    private float rollDuration = 5f;
+    [SerializeField] private float rollDuration = 2f;
     private float timeSinceAttack;
     private int attackIndex = 0;
+
+
+    [SerializeField] private Vector2 colliderSize = new Vector2(0.7f, 0.65f);
+    [SerializeField] private Vector2 colliderOffset = new Vector2(0f, 0.45f);
+    private Vector2 colliderSizeDefault =  new Vector2(0.7f, 1.29f);
+    private Vector2 colliderOffsetDefault = new Vector2(0, 0.7f);
 
     private void Awake()
     {
         rb2d = GetComponent<Rigidbody2D>();
         input = GetComponent<CharacterInput>();
         anim = GetComponent<CharacterAnimController>();
+        capsuleCollider = GetComponent<CapsuleCollider2D>();
        
     }
 
+    private void Start()
+    {
+        //colliderSizeDefault = capsuleCollider.size;
+        //colliderOffsetDefault = capsuleCollider.offset;
 
+    }
     void Update()
     {
         anim.SetAirSpeedY(rb2d.velocity.y);
@@ -109,11 +123,15 @@ public class CharacterMovement : MonoBehaviour
 
         }
     }
+
+    //Roll
     void Roll()
     {
-        if(input.RollPressed && !isRolling && !isSliding)
+        if(input.RollPressed && isRolling == false && !isSliding)
         {
             rb2d.velocity = new Vector2(transform.forward.x*rollForce, rb2d.velocity.y);
+            
+
             isRolling = true;
             anim.SetRolling();
             
@@ -121,10 +139,24 @@ public class CharacterMovement : MonoBehaviour
         currentTimeRolling += Time.deltaTime;
         if (currentTimeRolling > rollDuration)
         {
+            
             isRolling = false;
+            currentTimeRolling = 0;
+
+
         }
     }
-    
+    public void OnableRollCollision()
+    {
+        capsuleCollider.offset = colliderOffset;
+        capsuleCollider.size = colliderSize;
+    }
+    public void DisableRollCollision()
+    {
+        capsuleCollider.offset = colliderOffsetDefault;
+        capsuleCollider.size = colliderSizeDefault;
+    }
+
     void Attack()
     {
         timeSinceAttack += Time.deltaTime;
@@ -151,6 +183,7 @@ public class CharacterMovement : MonoBehaviour
     }
     void WallSliding()
     {
+        
         isSliding = (wallSensor1.State() && wallSensor1.State());
         anim.SetBoolSliding(isSliding);
     }
