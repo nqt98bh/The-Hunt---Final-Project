@@ -26,19 +26,22 @@ public class CharacterMovement : MonoBehaviour
     private bool facingRight =true;
     private bool isRolling = false;
     private bool isSliding = false;
+    private bool isJumping = false;
 
     private float delayToIlde = 0f;
     private float currentTimeRolling;
     [SerializeField] private float rollDuration = 2f;
     private float timeSinceAttack;
     private int attackIndex = 0;
+    [SerializeField] public float dragForce = 30f;
+
 
 
     [SerializeField] private Vector2 colliderSize = new Vector2(0.7f, 0.65f);
     [SerializeField] private Vector2 colliderOffset = new Vector2(0f, 0.45f);
-    private Vector2 colliderSizeDefault =  new Vector2(0.7f, 1.29f);
-    private Vector2 colliderOffsetDefault = new Vector2(0, 0.7f);
-
+    private Vector2 colliderSizeDefault /*=  new Vector2(0.7f, 1.29f)*/;
+    private Vector2 colliderOffsetDefault /*= new Vector2(0, 0.7f)*/;
+    
     private void Awake()
     {
         rb2d = GetComponent<Rigidbody2D>();
@@ -50,8 +53,8 @@ public class CharacterMovement : MonoBehaviour
 
     private void Start()
     {
-        //colliderSizeDefault = capsuleCollider.size;
-        //colliderOffsetDefault = capsuleCollider.offset;
+        colliderSizeDefault = capsuleCollider.size;
+        colliderOffsetDefault = capsuleCollider.offset;
 
     }
     void Update()
@@ -68,6 +71,10 @@ public class CharacterMovement : MonoBehaviour
     {
        
         Movement();
+        if (isGrounded == false && rb2d.velocity.y > 0.01f && isJumping == false)
+        {
+            rb2d.AddForce(Vector2.down * dragForce);
+        }
     }
 
     void CheckGround()
@@ -81,14 +88,15 @@ public class CharacterMovement : MonoBehaviour
         {
             isGrounded = false;
             anim.SetBoolIsGrounded(isGrounded);
+        
         }
+      
     }
 
     void Movement()
     {
-        
         rb2d.velocity = new Vector2(input.HorizontalInput * speed, rb2d.velocity.y);
-        
+
         if (input.HorizontalInput < 0 && facingRight || input.HorizontalInput > 0 && !facingRight)
         {
             facingRight = !facingRight;
@@ -115,12 +123,17 @@ public class CharacterMovement : MonoBehaviour
     {
         if(isGrounded == true && isRolling == false && input.JumpPressed)
         {
+            isJumping = true;
             anim.SetTriggerJumping();
             isGrounded = false;
             anim.SetBoolIsGrounded(isGrounded);
             rb2d.velocity = new Vector2(rb2d.velocity.x, jumpForce);
             GroundSensor.Disable(0.2f);
 
+        }
+        if(isGrounded == true)
+        {
+            isJumping = false;
         }
     }
 
