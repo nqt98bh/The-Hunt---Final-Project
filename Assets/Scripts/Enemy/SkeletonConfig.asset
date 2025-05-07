@@ -15,7 +15,7 @@ MonoBehaviour:
   enemyName: 
   maxHealth: 50
   damage: 10
-  moveSpeed: 2.5
+  moveSpeed: 1
   chaseSpeed: 3
-  detectionRange: 5
-  attackRange: 0.5
+  detectionRange: 2
+  attackRange: 2

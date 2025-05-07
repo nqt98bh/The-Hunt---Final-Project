@@ -32,21 +32,29 @@ public class EnemyAI : MonoBehaviour
     }
     private void Update()
     {
-        if (DetectionPlayer())
+
+
+        bool isAttack = InAttackRange();
+            animator.SetBool("isAttacking", isAttack);
+            Debug.Log("Attack:" + InAttackRange());
+        
+
+        if (DetectionPlayer() && !isAttack)
         {
             isChasing = true;
             moveSpeed = config.chaseSpeed;
             animator.SetBool("isChasing", isChasing);
-            if (InAttackRange()) animator.SetTrigger("isAttack");
-
+            Debug.Log("Chase player");
         }
+        
         else 
         {
             isChasing = false;
             moveSpeed = config.moveSpeed;
             animator.SetBool("isChasing", isChasing);
         }
-        if(!OutOfGround() || ObstacleAhead())
+      
+        if (!OutOfGround() || ObstacleAhead())
         {
             Flip();
         }
@@ -70,7 +78,7 @@ public class EnemyAI : MonoBehaviour
     }
     bool ObstacleAhead()
     {
-        RaycastHit2D hit = Physics2D.Raycast(frontCheck.position, facingRight ? Vector2.right : Vector2.left, 0.2f, groundLayer);
+        RaycastHit2D hit = Physics2D.Raycast(frontCheck.position, facingRight ? Vector2.right : Vector2.left, 0.5f, groundLayer);
         return hit.collider != null;
     }
     bool DetectionPlayer()
@@ -84,9 +92,10 @@ public class EnemyAI : MonoBehaviour
     bool InAttackRange()
     {
         float distance = Vector2.Distance(transform.position, Player.position);
-        if(Mathf.Abs(distance)<config.attackRange)
+        if(distance<config.attackRange)
         {
             return true;
+           
         }
         return false;
 
@@ -97,6 +106,7 @@ public class EnemyAI : MonoBehaviour
         Vector2 scale =  transform.localScale;
         scale.x *=  -1;
         transform.localScale = scale;
+
         
     }
 
