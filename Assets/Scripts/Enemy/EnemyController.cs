@@ -11,7 +11,8 @@ public class EnemyAI : MonoBehaviour
 
     [SerializeField] private float moveSpeed = 5f;
 
-    private bool facingRight = true;
+
+    private bool facingRight;
     private bool isChasing = false;
 
     public LayerMask groundLayer;
@@ -29,6 +30,7 @@ public class EnemyAI : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
         moveSpeed = config.moveSpeed;
+        facingRight = transform.position.x > 0;
     }
     private void Update()
     {
@@ -36,7 +38,6 @@ public class EnemyAI : MonoBehaviour
 
         bool isAttack = InAttackRange();
             animator.SetBool("isAttacking", isAttack);
-            Debug.Log("Attack:" + InAttackRange());
         
 
         if (DetectionPlayer() && !isAttack)
@@ -54,7 +55,7 @@ public class EnemyAI : MonoBehaviour
             animator.SetBool("isChasing", isChasing);
         }
       
-        if (!OutOfGround() || ObstacleAhead())
+        if (!isChasing && (!OutOfGround() || ObstacleAhead()))
         {
             Flip();
         }
@@ -66,9 +67,20 @@ public class EnemyAI : MonoBehaviour
     }
     private void EnemyMovement()
     {
-        float moveDirection = facingRight ? 1f:-1f;
-        rb.velocity = new Vector2(moveDirection*moveSpeed,rb.velocity.y);
-        
+        float moveDirection;
+       
+        if (isChasing)
+        {
+            FacePlayer();
+            moveDirection = (Player.position - transform.position).normalized.x;
+            
+        }
+        else
+        {
+            moveDirection = facingRight ? 1f : -1f;
+        }
+        rb.velocity = new Vector2(moveDirection * moveSpeed, rb.velocity.y);
+
     }
 
     bool OutOfGround()
@@ -85,10 +97,17 @@ public class EnemyAI : MonoBehaviour
     {
         if(Player == null) return false;
         Vector2 direction = (Player.transform.position - transform.position).normalized; //Đảm bảo raycast luôn hướng về player
-        RaycastHit2D hit = Physics2D.Raycast(transform.position, direction, 3f, playerLayer|groundLayer);
+        RaycastHit2D hit = Physics2D.Raycast(transform.position, direction, config.detectionRange, playerLayer|groundLayer);
         return hit.collider != null && hit.collider.CompareTag("Player");
     }
-
+    void FacePlayer()
+    {
+        bool facePlayer = Player.transform.position.x > transform.position.x;
+        if (facePlayer != facingRight)
+        {
+            Flip();
+        }
+    }
     bool InAttackRange()
     {
         float distance = Vector2.Distance(transform.position, Player.position);
@@ -109,5 +128,16 @@ public class EnemyAI : MonoBehaviour
 
         
     }
-
+    private void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawRay(GroundCheck.position, Vector2.down * 0.2f);
+        Gizmos.DrawRay(frontCheck.position, Vector2.right * 0.5f);
+        Gizmos.DrawWireSphere(transform.position, config.detectionRange);
+        if (isChasing && Player != null)
+        {
+            Gizmos.color = Color.yellow;
+            Gizmos.DrawLine(transform.position, Player.position);
+        }
+    }
 }

@@ -113,12 +113,12 @@ TextureImporter:
       name: walk-1_0
       rect:
         serializedVersion: 2
-        x: 1
+        x: 3
         y: 0
-        width: 51
+        width: 79
         height: 59
       alignment: 9
-      pivot: {x: 0.9019608, y: 0.84745765}
+      pivot: {x: 0.52843934, y: 0.70667785}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
