@@ -113,12 +113,12 @@ TextureImporter:
       name: attack-A5_0
       rect:
         serializedVersion: 2
-        x: 37
+        x: 3
         y: 0
-        width: 74
+        width: 110
         height: 80
       alignment: 9
-      pivot: {x: 0.2027027, y: 0.55}
+      pivot: {x: 0.3790504, y: 0.33825138}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []

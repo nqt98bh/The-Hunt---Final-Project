@@ -113,12 +113,12 @@ TextureImporter:
       name: attack-A7_0
       rect:
         serializedVersion: 2
-        x: 32
+        x: 3
         y: 0
-        width: 63
+        width: 95
         height: 48
       alignment: 9
-      pivot: {x: 0.2857143, y: 0.8333334}
+      pivot: {x: 0.40765852, y: 0.5031877}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []

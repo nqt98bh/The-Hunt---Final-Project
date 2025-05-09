@@ -12,7 +12,7 @@ public class EnemyAI : MonoBehaviour
     [SerializeField] private float moveSpeed = 5f;
 
 
-    private bool facingRight;
+    [SerializeField] private bool facingRight;
     private bool isChasing = false;
 
     public LayerMask groundLayer;
@@ -30,32 +30,37 @@ public class EnemyAI : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
         moveSpeed = config.moveSpeed;
-        facingRight = transform.position.x > 0;
+        
     }
     private void Update()
     {
 
 
         bool isAttack = InAttackRange();
-            animator.SetBool("isAttacking", isAttack);
+        animator.SetBool("isAttacking", isAttack);
+            
+       
         
 
-        if (DetectionPlayer() && !isAttack)
+        if (DetectionPlayer() )
         {
+
             isChasing = true;
             moveSpeed = config.chaseSpeed;
-            animator.SetBool("isChasing", isChasing);
+            animator.SetFloat("Moving_ID", 1);
             Debug.Log("Chase player");
+            Debug.Log("isChasing:" + isChasing);
+
         }
-        
+
         else 
         {
             isChasing = false;
             moveSpeed = config.moveSpeed;
-            animator.SetBool("isChasing", isChasing);
+            animator.SetFloat("Moving_ID", 0);
         }
       
-        if (!isChasing && (!OutOfGround() || ObstacleAhead()))
+        if ( !OutOfGround() || ObstacleAhead())
         {
             Flip();
         }
@@ -72,6 +77,7 @@ public class EnemyAI : MonoBehaviour
         if (isChasing)
         {
             FacePlayer();
+
             moveDirection = (Player.position - transform.position).normalized.x;
             
         }
@@ -96,9 +102,19 @@ public class EnemyAI : MonoBehaviour
     bool DetectionPlayer()
     {
         if(Player == null) return false;
-        Vector2 direction = (Player.transform.position - transform.position).normalized; //Đảm bảo raycast luôn hướng về player
-        RaycastHit2D hit = Physics2D.Raycast(transform.position, direction, config.detectionRange, playerLayer|groundLayer);
-        return hit.collider != null && hit.collider.CompareTag("Player");
+        Vector2 target = Player.position + Vector3.up * 0.5f;
+        Vector2 direction = (target  - (Vector2) transform.position).normalized; //Đảm bảo raycast luôn hướng về player
+        RaycastHit2D hitPlayer = Physics2D.Raycast(transform.position, direction, config.detectionRange, playerLayer);
+        RaycastHit2D hitObstacle = Physics2D.Raycast(transform.position, direction, config.detectionRange, groundLayer);
+        Debug.DrawRay(transform.position, direction * config.detectionRange, Color.green);
+        bool seePlayer = hitPlayer.collider != null && hitPlayer.collider.CompareTag("Player");
+        bool seeObstacle = hitObstacle.collider != null;
+        if (seePlayer && !seeObstacle)
+        {
+            return true;
+        }
+        return false;
+      
     }
     void FacePlayer()
     {
@@ -121,7 +137,9 @@ public class EnemyAI : MonoBehaviour
     }
     void Flip()
     {
+        
         facingRight = !facingRight;
+       
         Vector2 scale =  transform.localScale;
         scale.x *=  -1;
         transform.localScale = scale;
