@@ -7,20 +7,24 @@ using UnityEngine;
 [RequireComponent(typeof(Animator))]
 public class EnemyAI : MonoBehaviour
 {
-    [SerializeField] EnemyConfig config;
 
+    [SerializeField] private EnemyConfig config;
+    [SerializeField] private CharacterState characterState;
     [SerializeField] private float moveSpeed = 5f;
-
-
+    [SerializeField] private float attackRadius = 1f;
+    [SerializeField] private float attackCoolDown = 2f;
+    private float nextAttackTime = 0f;
     [SerializeField] private bool facingRight;
     private bool isChasing = false;
 
     public LayerMask groundLayer;
     public LayerMask playerLayer;
 
-    public Transform GroundCheck;
-    public Transform Player;
+    public Transform groundCheck;
     public Transform frontCheck;
+    public Transform attackPoint;
+    public Transform player;
+
 
     Rigidbody2D rb;
     Animator animator;
@@ -34,16 +38,25 @@ public class EnemyAI : MonoBehaviour
     }
     private void Update()
     {
-
+        Debug.Log("faceing right:" + facingRight);
 
         bool isAttack = InAttackRange();
-        animator.SetBool("isAttacking", isAttack);
-            
-       
-        
 
-        if (DetectionPlayer() )
+
+        nextAttackTime += Time.deltaTime;
+
+        if (DetectionPlayer()  )
         {
+            if (isAttack )
+            {
+                
+                if(nextAttackTime >= attackCoolDown)
+                {
+                    animator.SetTrigger("isAttacking");
+                    nextAttackTime = 0f;
+                }
+               
+            }
 
             isChasing = true;
             moveSpeed = config.chaseSpeed;
@@ -55,12 +68,13 @@ public class EnemyAI : MonoBehaviour
 
         else 
         {
+            animator.SetBool("isAttacking", false);
             isChasing = false;
             moveSpeed = config.moveSpeed;
             animator.SetFloat("Moving_ID", 0);
         }
       
-        if ( !OutOfGround() || ObstacleAhead())
+        if ( !InGrounded() || ObstacleAhead())
         {
             Flip();
         }
@@ -74,11 +88,11 @@ public class EnemyAI : MonoBehaviour
     {
         float moveDirection;
        
-        if (isChasing)
+        if (isChasing && InGrounded() && !ObstacleAhead())
         {
             FacePlayer();
 
-            moveDirection = (Player.position - transform.position).normalized.x;
+            moveDirection = (player.position - transform.position).normalized.x;
             
         }
         else
@@ -89,27 +103,27 @@ public class EnemyAI : MonoBehaviour
 
     }
 
-    bool OutOfGround()
+    bool InGrounded()
     {
-        return Physics2D.Raycast(GroundCheck.position,Vector2.down,0.2f,groundLayer);
+        return Physics2D.Raycast(groundCheck.position,Vector2.down,0.1f,groundLayer);
+        
 
     }
-    bool ObstacleAhead()
+    bool ObstacleAhead() //hỏi TA tại sao raycast không quay
     {
-        RaycastHit2D hit = Physics2D.Raycast(frontCheck.position, facingRight ? Vector2.right : Vector2.left, 0.5f, groundLayer);
+        RaycastHit2D hit = Physics2D.Raycast(frontCheck.position,facingRight ? Vector2.right : Vector2.left, 0.5f, groundLayer);
         return hit.collider != null;
     }
     bool DetectionPlayer()
     {
-        if(Player == null) return false;
-        Vector2 target = Player.position + Vector3.up * 0.5f;
-        Vector2 direction = (target  - (Vector2) transform.position).normalized; //Đảm bảo raycast luôn hướng về player
-        RaycastHit2D hitPlayer = Physics2D.Raycast(transform.position, direction, config.detectionRange, playerLayer);
-        RaycastHit2D hitObstacle = Physics2D.Raycast(transform.position, direction, config.detectionRange, groundLayer);
+        if(player == null) return false;
+        Vector2 target = player.position + Vector3.up * 0.5f;
+        Vector2 direction = new Vector2( (target.x  - transform.position.x),0f).normalized; //Đảm bảo raycast luôn hướng về player
+
+        RaycastHit2D hitPlayer = Physics2D.Raycast(transform.position, direction, config.detectionRange, playerLayer|groundLayer);
         Debug.DrawRay(transform.position, direction * config.detectionRange, Color.green);
-        bool seePlayer = hitPlayer.collider != null && hitPlayer.collider.CompareTag("Player");
-        bool seeObstacle = hitObstacle.collider != null;
-        if (seePlayer && !seeObstacle)
+        bool seePlayer = hitPlayer.collider != null && hitPlayer.transform == player;
+        if (seePlayer )
         {
             return true;
         }
@@ -118,7 +132,7 @@ public class EnemyAI : MonoBehaviour
     }
     void FacePlayer()
     {
-        bool facePlayer = Player.transform.position.x > transform.position.x;
+        bool facePlayer = player.transform.position.x > transform.position.x;
         if (facePlayer != facingRight)
         {
             Flip();
@@ -126,7 +140,7 @@ public class EnemyAI : MonoBehaviour
     }
     bool InAttackRange()
     {
-        float distance = Vector2.Distance(transform.position, Player.position);
+        float distance = Vector2.Distance(transform.position, player.position);
         if(distance<config.attackRange)
         {
             return true;
@@ -134,6 +148,18 @@ public class EnemyAI : MonoBehaviour
         }
         return false;
 
+    }
+    public void Attack()
+    {
+        Collider2D colliderInfor = Physics2D.OverlapCircle(attackPoint.position,attackRadius,playerLayer);
+        if(colliderInfor != null)
+        {
+            Debug.Log(colliderInfor.transform.name);
+            if(colliderInfor.gameObject == characterState.gameObject)
+            {
+                characterState.TakeDamage(20);
+            }
+        }
     }
     void Flip()
     {
@@ -148,14 +174,17 @@ public class EnemyAI : MonoBehaviour
     }
     private void OnDrawGizmosSelected()
     {
+        Gizmos.color = Color.yellow;
+        Gizmos.DrawRay(groundCheck.position, Vector2.down * 0.2f);
+        Gizmos.DrawRay(frontCheck.position,(facingRight ? Vector2.right : Vector2.left) *0.5f);
+
         Gizmos.color = Color.red;
-        Gizmos.DrawRay(GroundCheck.position, Vector2.down * 0.2f);
-        Gizmos.DrawRay(frontCheck.position, Vector2.right * 0.5f);
         Gizmos.DrawWireSphere(transform.position, config.detectionRange);
-        if (isChasing && Player != null)
+        if (isChasing && player != null)
         {
             Gizmos.color = Color.yellow;
-            Gizmos.DrawLine(transform.position, Player.position);
+            Gizmos.DrawLine(transform.position, player.position);
         }
+        Gizmos.DrawWireSphere(attackPoint.position,attackRadius);
     }
 }

@@ -35,11 +35,11 @@ public class CharacterAnimController : MonoBehaviour
     {
         animator.SetFloat("AirSpeedY", AirSpeedY);
     }
-    public void SetHurt()
+    public void SetTriggerHurt()
     {
         animator.SetTrigger("isHurting");
     }
-    public void SetDeath()
+    public void SetTriggerDeath()
     {
         animator.SetTrigger("isDeath");
     }

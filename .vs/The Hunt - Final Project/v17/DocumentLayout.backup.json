@@ -3,16 +3,20 @@
   "WorkspaceRootPath": "C:\\Unitylearn\\The Hunt - Final Project\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{3C0093BC-07FB-AE48-C4B8-741161000A55}|Assembly-CSharp.csproj|c:\\unitylearn\\the hunt - final project\\assets\\scripts\\enemy\\enemycontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|c:\\unitylearn\\the hunt - final project\\assets\\scripts\\character\\charactercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:assets\\scripts\\character\\charactercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3C0093BC-07FB-AE48-C4B8-741161000A55}|Assembly-CSharp.csproj|C:\\Unitylearn\\The Hunt - Final Project\\assets\\scripts\\character\\charactermovement.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3C0093BC-07FB-AE48-C4B8-741161000A55}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\character\\charactermovement.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3C0093BC-07FB-AE48-C4B8-741161000A55}|Assembly-CSharp.csproj|C:\\Unitylearn\\The Hunt - Final Project\\assets\\scripts\\enemy\\enemycontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{3C0093BC-07FB-AE48-C4B8-741161000A55}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\enemy\\enemycontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{3C0093BC-07FB-AE48-C4B8-741161000A55}|Assembly-CSharp.csproj|C:\\Unitylearn\\The Hunt - Final Project\\assets\\scripts\\enemy\\enemyconfig.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{3C0093BC-07FB-AE48-C4B8-741161000A55}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\enemy\\enemyconfig.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{3C0093BC-07FB-AE48-C4B8-741161000A55}|Assembly-CSharp.csproj|C:\\Unitylearn\\The Hunt - Final Project\\assets\\scripts\\character\\charactermovement.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{3C0093BC-07FB-AE48-C4B8-741161000A55}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\character\\charactermovement.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{3C0093BC-07FB-AE48-C4B8-741161000A55}|Assembly-CSharp.csproj|C:\\Unitylearn\\The Hunt - Final Project\\assets\\scripts\\character\\characteranimcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -39,19 +43,31 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "EnemyController.cs",
-              "DocumentMoniker": "C:\\Unitylearn\\The Hunt - Final Project\\Assets\\Scripts\\Enemy\\EnemyController.cs",
-              "RelativeDocumentMoniker": "Assets\\Scripts\\Enemy\\EnemyController.cs",
-              "ToolTip": "C:\\Unitylearn\\The Hunt - Final Project\\Assets\\Scripts\\Enemy\\EnemyController.cs*",
-              "RelativeToolTip": "Assets\\Scripts\\Enemy\\EnemyController.cs*",
-              "ViewState": "AgIAABEAAAAAAAAAAAAQwCAAAAAfAAAAAAAAAA==",
+              "Title": "CharacterController.cs",
+              "DocumentMoniker": "C:\\Unitylearn\\The Hunt - Final Project\\Assets\\Scripts\\Character\\CharacterController.cs",
+              "RelativeDocumentMoniker": "Assets\\Scripts\\Character\\CharacterController.cs",
+              "ToolTip": "C:\\Unitylearn\\The Hunt - Final Project\\Assets\\Scripts\\Character\\CharacterController.cs",
+              "RelativeToolTip": "Assets\\Scripts\\Character\\CharacterController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-06T14:39:49.583Z",
+              "WhenOpened": "2025-05-10T16:27:25.7Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 2,
+              "Title": "EnemyController.cs",
+              "DocumentMoniker": "C:\\Unitylearn\\The Hunt - Final Project\\Assets\\Scripts\\Enemy\\EnemyController.cs",
+              "RelativeDocumentMoniker": "Assets\\Scripts\\Enemy\\EnemyController.cs",
+              "ToolTip": "C:\\Unitylearn\\The Hunt - Final Project\\Assets\\Scripts\\Enemy\\EnemyController.cs",
+              "RelativeToolTip": "Assets\\Scripts\\Enemy\\EnemyController.cs",
+              "ViewState": "AgIAAAgAAAAAAAAAAAAQwJUAAAAYAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-06T14:39:49.583Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
               "Title": "EnemyConfig.cs",
               "DocumentMoniker": "C:\\Unitylearn\\The Hunt - Final Project\\Assets\\Scripts\\Enemy\\EnemyConfig.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\Enemy\\EnemyConfig.cs",
@@ -63,7 +79,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 5,
               "Title": "Sensor_Character.cs",
               "DocumentMoniker": "C:\\Unitylearn\\The Hunt - Final Project\\Assets\\Scripts\\Character\\Sensor_Character.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\Character\\Sensor_Character.cs",
@@ -75,7 +91,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 6,
               "Title": "CharacterInput.cs",
               "DocumentMoniker": "C:\\Unitylearn\\The Hunt - Final Project\\Assets\\Scripts\\Character\\CharacterInput.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\Character\\CharacterInput.cs",
@@ -87,7 +103,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 4,
               "Title": "CharacterAnimController.cs",
               "DocumentMoniker": "C:\\Unitylearn\\The Hunt - Final Project\\Assets\\Scripts\\Character\\CharacterAnimController.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\Character\\CharacterAnimController.cs",
@@ -99,13 +115,13 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 1,
               "Title": "CharacterMovement.cs",
               "DocumentMoniker": "C:\\Unitylearn\\The Hunt - Final Project\\Assets\\Scripts\\Character\\CharacterMovement.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\Character\\CharacterMovement.cs",
               "ToolTip": "C:\\Unitylearn\\The Hunt - Final Project\\Assets\\Scripts\\Character\\CharacterMovement.cs",
               "RelativeToolTip": "Assets\\Scripts\\Character\\CharacterMovement.cs",
-              "ViewState": "AgIAAEoAAAAAAAAAAAAAwLkAAAAFAAAAAAAAAA==",
+              "ViewState": "AgIAACkAAAAAAAAAAAAIwLkAAAAFAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-05-02T16:15:15.745Z"
             }

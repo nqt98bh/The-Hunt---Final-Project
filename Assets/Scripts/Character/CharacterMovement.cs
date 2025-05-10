@@ -27,6 +27,7 @@ public class CharacterMovement : MonoBehaviour
     private bool isRolling = false;
     private bool isSliding = false;
     private bool isJumping = false;
+    public bool isBlocking { get; set; } = false;
 
     private float delayToIlde = 0f;
     private float currentTimeRolling;
@@ -186,13 +187,17 @@ public class CharacterMovement : MonoBehaviour
     {
         if(input.BlockPressed && !isRolling && !isSliding)
         {
+            isBlocking = true;
             anim.SetTriggerBlock();
             anim.SetBoolIdleBlock(true);
         }
         else if (input.UnBlockPressed)
         {
+            isBlocking = false ;
             anim.SetBoolIdleBlock(false);
         }
+        
+        Debug.Log("isBlocking: "+isBlocking);
     }
     void WallSliding()
     {
