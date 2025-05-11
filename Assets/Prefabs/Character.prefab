@@ -201,6 +201,37 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.75, y: 0.08}
   m_EdgeRadius: 0
+--- !u!1 &3942612290631699264
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 430767293710909760}
+  m_Layer: 3
+  m_Name: AttackPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 3443629218296621865, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &430767293710909760
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3942612290631699264}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.674, y: 0.968, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 7189155775020212261}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &5825847098636006900
 GameObject:
   m_ObjectHideFlags: 0
@@ -217,6 +248,7 @@ GameObject:
   - component: {fileID: 9206037523051373435}
   - component: {fileID: 9072963640015440633}
   - component: {fileID: 5466240639974617565}
+  - component: {fileID: 6103492891621404315}
   m_Layer: 3
   m_Name: Character
   m_TagString: Player
@@ -241,6 +273,7 @@ Transform:
   - {fileID: 7811039928738178567}
   - {fileID: 4122577655990287222}
   - {fileID: 3642604774200695808}
+  - {fileID: 430767293710909760}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &8199477731065065877
@@ -424,6 +457,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b3c86de3383c4348be95b71de77e6b2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &6103492891621404315
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5825847098636006900}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f01283c26848afa408d7821207ab0557, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHP: 100
+  attackRadius: 0.88
+  attackPoint: {fileID: 430767293710909760}
 --- !u!1 &8468891162095859894
 GameObject:
   m_ObjectHideFlags: 0

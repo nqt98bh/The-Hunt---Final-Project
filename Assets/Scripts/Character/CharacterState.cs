@@ -6,10 +6,16 @@ public class CharacterState : MonoBehaviour
 {
 
     [SerializeField] private int maxHP = 100;
+    [SerializeField] float attackRadius;
+    private int playerDamage = 10;
     private int currentHP;
     CharacterAnimController animator;
     CharacterMovement characterMovement;
 
+
+    public Transform attackPoint;
+
+    public LayerMask enemyLayer;
     private void Awake()
     {
         animator = GetComponent<CharacterAnimController>();
@@ -33,6 +39,19 @@ public class CharacterState : MonoBehaviour
 
         Debug.Log("Current HP: " + currentHP);
     }
+    public void AttackEnemy()
+    {
+        Collider2D colliderInfo = Physics2D.OverlapCircle(attackPoint.position, attackRadius, enemyLayer);
+        if (colliderInfo != null)
+        {
+            Debug.Log(colliderInfo.transform.name);
+            EnemyAI target = colliderInfo.GetComponent<EnemyAI>();
+            if (target != null)
+            {
+                target.TakeDamage(playerDamage);
+            }
+        }
+    }
     void Dead()
     {
         if (currentHP <= 0)
@@ -40,5 +59,10 @@ public class CharacterState : MonoBehaviour
             currentHP = 0;
             animator.SetTriggerDeath();
         }
+    }
+    public void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.green;
+        Gizmos.DrawWireSphere(attackPoint.position, attackRadius);
     }
 }

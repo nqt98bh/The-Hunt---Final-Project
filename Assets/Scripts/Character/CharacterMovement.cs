@@ -21,13 +21,14 @@ public class CharacterMovement : MonoBehaviour
     [SerializeField] Sensor_Character wallSensor1;
     [SerializeField] Sensor_Character wallSensor2;
     [SerializeField] Sensor_Character GroundSensor;
+ 
 
     private bool isGrounded = false;
     private bool facingRight =true;
     private bool isRolling = false;
     private bool isSliding = false;
     private bool isJumping = false;
-    public bool isBlocking { get; set; } = false;
+    public bool isBlocking { get; private set; } = false;
 
     private float delayToIlde = 0f;
     private float currentTimeRolling;
@@ -183,6 +184,7 @@ public class CharacterMovement : MonoBehaviour
             timeSinceAttack = 0;
         }
     }
+ 
     void Block()
     {
         if(input.BlockPressed && !isRolling && !isSliding)
@@ -205,5 +207,6 @@ public class CharacterMovement : MonoBehaviour
         isSliding = (wallSensor1.State() && wallSensor1.State());
         anim.SetBoolSliding(isSliding);
     }
+   
 }
 

@@ -18,7 +18,10 @@ public class Sensor_Character : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        
         ColliderCount++;
+
+        
     }
     private void OnTriggerExit2D(Collider2D collision)
     {

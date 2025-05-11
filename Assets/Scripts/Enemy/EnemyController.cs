@@ -13,6 +13,7 @@ public class EnemyAI : MonoBehaviour
     [SerializeField] private float moveSpeed = 5f;
     [SerializeField] private float attackRadius = 1f;
     [SerializeField] private float attackCoolDown = 2f;
+    private int currentHP;
     private float nextAttackTime = 0f;
     [SerializeField] private bool facingRight;
     private bool isChasing = false;
@@ -34,6 +35,7 @@ public class EnemyAI : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
         moveSpeed = config.moveSpeed;
+        currentHP = config.maxHealth;
         
     }
     private void Update()
@@ -154,11 +156,21 @@ public class EnemyAI : MonoBehaviour
         Collider2D colliderInfor = Physics2D.OverlapCircle(attackPoint.position,attackRadius,playerLayer);
         if(colliderInfor != null)
         {
-            Debug.Log(colliderInfor.transform.name);
             if(colliderInfor.gameObject == characterState.gameObject)
             {
-                characterState.TakeDamage(20);
+                characterState.TakeDamage(config.damage);
             }
+        }
+    }
+    public void TakeDamage(int damage)
+    {
+        currentHP -= damage;
+        animator.SetTrigger("isHitted");
+        if(currentHP <= 0)
+        {
+            currentHP = 0;
+            animator.SetTrigger("isDeaded");
+            Destroy(gameObject);
         }
     }
     void Flip()
