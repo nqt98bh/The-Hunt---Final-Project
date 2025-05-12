@@ -17,6 +17,7 @@ public class EnemyAI : MonoBehaviour
     private float nextAttackTime = 0f;
     [SerializeField] private bool facingRight;
     private bool isChasing = false;
+    private bool isAttacking = false;
 
     public LayerMask groundLayer;
     public LayerMask playerLayer;
@@ -72,8 +73,10 @@ public class EnemyAI : MonoBehaviour
         {
             animator.SetBool("isAttacking", false);
             isChasing = false;
+           
             moveSpeed = config.moveSpeed;
             animator.SetFloat("Moving_ID", 0);
+
         }
       
         if ( !InGrounded() || ObstacleAhead())
@@ -84,6 +87,7 @@ public class EnemyAI : MonoBehaviour
 
     private void FixedUpdate()
     {
+       
         EnemyMovement();
     }
     private void EnemyMovement()

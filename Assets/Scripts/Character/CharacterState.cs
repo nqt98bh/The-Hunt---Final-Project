@@ -25,7 +25,7 @@ public class CharacterState : MonoBehaviour
     }
     private void Update()
     {
-        Dead();
+        
     }
 
     public void TakeDamage(int damage)
@@ -36,7 +36,7 @@ public class CharacterState : MonoBehaviour
         }
         currentHP -= damage;
         animator.SetTriggerHurt();
-
+        Dead();
         Debug.Log("Current HP: " + currentHP);
     }
     public void AttackEnemy()
@@ -58,7 +58,9 @@ public class CharacterState : MonoBehaviour
         {
             currentHP = 0;
             animator.SetTriggerDeath();
+            GameManager.Instance.isGameOver = true;
         }
+        
     }
     public void OnDrawGizmosSelected()
     {

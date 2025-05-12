@@ -61,6 +61,7 @@ public class CharacterMovement : MonoBehaviour
     }
     void Update()
     {
+        if (GameManager.Instance.isGameOver) return;
         anim.SetAirSpeedY(rb2d.velocity.y);
         Jump();
         Roll();
@@ -71,7 +72,7 @@ public class CharacterMovement : MonoBehaviour
     }
     private void FixedUpdate()
     {
-       
+        if (GameManager.Instance.isGameOver) return;
         Movement();
         if (isGrounded == false && rb2d.velocity.y > 0.01f && isJumping == false)
         {
