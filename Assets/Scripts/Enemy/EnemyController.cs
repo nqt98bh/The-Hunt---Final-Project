@@ -20,6 +20,7 @@ public class EnemyAI : MonoBehaviour
     private bool isAttacking = false;
 
     public LayerMask groundLayer;
+    public LayerMask WallLayer;
     public LayerMask playerLayer;
 
     public Transform groundCheck;
@@ -65,7 +66,6 @@ public class EnemyAI : MonoBehaviour
             moveSpeed = config.chaseSpeed;
             animator.SetFloat("Moving_ID", 1);
             Debug.Log("Chase player");
-            Debug.Log("isChasing:" + isChasing);
 
         }
 
@@ -117,7 +117,7 @@ public class EnemyAI : MonoBehaviour
     }
     bool ObstacleAhead() //hỏi TA tại sao raycast không quay
     {
-        RaycastHit2D hit = Physics2D.Raycast(frontCheck.position,facingRight ? Vector2.right : Vector2.left, 0.5f, groundLayer);
+        RaycastHit2D hit = Physics2D.Raycast(frontCheck.position,facingRight ? Vector2.right : Vector2.left, 0.5f, WallLayer);
         return hit.collider != null;
     }
     bool DetectionPlayer()
@@ -126,7 +126,7 @@ public class EnemyAI : MonoBehaviour
         Vector2 target = player.position + Vector3.up * 0.5f;
         Vector2 direction = new Vector2( (target.x  - transform.position.x),0f).normalized; //Đảm bảo raycast luôn hướng về player
 
-        RaycastHit2D hitPlayer = Physics2D.Raycast(transform.position, direction, config.detectionRange, playerLayer|groundLayer);
+        RaycastHit2D hitPlayer = Physics2D.Raycast(transform.position, direction, config.detectionRange, playerLayer| WallLayer);
         Debug.DrawRay(transform.position, direction * config.detectionRange, Color.green);
         bool seePlayer = hitPlayer.collider != null && hitPlayer.transform == player;
         if (seePlayer )

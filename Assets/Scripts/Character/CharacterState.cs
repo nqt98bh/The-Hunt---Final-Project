@@ -1,10 +1,13 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class CharacterState : MonoBehaviour
 {
+    public static CharacterState Instance;
 
+    public static Action<float> OnHealthChanged;
     [SerializeField] private int maxHP = 100;
     [SerializeField] float attackRadius;
     private int playerDamage = 10;
@@ -12,21 +15,24 @@ public class CharacterState : MonoBehaviour
     CharacterAnimController animator;
     CharacterMovement characterMovement;
 
-
+    
     public Transform attackPoint;
 
     public LayerMask enemyLayer;
     private void Awake()
     {
+       if(Instance == null)
+        {
+            Instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else { Destroy(gameObject); }
         animator = GetComponent<CharacterAnimController>();
         characterMovement = GetComponent<CharacterMovement>();
         currentHP = maxHP;
 
     }
-    private void Update()
-    {
-        
-    }
+
 
     public void TakeDamage(int damage)
     {
@@ -35,6 +41,8 @@ public class CharacterState : MonoBehaviour
           return;
         }
         currentHP -= damage;
+        
+        OnHealthChanged?.Invoke((float)currentHP/maxHP);
         animator.SetTriggerHurt();
         Dead();
         Debug.Log("Current HP: " + currentHP);
@@ -61,6 +69,21 @@ public class CharacterState : MonoBehaviour
             GameManager.Instance.isGameOver = true;
         }
         
+    }
+    public void ResetHealth()
+    {
+        currentHP = maxHP;
+        OnHealthChanged?.Invoke((float)currentHP/maxHP);
+    }
+    public void SetMaxHP(int maxHP)
+    {
+        this.maxHP = maxHP;
+        currentHP = maxHP;
+        OnHealthChanged?.Invoke((float)currentHP/maxHP);
+    }
+    public float GetCurrentHP()
+    {
+        return (float)currentHP/maxHP;
     }
     public void OnDrawGizmosSelected()
     {

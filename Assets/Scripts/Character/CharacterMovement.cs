@@ -200,7 +200,6 @@ public class CharacterMovement : MonoBehaviour
             anim.SetBoolIdleBlock(false);
         }
         
-        Debug.Log("isBlocking: "+isBlocking);
     }
     void WallSliding()
     {

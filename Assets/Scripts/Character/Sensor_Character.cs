@@ -2,12 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Sensor_Character : MonoBehaviour
-{
-    private int ColliderCount;
-    private float DisableTimer;
 
-    private void OnEnable()
+public abstract class Sensor_Character:MonoBehaviour
+{
+    protected int ColliderCount;
+    protected float DisableTimer;
+    [SerializeField] protected string layerMaskName;
+    
+
+    protected void OnEnable()
     {
         ColliderCount = 0;
     }
@@ -16,18 +19,18 @@ public class Sensor_Character : MonoBehaviour
         if(DisableTimer > 0) return false;
         return ColliderCount > 0;
     }
-    private void OnTriggerEnter2D(Collider2D collision)
+    protected void OnTriggerEnter2D(Collider2D collision)
     {
-        
+        CollisionDetect(collision);
         ColliderCount++;
 
         
     }
-    private void OnTriggerExit2D(Collider2D collision)
+    protected void OnTriggerExit2D(Collider2D collision)
     {
         ColliderCount--;
     }
-    private void Update()
+    protected void Update()
     {
         DisableTimer -= Time.deltaTime;
     }
@@ -35,4 +38,5 @@ public class Sensor_Character : MonoBehaviour
     {
         DisableTimer = duration;
     }
+    protected abstract void CollisionDetect(Collider2D collision);
 }
