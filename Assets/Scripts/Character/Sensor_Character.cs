@@ -5,30 +5,29 @@ using UnityEngine;
 
 public abstract class Sensor_Character:MonoBehaviour
 {
-    protected int ColliderCount;
-    protected float DisableTimer;
-    [SerializeField] protected string layerMaskName;
     
+    protected int ColliderCount =0;
+    protected float DisableTimer;
+
+    [SerializeField] protected LayerMask layerType;
 
     protected void OnEnable()
     {
         ColliderCount = 0;
+        
     }
     public bool State()
     {
         if(DisableTimer > 0) return false;
         return ColliderCount > 0;
     }
-    protected void OnTriggerEnter2D(Collider2D collision)
+    protected virtual void OnTriggerEnter2D(Collider2D other)
     {
-        CollisionDetect(collision);
-        ColliderCount++;
-
-        
+        //ColliderCount++;
     }
-    protected void OnTriggerExit2D(Collider2D collision)
+    protected virtual void OnTriggerExit2D(Collider2D collision)
     {
-        ColliderCount--;
+       // ColliderCount--;
     }
     protected void Update()
     {

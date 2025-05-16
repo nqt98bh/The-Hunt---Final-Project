@@ -19,12 +19,11 @@ public class HealthBarUI : MonoBehaviour
     private void Start()
     {
       
-        UpdateHealthBar(CharacterState.Instance.GetCurrentHP());
+        UpdateHealthBar(GameManager.Instance.CharacterState.GetCurrentHP());
     }
     private void UpdateHealthBar(float health)
     {
         healthSlider.value = health;
-        Debug.Log("health UI change:" +health);
     }
 }
 

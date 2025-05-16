@@ -14,7 +14,7 @@ public class CharacterState : MonoBehaviour
     private int currentHP;
     CharacterAnimController animator;
     CharacterMovement characterMovement;
-
+    
     
     public Transform attackPoint;
 

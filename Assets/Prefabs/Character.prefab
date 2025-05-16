@@ -41,7 +41,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4122577655990287222}
   - component: {fileID: 7435802852058163848}
-  - component: {fileID: 3119571804203623635}
+  - component: {fileID: 2983209146015624344}
   m_Layer: 0
   m_Name: WallSensorR2
   m_TagString: Untagged
@@ -99,7 +99,7 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.05
---- !u!114 &3119571804203623635
+--- !u!114 &2983209146015624344
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -108,9 +108,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1015619673981727782}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 11dec74a1fbb174428432d22336b0dc8, type: 3}
+  m_Script: {fileID: 11500000, guid: 124a41f2ff1118540872a72a25b75c7d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  layerType: 1
 --- !u!1 &2451696019364076081
 GameObject:
   m_ObjectHideFlags: 0
@@ -120,8 +121,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3442911165960360458}
-  - component: {fileID: 4844209592907162225}
   - component: {fileID: 1223786414557648917}
+  - component: {fileID: 3146462851714450429}
   m_Layer: 0
   m_Name: Ground Sensor
   m_TagString: Untagged
@@ -144,18 +145,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 7189155775020212261}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &4844209592907162225
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2451696019364076081}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 11dec74a1fbb174428432d22336b0dc8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!61 &1223786414557648917
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -201,6 +190,19 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.75, y: 0.08}
   m_EdgeRadius: 0
+--- !u!114 &3146462851714450429
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2451696019364076081}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9fdce4ba880987f40ade765579a98e87, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  layerType: 0
 --- !u!1 &3942612290631699264
 GameObject:
   m_ObjectHideFlags: 0
@@ -391,9 +393,9 @@ MonoBehaviour:
   speed: 5
   jumpForce: 5
   rollForce: 5
-  wallSensor1: {fileID: 2517121087608257483}
-  wallSensor2: {fileID: 3119571804203623635}
-  GroundSensor: {fileID: 4844209592907162225}
+  wallSensor1: {fileID: 7385169085337893886}
+  wallSensor2: {fileID: 2983209146015624344}
+  groundSensor: {fileID: 3146462851714450429}
   rollDuration: 1
   dragForce: 100
   colliderSize: {x: 0.7, y: 0.65}
@@ -472,6 +474,9 @@ MonoBehaviour:
   maxHP: 100
   attackRadius: 0.88
   attackPoint: {fileID: 430767293710909760}
+  enemyLayer:
+    serializedVersion: 2
+    m_Bits: 128
 --- !u!1 &8468891162095859894
 GameObject:
   m_ObjectHideFlags: 0
@@ -482,7 +487,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3642604774200695808}
   - component: {fileID: 7983943038172250627}
-  - component: {fileID: 2517121087608257483}
+  - component: {fileID: 7385169085337893886}
   m_Layer: 0
   m_Name: WallSensorR1
   m_TagString: Untagged
@@ -540,7 +545,7 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.05
---- !u!114 &2517121087608257483
+--- !u!114 &7385169085337893886
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -549,6 +554,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 8468891162095859894}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 11dec74a1fbb174428432d22336b0dc8, type: 3}
+  m_Script: {fileID: 11500000, guid: 124a41f2ff1118540872a72a25b75c7d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  layerType: 1

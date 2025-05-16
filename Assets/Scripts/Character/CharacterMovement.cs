@@ -18,9 +18,9 @@ public class CharacterMovement : MonoBehaviour
     CharacterInput input;
 
 
-    [SerializeField] Sensor_Character wallSensor1;
-    [SerializeField] Sensor_Character wallSensor2;
-    [SerializeField] Sensor_Character GroundSensor;
+    [SerializeField] Wall_Sensor wallSensor1;
+    [SerializeField] Wall_Sensor wallSensor2;
+    [SerializeField] Ground_Sensor groundSensor;
  
 
     private bool isGrounded = false;
@@ -82,12 +82,12 @@ public class CharacterMovement : MonoBehaviour
 
     void CheckGround()
     {
-        if (!isGrounded && GroundSensor.State())
+        if (!isGrounded && groundSensor.State())
         {
             isGrounded = true;
             anim.SetBoolIsGrounded(isGrounded);
         }
-        if (isGrounded && !GroundSensor.State())
+       else if (isGrounded && !groundSensor.State())
         {
             isGrounded = false;
             anim.SetBoolIsGrounded(isGrounded);
@@ -131,7 +131,7 @@ public class CharacterMovement : MonoBehaviour
             isGrounded = false;
             anim.SetBoolIsGrounded(isGrounded);
             rb2d.velocity = new Vector2(rb2d.velocity.x, jumpForce);
-            GroundSensor.Disable(0.2f);
+            groundSensor.Disable(0.2f);
 
         }
         if(isGrounded == true)
@@ -203,9 +203,17 @@ public class CharacterMovement : MonoBehaviour
     }
     void WallSliding()
     {
-        
-        isSliding = (wallSensor1.State() && wallSensor1.State());
+
+        isSliding = (!isGrounded&& wallSensor1.State() && wallSensor2.State());
         anim.SetBoolSliding(isSliding);
+        if (isSliding)
+        {
+            rb2d.gravityScale = 0.5f;
+        }
+        else 
+        {
+            rb2d.gravityScale = 1f;
+        }
     }
    
 }
