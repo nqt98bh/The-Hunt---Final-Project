@@ -8,11 +8,13 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance;
 
     [SerializeField] private CharacterState characterState;
+    [SerializeField] private SoundFXManager soundFXManager;
 
     public CharacterState CharacterState => characterState;
+    public SoundFXManager SoundFXManager => soundFXManager;
     [HideInInspector] public bool isGameOver = false;
 
-    public Action GameFinished;
+    public Action OnGameOver;
     private void Awake()
     {
         if(Instance == null)
@@ -23,17 +25,10 @@ public class GameManager : MonoBehaviour
         else { Destroy(gameObject); }
 
     }
-    private void Start()
-    {
-        GameFinished += OnGameFinished;
-        isGameOver = false;
-    }
-    private void OnDestroy()
-    {
-         GameFinished -= OnGameFinished;
-    }
-    private void OnGameFinished()
+
+    public void GameFinished()
     {
         isGameOver = true;
+        OnGameOver?.Invoke();
     }
 }

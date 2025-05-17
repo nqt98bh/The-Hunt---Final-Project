@@ -66,7 +66,7 @@ public class CharacterState : MonoBehaviour
         {
             currentHP = 0;
             animator.SetTriggerDeath();
-            GameManager.Instance.isGameOver = true;
+            GameManager.Instance.GameFinished();
         }
         
     }
