@@ -17,6 +17,7 @@ public class CharacterState : MonoBehaviour
     
     
     public Transform attackPoint;
+    [SerializeField] private Transform SavePoint;
 
     public LayerMask enemyLayer;
     private void Awake()
@@ -44,6 +45,7 @@ public class CharacterState : MonoBehaviour
         
         OnHealthChanged?.Invoke((float)currentHP/maxHP);
         animator.SetTriggerHurt();
+        GameManager.Instance.PlaySoundFX(SoundType.playerHit);
         Dead();
         Debug.Log("Current HP: " + currentHP);
     }
@@ -66,7 +68,10 @@ public class CharacterState : MonoBehaviour
         {
             currentHP = 0;
             animator.SetTriggerDeath();
+            characterMovement.enabled = false;
+            this.gameObject.SetActive(false);
             GameManager.Instance.GameFinished();
+            //GameManager.Instance.PlaySoundFX(SoundType.playerDeath);
         }
         
     }
@@ -89,5 +94,14 @@ public class CharacterState : MonoBehaviour
     {
         Gizmos.color = Color.green;
         Gizmos.DrawWireSphere(attackPoint.position, attackRadius);
+    }
+    public void RestartGame()
+    {
+        ResetHealth();
+        transform.position = SavePoint.position;
+        characterMovement.enabled = true;
+        this.gameObject.SetActive(true);
+        
+       
     }
 }

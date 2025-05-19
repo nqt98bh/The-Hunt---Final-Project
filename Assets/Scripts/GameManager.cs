@@ -9,10 +9,13 @@ public class GameManager : MonoBehaviour
 
     [SerializeField] private CharacterState characterState;
     [SerializeField] private SoundFXManager soundFXManager;
+    [SerializeField] private GameUIManager gameUIManager;
 
     public CharacterState CharacterState => characterState;
     public SoundFXManager SoundFXManager => soundFXManager;
+    public GameUIManager GameUIManager => gameUIManager;
     [HideInInspector] public bool isGameOver = false;
+  
 
     public Action OnGameOver;
     private void Awake()
@@ -30,5 +33,17 @@ public class GameManager : MonoBehaviour
     {
         isGameOver = true;
         OnGameOver?.Invoke();
+        
+
+    }
+    public void RestartGame()
+    {
+        isGameOver = false;
+        characterState.RestartGame();
+        gameUIManager.RestartGame();
+    }
+    public void PlaySoundFX(SoundType soundType)
+    {
+        SoundFXManager.PlaySound(soundType);
     }
 }

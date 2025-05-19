@@ -63,7 +63,6 @@ public class EnemyAI : MonoBehaviour
             isChasing = true;
             moveSpeed = config.chaseSpeed;
             animator.SetFloat("Moving_ID", 1);
-            Debug.Log("Chase player");
 
         }
 
@@ -168,7 +167,8 @@ public class EnemyAI : MonoBehaviour
     {
         currentHP -= damage;
         animator.SetTrigger("isHitted");
-        if(currentHP <= 0)
+        GameManager.Instance.PlaySoundFX(SoundType.enemyHit);
+        if (currentHP <= 0)
         {
             currentHP = 0;
             animator.SetTrigger("isDeaded");

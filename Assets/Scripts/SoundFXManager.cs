@@ -17,7 +17,6 @@ public class SoundFXManager : MonoBehaviour
 
     private void OnEnable()
     {
-        GameManager.Instance.OnGameOver += PlayGameOverSound;
     }
     private void OnDestroy()
     {
@@ -26,6 +25,8 @@ public class SoundFXManager : MonoBehaviour
     }
     private void Start()
     {
+        GameManager.Instance.OnGameOver += PlayGameOverSound;
+
         PlayMusic();
     }
     private AudioClip GetSoundType(SoundType sound)
@@ -62,6 +63,8 @@ public enum SoundType
 {
     playerRun,
     playerJump,
+    playerRoll,
+    playerBlock,
     playerHit,
     playerWallSliding,
     playerAttack,

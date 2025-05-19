@@ -110,6 +110,7 @@ public class CharacterMovement : MonoBehaviour
         }
         if (Mathf.Abs(input.HorizontalInput) > Mathf.Epsilon)
         {
+
             delayToIlde = 0.001f;
             anim.SetRuning(true);
         }
@@ -122,12 +123,17 @@ public class CharacterMovement : MonoBehaviour
             }
         }
     }
+    public void PlaySoundMovement()
+    {
+        GameManager.Instance.PlaySoundFX(SoundType.playerRun);
+    }
     void Jump()
     {
         if(isGrounded == true && isRolling == false && input.JumpPressed)
         {
             isJumping = true;
             anim.SetTriggerJumping();
+            GameManager.Instance.PlaySoundFX(SoundType.playerJump);
             isGrounded = false;
             anim.SetBoolIsGrounded(isGrounded);
             rb2d.velocity = new Vector2(rb2d.velocity.x, jumpForce);
@@ -146,8 +152,7 @@ public class CharacterMovement : MonoBehaviour
         if(input.RollPressed && isRolling == false && !isSliding)
         {
             rb2d.velocity = new Vector2(transform.forward.x*rollForce, rb2d.velocity.y);
-            
-
+            GameManager.Instance.PlaySoundFX(SoundType.playerRoll);
             isRolling = true;
             anim.SetRolling();
             
@@ -155,11 +160,8 @@ public class CharacterMovement : MonoBehaviour
         currentTimeRolling += Time.deltaTime;
         if (currentTimeRolling > rollDuration)
         {
-            
             isRolling = false;
             currentTimeRolling = 0;
-
-
         }
     }
     public void OnableRollCollision()
@@ -183,6 +185,7 @@ public class CharacterMovement : MonoBehaviour
             if(timeSinceAttack >1.0f) attackIndex = 1;
             anim.SetAttack(attackIndex);
             timeSinceAttack = 0;
+            GameManager.Instance.PlaySoundFX(SoundType.playerAttack);
         }
     }
  
@@ -193,6 +196,7 @@ public class CharacterMovement : MonoBehaviour
             isBlocking = true;
             anim.SetTriggerBlock();
             anim.SetBoolIdleBlock(true);
+            GameManager.Instance.PlaySoundFX(SoundType.playerBlock);
         }
         else if (input.UnBlockPressed)
         {
@@ -209,6 +213,8 @@ public class CharacterMovement : MonoBehaviour
         if (isSliding)
         {
             rb2d.gravityScale = 0.5f;
+            GameManager.Instance.PlaySoundFX(SoundType.playerWallSliding);
+
         }
         else 
         {
