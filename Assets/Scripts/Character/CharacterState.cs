@@ -9,8 +9,9 @@ public class CharacterState : MonoBehaviour
 
     public static Action<float> OnHealthChanged;
     [SerializeField] private int maxHP = 100;
+    [SerializeField] private int playerDamage = 10;
+
     [SerializeField] float attackRadius;
-    private int playerDamage = 10;
     private int currentHP;
     CharacterAnimController animator;
     CharacterMovement characterMovement;
