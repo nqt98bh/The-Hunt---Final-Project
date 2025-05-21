@@ -3,13 +3,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CharacterState : MonoBehaviour
+public class CharacterState : MonoBehaviour, IDataPersistence
 {
     public static CharacterState Instance;
 
     public static Action<float> OnHealthChanged;
-    [SerializeField] private int maxHP = 100;
-    [SerializeField] private int playerDamage = 10;
+    public int maxHP = 100;
+    public int playerDamage = 10;
+
 
     [SerializeField] float attackRadius;
     private int currentHP;
@@ -104,5 +105,15 @@ public class CharacterState : MonoBehaviour
         this.gameObject.SetActive(true);
         
        
+    }
+
+    public void LoadData(GameData data)
+    {
+       
+    }
+
+    public void SaveData(ref GameData data)
+    {
+        
     }
 }
