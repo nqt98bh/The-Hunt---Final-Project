@@ -1,9 +1,10 @@
+using Cinemachine.Utility;
 using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CharacterState : MonoBehaviour, IDataPersistence
+public class CharacterState : MonoBehaviour ,IDataPersistence
 {
     public static CharacterState Instance;
 
@@ -109,11 +110,11 @@ public class CharacterState : MonoBehaviour, IDataPersistence
 
     public void LoadData(GameData data)
     {
-       
+        this.transform.position = data.characterData.position;
     }
 
     public void SaveData(ref GameData data)
     {
-        
+        data.characterData.position = this.transform.position;
     }
 }

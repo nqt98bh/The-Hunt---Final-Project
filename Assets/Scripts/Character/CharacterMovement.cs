@@ -221,6 +221,7 @@ public class CharacterMovement : MonoBehaviour
             rb2d.gravityScale = 1f;
         }
     }
+
    
 }
 

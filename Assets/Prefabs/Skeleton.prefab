@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 5921039256514938086}
   - component: {fileID: 5890220689300100826}
   - component: {fileID: 6254041012450176865}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Skeleton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -36,6 +36,7 @@ Transform:
   m_Children:
   - {fileID: 4051185675650083241}
   - {fileID: 5419810617640975012}
+  - {fileID: 3088299964945624817}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!95 &755333720109174934
@@ -67,7 +68,7 @@ Rigidbody2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1504351863339062995}
-  m_BodyType: 0
+  m_BodyType: 1
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
@@ -99,17 +100,24 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   config: {fileID: 11400000, guid: 070cb560d46b6a840acad3e689795f3c, type: 2}
+  characterState: {fileID: 0}
   moveSpeed: 3
+  attackRadius: 0.7
+  attackCoolDown: 2
   facingRight: 1
   groundLayer:
     serializedVersion: 2
     m_Bits: 64
+  WallLayer:
+    serializedVersion: 2
+    m_Bits: 256
   playerLayer:
     serializedVersion: 2
     m_Bits: 8
   groundCheck: {fileID: 4051185675650083241}
-  player: {fileID: 0}
   frontCheck: {fileID: 5419810617640975012}
+  attackPoint: {fileID: 3088299964945624817}
+  player: {fileID: 0}
 --- !u!61 &5890220689300100826
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -142,7 +150,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0.010207295}
+  m_Offset: {x: 0, y: 0.015588045}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -153,7 +161,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.26, y: 1.2767122}
+  m_Size: {x: 0.26, y: 1.2659507}
   m_EdgeRadius: 0
 --- !u!212 &6254041012450176865
 SpriteRenderer:
@@ -207,6 +215,37 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 1
+--- !u!1 &4487160997426303563
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3088299964945624817}
+  m_Layer: 0
+  m_Name: Attack Point
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3088299964945624817
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4487160997426303563}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.726, y: 0.263, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 5613338992214484921}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &6145054689800833996
 GameObject:
   m_ObjectHideFlags: 0
