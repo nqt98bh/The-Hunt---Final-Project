@@ -5,7 +5,7 @@ using UnityEngine;
 public class GameData 
 {
     public CharacterData characterData;
-    public Vector3 checkPoint;
+    public Vector3 lastCheckPoint;
     public int version;
    
     
@@ -13,7 +13,7 @@ public class GameData
     {
         this.characterData = characterData;
         this.version = 0;
-
+        
     }
 
 
@@ -22,14 +22,18 @@ public class GameData
 public class CharacterData
 {
     public int maxHP;
+    public float currentHP;
     public int playerDamage;
-    public Vector3 position;
+    public Vector3 playerPosition;
     public CharacterData(CharacterState characterState)
     {
         maxHP = characterState.maxHP;
         playerDamage = characterState.playerDamage;
-        position = characterState.transform.position;
+        currentHP = characterState.GetCurrentHP();
+        playerPosition = characterState.transform.position;
+
     }
 }
+
 
 

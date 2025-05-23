@@ -28,9 +28,9 @@ public class CharacterState : MonoBehaviour ,IDataPersistence
        if(Instance == null)
         {
             Instance = this;
-            DontDestroyOnLoad(gameObject);
+            
         }
-        else { Destroy(gameObject); }
+       
         animator = GetComponent<CharacterAnimController>();
         characterMovement = GetComponent<CharacterMovement>();
         currentHP = maxHP;
@@ -110,11 +110,11 @@ public class CharacterState : MonoBehaviour ,IDataPersistence
 
     public void LoadData(GameData data)
     {
-        this.transform.position = data.characterData.position;
+        this.transform.position = data.lastCheckPoint;
     }
 
     public void SaveData(ref GameData data)
     {
-        data.characterData.position = this.transform.position;
+        //data.lastCheckPoint = this.transform.position;
     }
 }

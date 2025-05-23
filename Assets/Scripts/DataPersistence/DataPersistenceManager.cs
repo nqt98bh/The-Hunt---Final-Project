@@ -1,8 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
+using System.IO;
 using System.Linq;
+using UnityEditor;
 using UnityEditor.U2D.Animation;
+using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class DataPersistenceManager : MonoBehaviour
 {
@@ -10,9 +13,10 @@ public class DataPersistenceManager : MonoBehaviour
     private const string kSaveKey = "save_data";
 
     [SerializeField]private CharacterState characterState;
-    private GameData gameData;
+    [SerializeField] private Transform StartPoint;
+    public GameData gameData;
     private List<IDataPersistence> dataPersistenceObjects;
-    //private FileDataHandler dataHandler;
+    private FileDataHandler dataHandler;
 
     public static DataPersistenceManager Instance { get; private set; }
     private void Awake()
@@ -25,14 +29,21 @@ public class DataPersistenceManager : MonoBehaviour
     }
     private void Start()
     {
-        //this.dataHandler = new FileDataHandler(Application.persistentDataPath,fileName); 
+        this.dataHandler = new FileDataHandler(Application.persistentDataPath,fileName); 
         this.dataPersistenceObjects = FindAllDataPersistenceObjects();
         LoadGame();
     }
     public void NewGame()
     {
+        
         CharacterData characterData = new CharacterData(characterState);
         this.gameData = new GameData(characterData);
+    }
+    public void RestartGame()
+    {
+        PlayerPrefs.DeleteKey(kSaveKey);
+        Debug.Log("Restart game:"+PlayerPrefs.GetString(kSaveKey));
+        SceneManager.LoadScene(0);
     }
     public void SaveGame()
     {
@@ -40,14 +51,18 @@ public class DataPersistenceManager : MonoBehaviour
         //To do: pass the data to other scripts so they can update it
         //To do: save data to a file
 
-        foreach (IDataPersistence dataPersistence in dataPersistenceObjects)
-        {
-            dataPersistence.SaveData(ref gameData);
-        }
+        //foreach (IDataPersistence dataPersistence in dataPersistenceObjects)
+        //{
+        //    dataPersistence.SaveData(ref gameData);
+        //}
+
         string json = JsonUtility.ToJson(gameData,true);
         PlayerPrefs.SetString(kSaveKey, json);
         PlayerPrefs.Save();
-        //this.dataHandler.Save(gameData);
+        this.dataHandler.Save(gameData);
+        string debugPath = Path.Combine(Application.persistentDataPath, "debug_saveData.json");
+        File.WriteAllText(debugPath, json);
+        Debug.Log("-> Wrote debug JSON to: " + debugPath);
 
 
     }
@@ -85,8 +100,8 @@ public class DataPersistenceManager : MonoBehaviour
       
         return new List<IDataPersistence>(dataPersistenceObjects);
     }
-    private void OnApplicationQuit()
-    {
-        SaveGame();
-    }
+    //private void OnApplicationQuit()
+    //{
+    //    SaveGame();
+    //}
 }

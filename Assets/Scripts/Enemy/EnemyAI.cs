@@ -143,6 +143,7 @@ public class EnemyAI : MonoBehaviour
     }
     bool InAttackRange()
     {
+        if (player == null) return false;
         float distance = Vector2.Distance(transform.position, player.position);
         if(distance<config.attackRange)
         {
