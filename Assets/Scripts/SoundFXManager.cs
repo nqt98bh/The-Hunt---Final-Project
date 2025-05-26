@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class SoundFXManager : MonoBehaviour
 {
+    public static SoundFXManager Instance;
     [SerializeField] private AudioSource soundFX;
     [SerializeField] private AudioSource musicSource;
     [SerializeField] private AudioClipName[] audioClipNames;
@@ -14,7 +15,17 @@ public class SoundFXManager : MonoBehaviour
         public SoundType soundType;
         public AudioClip audioClip;
     }
+    private void Awake()
+    {
+        if (Instance == null)
+        {
+            Instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else Destroy(gameObject);
+        musicSource.clip = GetComponent<AudioSource>().clip;
 
+    }
     private void OnEnable()
     {
     }
@@ -27,7 +38,7 @@ public class SoundFXManager : MonoBehaviour
     {
         GameManager.Instance.OnGameOver += PlayGameOverSound;
 
-        PlayMusic();
+      
     }
     private AudioClip GetSoundType(SoundType sound)
     {
@@ -47,10 +58,13 @@ public class SoundFXManager : MonoBehaviour
         soundFX.PlayOneShot(GetSoundType(soundType));
     }
 
-    private void PlayMusic()
+    public void PlayBackGroundMusic()
     {
-        musicSource.clip = GetComponent<AudioSource>().clip;
         musicSource.Play();
+    }
+    public void StopBackGroundMusic()
+    {
+        musicSource.Stop();
     }
     private void PlayGameOverSound()
     {

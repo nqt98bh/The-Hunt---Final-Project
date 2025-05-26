@@ -28,6 +28,10 @@ public class GameManager : MonoBehaviour
         else { Destroy(gameObject); }
 
     }
+    private void Start()
+    {
+        DataPersistenceManager.Instance.LoadGame();
+    }
 
     public void GameFinished()
     {
