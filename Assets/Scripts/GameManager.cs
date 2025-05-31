@@ -7,11 +7,11 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
 
-    [SerializeField] private CharacterState characterState;
+    [SerializeField] private CharacterController characterState;
     [SerializeField] private SoundFXManager soundFXManager;
     [SerializeField] private GameUIManager gameUIManager;
 
-    public CharacterState CharacterState => characterState;
+    public CharacterController CharacterState => characterState;
     public SoundFXManager SoundFXManager => soundFXManager;
     public GameUIManager GameUIManager => gameUIManager;
     [HideInInspector] public bool isGameOver = false;

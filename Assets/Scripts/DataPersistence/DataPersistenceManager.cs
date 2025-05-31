@@ -10,7 +10,7 @@ public class DataPersistenceManager : MonoBehaviour
     [SerializeField] private string fileName;
     private const string kSaveKey = "save_data";
 
-    [SerializeField]private CharacterState characterState;
+    [SerializeField]private CharacterController characterState;
     [SerializeField] private Transform StartPoint;
     public GameData gameData;
     private List<IDataPersistence> dataPersistenceObjects;

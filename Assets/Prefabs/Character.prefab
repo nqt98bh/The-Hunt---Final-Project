@@ -111,7 +111,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 124a41f2ff1118540872a72a25b75c7d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  layerType: 1
+  layerType:
+    serializedVersion: 2
+    m_Bits: 256
 --- !u!1 &2451696019364076081
 GameObject:
   m_ObjectHideFlags: 0
@@ -202,7 +204,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9fdce4ba880987f40ade765579a98e87, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  layerType: 0
+  layerType:
+    serializedVersion: 2
+    m_Bits: 64
 --- !u!1 &3942612290631699264
 GameObject:
   m_ObjectHideFlags: 0
@@ -250,7 +254,7 @@ GameObject:
   - component: {fileID: 9206037523051373435}
   - component: {fileID: 9072963640015440633}
   - component: {fileID: 5466240639974617565}
-  - component: {fileID: 6103492891621404315}
+  - component: {fileID: 1792651514577873385}
   m_Layer: 3
   m_Name: Character
   m_TagString: Player
@@ -459,7 +463,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b3c86de3383c4348be95b71de77e6b2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &6103492891621404315
+--- !u!114 &1792651514577873385
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -468,15 +472,17 @@ MonoBehaviour:
   m_GameObject: {fileID: 5825847098636006900}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f01283c26848afa408d7821207ab0557, type: 3}
+  m_Script: {fileID: 11500000, guid: 0f11c23f908126840a87f7a38308d684, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   maxHP: 100
-  attackRadius: 0.88
-  attackPoint: {fileID: 430767293710909760}
+  playerDamage: 10
+  attackRadius: 0
+  attackPoint: {fileID: 0}
+  SavePoint: {fileID: 0}
   enemyLayer:
     serializedVersion: 2
-    m_Bits: 128
+    m_Bits: 0
 --- !u!1 &8468891162095859894
 GameObject:
   m_ObjectHideFlags: 0
@@ -557,4 +563,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 124a41f2ff1118540872a72a25b75c7d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  layerType: 1
+  layerType:
+    serializedVersion: 2
+    m_Bits: 256

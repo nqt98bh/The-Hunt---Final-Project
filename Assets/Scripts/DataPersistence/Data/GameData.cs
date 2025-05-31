@@ -25,7 +25,7 @@ public class CharacterData
     public float currentHP;
     public int playerDamage;
     public Vector3 playerPosition;
-    public CharacterData(CharacterState characterState)
+    public CharacterData(CharacterController characterState)
     {
         maxHP = characterState.maxHP;
         playerDamage = characterState.playerDamage;

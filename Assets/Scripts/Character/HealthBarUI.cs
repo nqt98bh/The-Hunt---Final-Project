@@ -9,12 +9,12 @@ public class HealthBarUI : MonoBehaviour
 
     private void OnEnable()
     {
-        CharacterState.OnHealthChanged += UpdateHealthBar;
+        CharacterController.OnHealthChanged += UpdateHealthBar;
     }
     private void OnDisable()
     {
        
-        CharacterState.OnHealthChanged -= UpdateHealthBar;
+        CharacterController.OnHealthChanged -= UpdateHealthBar;
     }
     private void Start()
     {
