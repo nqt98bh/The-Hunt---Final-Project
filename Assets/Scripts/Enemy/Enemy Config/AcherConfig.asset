@@ -25,5 +25,5 @@ MonoBehaviour:
     m_Bits: 8
   movementType: 0
   attackType: 1
-  projectilePrefab: {fileID: 0}
-  projectileSpeed: 0
+  projectilePrefab: {fileID: 2547178967927968254, guid: fa9981c050a1ac3488985d13602a0bef, type: 3}
+  projectileSpeed: 5
