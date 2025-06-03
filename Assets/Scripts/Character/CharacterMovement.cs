@@ -11,6 +11,7 @@ public class CharacterMovement : MonoBehaviour
     [SerializeField] private float speed = 5f;
     [SerializeField] private float jumpForce = 5f;
     [SerializeField] private float rollForce = 5f;
+    private float currentSpeed;
 
     Rigidbody2D rb2d;
     CapsuleCollider2D capsuleCollider;
@@ -98,6 +99,15 @@ public class CharacterMovement : MonoBehaviour
 
     void Movement()
     {
+        if(isBlocking)
+        {
+            speed = 0;
+        }
+        else
+        {
+            speed = CharacterController.Instance.maxSpeed;
+        }
+
         rb2d.velocity = new Vector2(input.HorizontalInput * speed, rb2d.velocity.y);
 
         if (input.HorizontalInput < 0 && facingRight || input.HorizontalInput > 0 && !facingRight)

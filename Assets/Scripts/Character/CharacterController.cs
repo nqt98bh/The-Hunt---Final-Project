@@ -11,7 +11,7 @@ public class CharacterController : MonoBehaviour ,IDataPersistence
     public static Action<float> OnHealthChanged;
     public int maxHP = 100;
     public int playerDamage = 10;
-
+    public float maxSpeed = 5f;
 
     [SerializeField] float attackRadius;
     private int currentHP;

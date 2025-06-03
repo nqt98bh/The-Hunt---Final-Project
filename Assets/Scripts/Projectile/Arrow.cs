@@ -1,3 +1,4 @@
+using DG.Tweening.Plugins.Core.PathCore;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
@@ -8,14 +9,44 @@ public class Arrow : MonoBehaviour
     
     Rigidbody2D rb;
     public int damage;
- 
-    
 
-    public void Fire(Vector2 dir,float force)
+    public Vector2 attackPoint;
+    public Vector2 midPoint;
+    public Vector2 targetPoint;
+    public float timeDuration;
+    float elapsed=0;
+
+
+    private void Update()
     {
-        if (rb == null)
-            rb = GetComponent<Rigidbody2D>();
-        rb.velocity = dir.normalized * force;
+        elapsed += Time.deltaTime;
+        float t = Mathf.Clamp01(elapsed/timeDuration);
+        float u = 1 - t;
+
+        Vector3 bezierPos = (u*u)*attackPoint + (2f*u*t)*midPoint + (t*t)*targetPoint;
+        transform.position = bezierPos;
+
+        Vector3 velocity = 2f * u * (midPoint - attackPoint) + 2f * t * (targetPoint - midPoint);
+        if(velocity.sqrMagnitude > Mathf.Epsilon)
+        {
+            float angle = Mathf.Atan2(velocity.y, velocity.x) * Mathf.Rad2Deg;
+            transform.rotation = Quaternion.Euler(0f, 0f, angle);
+        }
+    }
+    //public void Fire(Vector2 dir,float force)
+    //{
+    //    if (rb == null)
+    //        rb = GetComponent<Rigidbody2D>();
+    //    rb.velocity = dir.normalized * force;
+    //}
+
+    public void Initialize(Vector3 start, Vector3 mid, Vector3 end, float travelTime, int damage)
+    {
+        attackPoint = start;
+        midPoint = mid;
+        targetPoint = end;
+        timeDuration = travelTime;
+        this.damage = damage;
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {

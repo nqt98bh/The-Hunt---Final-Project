@@ -105,8 +105,10 @@ public abstract class EnemyAI : MonoBehaviour
         if((distance < config.attackRange) && Time.time > nextAttackTime)
         {
             animator.SetTrigger("isAttacking");
+            Debug.Log("Attack");
             nextAttackTime = Time.time + config.attackCooldown;
         }
+
     }
     public void OnAttackAnimationHit()
     {
@@ -128,9 +130,5 @@ public abstract class EnemyAI : MonoBehaviour
    
     protected virtual void OnDrawGizmosSelected()
     {
-
-       
-
-      
     }
 }

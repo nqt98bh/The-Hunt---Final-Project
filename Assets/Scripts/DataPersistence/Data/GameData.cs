@@ -21,6 +21,7 @@ public class GameData
 [System.Serializable]
 public class CharacterData
 {
+    public float speed;
     public int maxHP;
     public float currentHP;
     public int playerDamage;
