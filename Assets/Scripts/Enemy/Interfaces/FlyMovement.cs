@@ -8,6 +8,7 @@ public class FlyMovement : IMoveable
     {
         float hover = Mathf.Sin(Time.time * 2f) * 0.5f;
         rb.velocity = new Vector2(dir*speed, hover);
+        
     }
 
   

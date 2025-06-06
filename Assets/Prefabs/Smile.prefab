@@ -13,7 +13,6 @@ GameObject:
   - component: {fileID: 3182756076884627193}
   - component: {fileID: 5644768569772383289}
   - component: {fileID: 1698075594066401676}
-  - component: {fileID: 8450935648453454071}
   - component: {fileID: 1222604978935542187}
   m_Layer: 7
   m_Name: Smile
@@ -185,34 +184,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 1
---- !u!114 &8450935648453454071
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2746794727683895743}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ac44146e6803bb44c9fc4970f52323c2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  config: {fileID: 11400000, guid: 5f68aac57f322534388f678bd5d96cd1, type: 2}
-  characterController: {fileID: 0}
-  attackPoint: {fileID: 1712848138451738697}
-  player: {fileID: 0}
-  attackRadius: 1
-  groundLayer:
-    serializedVersion: 2
-    m_Bits: 64
-  WallLayer:
-    serializedVersion: 2
-    m_Bits: 256
-  playerLayer:
-    serializedVersion: 2
-    m_Bits: 8
-  groundCheck: {fileID: 5749563171667440518}
-  frontCheck: {fileID: 8002346428438855177}
 --- !u!114 &1222604978935542187
 MonoBehaviour:
   m_ObjectHideFlags: 0

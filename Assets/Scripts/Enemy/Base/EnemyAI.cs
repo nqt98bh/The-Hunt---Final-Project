@@ -99,7 +99,7 @@ public abstract class EnemyAI : MonoBehaviour
         scale.x *= -1;
         transform.localScale = scale;
     }
-    void AttackPlayer()
+    protected virtual void AttackPlayer()
     {
         float distance = Vector2.Distance(transform.position, player.position);
         if((distance < config.attackRange) && Time.time > nextAttackTime)
@@ -126,7 +126,10 @@ public abstract class EnemyAI : MonoBehaviour
             Destroy(gameObject,0.5f);
         }
     }
-   
+   public EnemyConfig GetConfig()
+    {
+        return config;
+    }
    
     protected virtual void OnDrawGizmosSelected()
     {
