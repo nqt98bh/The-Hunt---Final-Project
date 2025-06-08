@@ -8,6 +8,7 @@ public class Arrow : MonoBehaviour
 {
     
     Rigidbody2D rb;
+    Collider2D collider2D;
     public int damage;
 
     public Vector2 attackPoint;
@@ -15,8 +16,12 @@ public class Arrow : MonoBehaviour
     public Vector2 targetPoint;
     public float timeDuration;
     float elapsed=0;
+    [SerializeField] LayerMask GroundLayer;
 
-
+    private void Awake()
+    {
+        collider2D = GetComponent<Collider2D>();    
+    }
     private void Update()
     {
         elapsed += Time.deltaTime;
@@ -58,7 +63,8 @@ public class Arrow : MonoBehaviour
         }
         else if (collision.CompareTag("Ground"))
         {
-            Destroy(gameObject);
+            collider2D.enabled = false;
+            Destroy(gameObject,2f);
         }
     }
 }

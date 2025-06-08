@@ -69,7 +69,8 @@ public class InGameMenuUI : MonoBehaviour
             SceneManager.LoadScene(mainMenuScene);
         }
         Time.timeScale = 1f;
-        SoundFXManager.Instance.StopBackGroundMusic();
+        //SoundFXManager.Instance.StopBackGroundMusic();
+        GameManager.Instance.SoundFXManager.StopBackGroundMusic();
 
 
     }

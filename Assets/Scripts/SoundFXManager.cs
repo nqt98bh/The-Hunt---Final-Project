@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class SoundFXManager : MonoBehaviour
 {
-    public static SoundFXManager Instance;
+    //public static SoundFXManager Instance;
     [SerializeField] private AudioSource soundFX;
     [SerializeField] private AudioSource musicSource;
     [SerializeField] private AudioClipName[] audioClipNames;
@@ -17,12 +17,12 @@ public class SoundFXManager : MonoBehaviour
     }
     private void Awake()
     {
-        if (Instance == null)
-        {
-            Instance = this;
-            DontDestroyOnLoad(gameObject);
-        }
-        else Destroy(gameObject);
+        //if (Instance == null)
+        //{
+        //    Instance = this;
+        //    DontDestroyOnLoad(gameObject);
+        //}
+        //else Destroy(gameObject);
         musicSource.clip = GetComponent<AudioSource>().clip;
 
     }
@@ -81,9 +81,13 @@ public enum SoundType
     playerBlock,
     playerHit,
     playerWallSliding,
-    playerAttack,
+    playerAttack1,
+    playerAttack2,
+    playerAttack3,
     playerCollect,
     playerDeath,
+    collideWithAttack,
+
 
     enemyHit,
     enemyDeath,

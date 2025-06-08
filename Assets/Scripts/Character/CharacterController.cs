@@ -42,7 +42,9 @@ public class CharacterController : MonoBehaviour ,IDataPersistence
     {
         if (characterMovement != null && characterMovement.isBlocking)
         {
-          return;
+            Debug.Log("IsBlocking");
+            GameManager.Instance.PlaySoundFX(SoundType.collideWithAttack);
+            return;
         }
         currentHP -= damage;
         
@@ -74,7 +76,7 @@ public class CharacterController : MonoBehaviour ,IDataPersistence
             characterMovement.enabled = false;
             this.gameObject.SetActive(false);
             GameManager.Instance.GameFinished();
-            //GameManager.Instance.PlaySoundFX(SoundType.playerDeath);
+            GameManager.Instance.PlaySoundFX(SoundType.playerDeath);
         }
         
     }

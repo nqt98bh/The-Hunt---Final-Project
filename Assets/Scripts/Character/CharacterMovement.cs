@@ -188,14 +188,28 @@ public class CharacterMovement : MonoBehaviour
     void Attack()
     {
         timeSinceAttack += Time.deltaTime;
-        if(input.AttackPressed && !isRolling && !isSliding && timeSinceAttack > 0.25f)
+        if (input.AttackPressed && !isRolling && !isSliding && timeSinceAttack > 0.25f)
         {
             attackIndex++;
-            if(attackIndex >3)  attackIndex = 1; 
-            if(timeSinceAttack >1.0f) attackIndex = 1;
+            if (attackIndex > 3) attackIndex = 1;
+            if (timeSinceAttack > 1.0f) attackIndex = 1;
             anim.SetAttack(attackIndex);
             timeSinceAttack = 0;
-            GameManager.Instance.PlaySoundFX(SoundType.playerAttack);
+            if (attackIndex == 1)
+            {
+                GameManager.Instance.PlaySoundFX(SoundType.playerAttack1);
+
+            }
+            else if (attackIndex == 2)
+            {
+                GameManager.Instance.PlaySoundFX(SoundType.playerAttack2);
+
+            }
+            else
+            {
+                GameManager.Instance.PlaySoundFX(SoundType.playerAttack3);
+
+            }
         }
     }
  
@@ -231,7 +245,7 @@ public class CharacterMovement : MonoBehaviour
             rb2d.gravityScale = 1f;
         }
     }
-
+    
    
 }
 

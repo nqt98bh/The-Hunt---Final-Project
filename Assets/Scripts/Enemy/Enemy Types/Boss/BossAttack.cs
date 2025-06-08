@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class BossAttack : IAttackable
 {
+
     public void Attack(Transform attackPoint, float radius, CharacterController target, EnemyConfig config)
     {
         Collider2D hit = Physics2D.OverlapCircle(attackPoint.position,radius,config.playerLayer);
@@ -15,4 +16,5 @@ public class BossAttack : IAttackable
             }
         }
     }
+
 }
