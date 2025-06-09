@@ -7,6 +7,7 @@ using UnityEngine;
 public class BossAI : EnemyAI
 {
     [SerializeField] List<ISkill> skill;
+    [SerializeField] GameObject projectilePrefabs;
     [SerializeField] float puchRange = 5f;
     [SerializeField] float frozenRange = 5f;
     Vector2Int Vector2Int = new Vector2Int (0, 10);

@@ -38,8 +38,8 @@ public class RangedAttack : IAttackable
         //Instantiate prefab at attackPoint
         GameObject arrowGO = GameObject.Instantiate(projectilePrefab,p0,Quaternion.identity);
 
-        var curve = arrowGO.GetComponent<Arrow>();
-        curve.Initialize(p0, p1, p2, duration, config.damage);
+        var arrow = arrowGO.GetComponent<Arrow>();
+        arrow.Initialize(p0, p1, p2, duration, config.damage);
 
 
     }
