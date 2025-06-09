@@ -17,14 +17,13 @@ public abstract class EnemyAI : MonoBehaviour
 
     [SerializeField] protected float attackRadius = 1f;
 
-    protected int currentHP;
+    [SerializeField] protected int currentHP;
     float nextAttackTime = 0f;
     protected bool facingRight =true;
     protected IMoveable movement;
     protected IAttackable attack;
     protected Rigidbody2D rb;
     protected Animator animator;
-
 
 
     protected void Awake()
@@ -44,29 +43,28 @@ public abstract class EnemyAI : MonoBehaviour
         {
             AttackPlayer();
         }
-      
+        EnemyMovement();
+
     }
 
-    protected void FixedUpdate()
-    {
-       
-        EnemyMovement();
-    }
+   
     protected virtual void EnemyMovement()
     {
+       
         bool isChasing = DetectionPlayer();
         float speed = isChasing ? config.chaseSpeed : config.moveSpeed;
         float moveDirection = GetDirection(isChasing);
 
-        if (isChasing && Mathf.Abs(player.transform.position.x-transform.position.x)<0.5f) 
+        if (Mathf.Abs(player.transform.position.x-transform.position.x)<config.attackRange) 
         {
             moveDirection = 0;
+            animator.SetFloat("Moving_ID", 0);
         }
+        else { animator.SetFloat("Moving_ID", DetectionPlayer() ? 1f : 0f); }
 
-        movement.Move(rb,moveDirection,speed);
+        movement.Move(rb, moveDirection, speed);
         DoFlip(moveDirection);
 
-        animator.SetFloat("Moving_ID", DetectionPlayer() ? 1f : 0f);
     }
 
    
@@ -105,10 +103,9 @@ public abstract class EnemyAI : MonoBehaviour
         if((distance < config.attackRange) && Time.time > nextAttackTime)
         {
             animator.SetTrigger("isAttacking");
-            Debug.Log("Attack");
             nextAttackTime = Time.time + config.attackCooldown;
+            
         }
-
     }
     public void OnAttackAnimationHit()
     {
@@ -130,8 +127,12 @@ public abstract class EnemyAI : MonoBehaviour
     {
         return config;
     }
-   
+   public int GetCurrentHP()
+    {
+        return currentHP;
+    }
     protected virtual void OnDrawGizmosSelected()
     {
+
     }
 }

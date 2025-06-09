@@ -6,7 +6,6 @@ using UnityEngine;
 public class WallCrawlingEnemy : EnemyAI
 {
     [SerializeField] private Transform[] wayPoint;
-    [SerializeField] private float rotationSpeed =5f;
     int nextWayPoint = 1;
     float distanceToPoint;
    
@@ -25,7 +24,7 @@ public class WallCrawlingEnemy : EnemyAI
     private void Move()
     {
         distanceToPoint = Vector3.Distance(transform.position , wayPoint[nextWayPoint].position);
-        transform.position = Vector2.MoveTowards(transform.position, wayPoint[nextWayPoint].position, config.moveSpeed * Time.fixedDeltaTime);
+        transform.position = Vector2.MoveTowards(transform.position, wayPoint[nextWayPoint].position, config.moveSpeed*Time.fixedDeltaTime/10 );
 
         if (distanceToPoint < 0.2f)
         {

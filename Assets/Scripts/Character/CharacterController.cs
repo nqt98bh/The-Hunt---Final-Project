@@ -59,7 +59,6 @@ public class CharacterController : MonoBehaviour ,IDataPersistence
         Collider2D colliderInfo = Physics2D.OverlapCircle(attackPoint.position, attackRadius, enemyLayer);
         if (colliderInfo != null)
         {
-            Debug.Log(colliderInfo.transform.name);
             EnemyAI target = colliderInfo.GetComponent<EnemyAI>();
             if (target != null)
             {

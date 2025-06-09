@@ -7,27 +7,44 @@ using UnityEngine;
 public class BossAI : EnemyAI
 {
     [SerializeField] List<ISkill> skill;
-    float puchRange = 5f;
+    [SerializeField] float puchRange = 5f;
+    [SerializeField] float frozenRange = 5f;
     Vector2Int Vector2Int = new Vector2Int (0, 10);
     private BTNode behaviorTree;
-
    
     private void Start()
     {
-        skill = new List<ISkill>() { new PuchSkill() };
+        skill = new List<ISkill>() { new FrozenFire(), new PoundSkill(), new PuchSkill() };
 
-        behaviorTree = new Selector(new Leaf(() => skill[0].CanUse(this, characterController, puchRange)), new Leaf(() => skill[0].Execute(this, characterController)));
+        behaviorTree = new Selector(
+            new Sequence(
+                new Leaf(() => skill[0].CanUse(this, characterController, frozenRange)),
+                new Leaf(() => skill[0].Execute(this, characterController))),
+            new Sequence(
+                new Leaf(() => skill[1].CanUse(this, characterController, frozenRange)),
+                new Leaf(() => skill[1].Execute(this, characterController))),
+            new Sequence(
+                new Leaf(() => DetectionPlayer()),
+                new Leaf(() => BossMovement()),
+            new Sequence(
+                new Leaf(() => skill[2].CanUse(this, characterController, puchRange)),
+                new Leaf(() => skill[2].Execute(this, characterController))))
+            );
     }
+
     protected override void Update()
     {
         AttackPlayer();
-
     }
-
     protected override void AttackPlayer()
     {
         behaviorTree.Excute();
 
+    }
+    bool BossMovement()
+    {
+        EnemyMovement();
+        return true;
     }
     protected override bool DetectionPlayer()
     {
