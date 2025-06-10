@@ -19,7 +19,7 @@ public class HealthBarUI : MonoBehaviour
     private void Start()
     {
       
-        UpdateHealthBar(GameManager.Instance.CharacterState.GetCurrentHP());
+        UpdateHealthBar(GameManager.Instance.CharacterController.GetCurrentHP());
     }
     private void UpdateHealthBar(float health)
     {

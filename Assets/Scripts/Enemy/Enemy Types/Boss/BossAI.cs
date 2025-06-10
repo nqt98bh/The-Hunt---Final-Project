@@ -7,22 +7,24 @@ using UnityEngine;
 public class BossAI : EnemyAI
 {
     [SerializeField] List<ISkill> skill;
-    [SerializeField] GameObject projectilePrefabs;
-    [SerializeField] float puchRange = 5f;
+    [SerializeField] float puchRange = 1.5f;
     [SerializeField] float frozenRange = 5f;
+    [SerializeField] float poundRange = 2f;
+    [SerializeField] Transform frozenAttackPoint;
     Vector2Int Vector2Int = new Vector2Int (0, 10);
     private BTNode behaviorTree;
+    
    
     private void Start()
     {
-        skill = new List<ISkill>() { new FrozenFire(), new PoundSkill(), new PuchSkill() };
+        skill = new List<ISkill>() { new FrozenSkill(), new PoundSkill(), new PuchSkill() };
 
         behaviorTree = new Selector(
             new Sequence(
                 new Leaf(() => skill[0].CanUse(this, characterController, frozenRange)),
                 new Leaf(() => skill[0].Execute(this, characterController))),
             new Sequence(
-                new Leaf(() => skill[1].CanUse(this, characterController, frozenRange)),
+                new Leaf(() => skill[1].CanUse(this, characterController, poundRange)),
                 new Leaf(() => skill[1].Execute(this, characterController))),
             new Sequence(
                 new Leaf(() => DetectionPlayer()),
@@ -36,12 +38,14 @@ public class BossAI : EnemyAI
     protected override void Update()
     {
         AttackPlayer();
+       
     }
     protected override void AttackPlayer()
     {
         behaviorTree.Excute();
 
     }
+  
     bool BossMovement()
     {
         EnemyMovement();
@@ -62,12 +66,15 @@ public class BossAI : EnemyAI
         if (!isChasing) return 0;
         return Mathf.Sign(player.position.x - transform.position.x);
     }
-
+    
     public void SetTriggerAnim(string animName)
     {
         animator.SetTrigger(animName);
     }
-
+    public void Fire()
+    {
+        
+    }
     protected override void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.red;

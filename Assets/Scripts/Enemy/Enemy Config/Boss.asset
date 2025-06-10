@@ -18,12 +18,12 @@ MonoBehaviour:
   moveSpeed: 2
   chaseSpeed: 2
   detectionRange: 10
-  attackRange: 3
+  attackRange: 2.5
   attackCooldown: 2
   playerLayer:
     serializedVersion: 2
     m_Bits: 8
   movementType: 1
   attackType: 0
-  projectilePrefab: {fileID: 0}
-  projectileSpeed: 0
+  projectilePrefab: {fileID: 103207668114774510, guid: 1debf1b1ef6b84a4c9731aa809c4b7f8, type: 3}
+  projectileSpeed: 10

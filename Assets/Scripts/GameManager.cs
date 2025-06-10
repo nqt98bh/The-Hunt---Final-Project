@@ -1,17 +1,18 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.Experimental;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
 
-    [SerializeField] private CharacterController characterState;
+    [SerializeField] private CharacterController characterController;
     [SerializeField] private SoundFXManager soundFXManager;
     [SerializeField] private GameUIManager gameUIManager;
 
-    public CharacterController CharacterState => characterState;
+    public CharacterController CharacterController => characterController;
     public SoundFXManager SoundFXManager => soundFXManager;
     public GameUIManager GameUIManager => gameUIManager;
     [HideInInspector] public bool isGameOver = false;
@@ -43,7 +44,7 @@ public class GameManager : MonoBehaviour
     public void RestartGame()
     {
         isGameOver = false;
-        characterState.RestartGame();
+        characterController.RestartGame();
         gameUIManager.RestartGame();
     }
     public void PlaySoundFX(SoundType soundType)

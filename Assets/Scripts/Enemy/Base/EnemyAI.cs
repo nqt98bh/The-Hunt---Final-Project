@@ -24,7 +24,7 @@ public abstract class EnemyAI : MonoBehaviour
     protected IAttackable attack;
     protected Rigidbody2D rb;
     protected Animator animator;
-
+    public bool FaceingRight => facingRight;
 
     protected void Awake()
     {
@@ -89,6 +89,7 @@ public abstract class EnemyAI : MonoBehaviour
         {
             Flip();
         }
+        
     }
     protected void Flip()
     {
@@ -107,7 +108,7 @@ public abstract class EnemyAI : MonoBehaviour
             
         }
     }
-    public void OnAttackAnimationHit()
+    public virtual void OnAttackAnimationHit()
     {
         attack.Attack(attackPoint, attackRadius, characterController, config);
     }

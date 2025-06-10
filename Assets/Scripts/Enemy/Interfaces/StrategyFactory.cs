@@ -21,6 +21,7 @@ public static class StrategyFactory
         {
             case AttackType.Melee: return new MeleeAttack();
             case AttackType.Ranged: return new RangedAttack(config.projectilePrefab,config.projectileSpeed);
+            //case AttackType.Boss: return new FrozenSkill();
                 default: throw new ArgumentException();
         }
     }

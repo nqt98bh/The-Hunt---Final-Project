@@ -6,7 +6,7 @@ using UnityEngine;
 
 public class CharacterController : MonoBehaviour ,IDataPersistence
 {
-    public static CharacterController Instance;
+    //public static CharacterController Instance;
 
     public static Action<float> OnHealthChanged;
     public int maxHP = 100;
@@ -25,11 +25,11 @@ public class CharacterController : MonoBehaviour ,IDataPersistence
     public LayerMask enemyLayer;
     private void Awake()
     {
-       if(Instance == null)
-        {
-            Instance = this;
+       //if(Instance == null)
+       // {
+       //     Instance = this;
             
-        }
+       // }
        
         animator = GetComponent<CharacterAnimController>();
         characterMovement = GetComponent<CharacterMovement>();

@@ -5,7 +5,6 @@ using UnityEngine;
 public class PuchSkill : ISkill
 {
     float coolDown =2f;
-    int damage = 50;
     
     public float CoolDown => coolDown;
     float lastTimeUse =0f;

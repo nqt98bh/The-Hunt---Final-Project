@@ -105,7 +105,7 @@ public class CharacterMovement : MonoBehaviour
         }
         else
         {
-            speed = CharacterController.Instance.maxSpeed;
+            speed = /*CharacterController.Instance.maxSpeed;*/ GameManager.Instance.CharacterController.maxSpeed;
         }
 
         rb2d.velocity = new Vector2(input.HorizontalInput * speed, rb2d.velocity.y);
