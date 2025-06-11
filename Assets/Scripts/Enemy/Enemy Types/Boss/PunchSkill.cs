@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PuchSkill : ISkill
+public class PunchSkill : ISkill
 {
     float coolDown =2f;
     
@@ -15,8 +15,11 @@ public class PuchSkill : ISkill
         float distance = Vector3.Distance(player.transform.position, boss.transform.position);
         EnemyConfig bossConfig = boss.GetConfig();
 
-        if (boss.GetCurrentHP() >= (bossConfig.maxHealth *2/3) && distance < attackRange && Time.time - lastTimeUse > coolDown)
-        {
+        float hp = boss.GetCurrentHP();
+        float maxHp = bossConfig.maxHealth;
+        // health 2/3 -> 1/3: i.e. 0.33–0.66 fraction
+        if ( hp >= (maxHp *2 / 3f) && distance < attackRange && Time.time - lastTimeUse > coolDown)
+        { 
             Debug.Log("Can Punch");
             return true;
         }
@@ -31,6 +34,17 @@ public class PuchSkill : ISkill
         boss.SetTriggerAnim("Attack1");
         return true;
         
+    }
+    public void PunchAttack(BossAI boss, CharacterController player)
+    {
+        Collider2D hit = Physics2D.OverlapBox(boss.PuchAttackPoint.position, boss.punchSize, 0, boss.GetConfig().playerLayer);
+        if(hit != null)
+        {
+            if(hit.gameObject == player.gameObject)
+            {
+                player.TakeDamage(boss.GetConfig().damage);
+            }
+        }
     }
 
 }

@@ -7,17 +7,18 @@ public class FrozenSkill : ISkill
     float coolDown = 2f;
     public float CoolDown =>coolDown;
     float lastTimeUse = 0f;
-    //private BossAI boss;
-    //private CharacterController player;
-    //private bool hasExecuted;
+   
     public bool CanUse(BossAI boss, CharacterController player, float attackRange)
     {
         float distance = Vector2.Distance(player.transform.position,boss.transform.position);
         EnemyConfig bossConfig = boss.GetConfig();
 
-        if ((boss.GetCurrentHP() < (bossConfig.maxHealth * 2 / 3) &&boss.GetCurrentHP() >= (bossConfig.maxHealth/3)) && distance < attackRange && Time.time - lastTimeUse > coolDown ) 
+        float hp = boss.GetCurrentHP();
+        float maxHp = bossConfig.maxHealth;
+        // health 2/3 -> 1/3: i.e. 0.33–0.66 fraction
+        if (hp < (maxHp * 2f / 3f) && hp >= (maxHp / 3f) && distance < attackRange && Time.time - lastTimeUse > coolDown)
         {
-            Debug.Log("Can frozen skill");
+            Debug.Log("Can frozen");
             return true;
         }
         return false;
@@ -26,27 +27,18 @@ public class FrozenSkill : ISkill
     public bool Execute(BossAI boss, CharacterController player)
     {
         lastTimeUse = Time.time;
-       
         boss.SetTriggerAnim("Attack2");
-
-        //EnemyConfig bossConfig = boss.GetConfig();
-        //float dir = boss.transform.localScale.x;
-        //GameObject frozenGO = GameObject.Instantiate(bossConfig.projectilePrefab, boss.attackFrozen.transform.position, Quaternion.identity);
-        //frozenGO.transform.localScale = new Vector3(dir, frozenGO.transform.localScale.y, frozenGO.transform.localScale.z);
-        //Frozen frozen = frozenGO.GetComponent<Frozen>();
-        //frozen.Initialize(bossConfig.projectileSpeed, dir, player.transform);
         return true;
     }
-    
 
-    //public void Attack(Transform attackPoint, float radius, CharacterController target, EnemyConfig config)
-    //{
-       
-    //    float dir = boss.transform.localScale.x;
-    //    GameObject frozenGO = GameObject.Instantiate(bossConfig.projectilePrefab, boss.attackFrozen.transform.position, Quaternion.identity);
-    //    frozenGO.transform.localScale = new Vector3(dir, frozenGO.transform.localScale.y, frozenGO.transform.localScale.z);
-    //    Frozen frozen = frozenGO.GetComponent<Frozen>();
-    //    frozen.Initialize(bossConfig.projectileSpeed, dir, player.transform);
-     
-    //}
+    public void FrozenAttack(BossAI boss, CharacterController player)
+    {
+        EnemyConfig bossConfig = boss.GetConfig();
+        float dir = boss.transform.localScale.x;
+        GameObject frozenGO = GameObject.Instantiate(bossConfig.projectilePrefab, boss.frozenAttackPoint.transform.position, Quaternion.identity);
+        frozenGO.transform.localScale = new Vector3(dir, frozenGO.transform.localScale.y, frozenGO.transform.localScale.z);
+        FrozenProjectile frozen = frozenGO.GetComponent<FrozenProjectile>();
+        frozen.Initialize(bossConfig.projectileSpeed, dir, player.transform,boss);
+    }
+
 }

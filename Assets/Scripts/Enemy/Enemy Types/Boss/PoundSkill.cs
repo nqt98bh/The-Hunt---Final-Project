@@ -26,6 +26,16 @@ public class PoundSkill : ISkill
         boss.SetTriggerAnim("Attack3");
         return true;
     }
-
+    public void PoundAttack(BossAI boss, CharacterController player)
+    {
+        Collider2D hit = Physics2D.OverlapBox(boss.PoundAttackPoint.position, boss.punchSize, 0, boss.GetConfig().playerLayer);
+        if(hit != null)
+        {
+            if(hit.gameObject == player.gameObject)
+            {
+                player.TakeDamage(boss.GetConfig().damage);
+            }
+        }
+    }
  
 }

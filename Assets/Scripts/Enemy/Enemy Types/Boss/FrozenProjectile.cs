@@ -1,11 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Rendering;
 
-public class Frozen : MonoBehaviour
+public class FrozenProjectile : MonoBehaviour
 {
     private float speed ;
     private float direction;
+    private Transform target;
+    private BossAI bossAI;
     public Animator animator;
 
     private void Awake()
@@ -22,11 +25,13 @@ public class Frozen : MonoBehaviour
         transform.position += new Vector3(direction,0,0) * speed * Time.deltaTime;
 
     }
-    public void Initialize(float speed, float direction, Transform target)
+    public void Initialize(float speed, float direction, Transform target, BossAI boss)
     {
         
         this.speed = speed;
         this.direction = direction;
+        this.target = target;
+        this.bossAI = boss;
 
     }
     private void OnTriggerEnter2D(Collider2D collision)
@@ -34,7 +39,9 @@ public class Frozen : MonoBehaviour
         if (collision.CompareTag("Player"))
         {
             direction = 0;
-            if (collision.GetComponent<CharacterMovement>().isBlocking == true)
+
+            CharacterMovement player = collision.GetComponent<CharacterMovement>();
+            if (player.isBlocking == true)
             {
                 animator.SetTrigger("isBlocked");
                 Destroy(gameObject, 0.5f);
@@ -42,9 +49,16 @@ public class Frozen : MonoBehaviour
             else
             {
                 this.direction = 0;
+                transform.position = player.transform.position;
                 animator.SetTrigger("isFrezingPlayer");
+                player.SetFrezeeing(true);
             }
 
+        }
+        else if (collision.CompareTag("Ground"))
+        {
+            animator.SetTrigger("isBlocked");
+            Destroy(gameObject,0.5f);
         }
     }
 }
