@@ -55,5 +55,8 @@ public class CharacterAnimController : MonoBehaviour
     {
         animator.SetBool("isSliding", isSliding);
     }
-
+    public void SetTriggerFrozen(string name)
+    {
+        animator.SetTrigger(name);
+    }
 }

@@ -23,20 +23,31 @@ public class CharacterController : MonoBehaviour ,IDataPersistence
     [SerializeField] private Transform SavePoint;
 
     public LayerMask enemyLayer;
+
+    private bool isFrozen = false;
+    public bool IsFrozen() => isFrozen;
     private void Awake()
     {
-       //if(Instance == null)
-       // {
-       //     Instance = this;
-            
-       // }
-       
         animator = GetComponent<CharacterAnimController>();
         characterMovement = GetComponent<CharacterMovement>();
         currentHP = maxHP;
 
     }
 
+    public void EnterFrozen()
+    {
+        if(isFrozen) return;
+        isFrozen = true;
+        animator.SetTriggerFrozen("EnterFrozen");
+    }
+
+    public void OnHitBossFreeze(int damage)
+    {
+        if(!isFrozen) return;    
+        animator.SetTriggerFrozen("Frozen_Destroy");
+        isFrozen = false;
+        TakeDamage(damage);
+    }
 
     public void TakeDamage(int damage)
     {

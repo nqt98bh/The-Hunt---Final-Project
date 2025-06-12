@@ -5,7 +5,7 @@ using UnityEngine;
 public class PunchSkill : ISkill
 {
     float coolDown =2f;
-    
+    private int damage = 20;
     public float CoolDown => coolDown;
     float lastTimeUse =0f;
 
@@ -42,7 +42,9 @@ public class PunchSkill : ISkill
         {
             if(hit.gameObject == player.gameObject)
             {
-                player.TakeDamage(boss.GetConfig().damage);
+                
+                    player.TakeDamage(damage);
+                
             }
         }
     }

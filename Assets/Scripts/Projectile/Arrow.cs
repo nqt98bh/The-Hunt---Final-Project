@@ -38,13 +38,6 @@ public class Arrow : MonoBehaviour
             transform.rotation = Quaternion.Euler(0f, 0f, angle);
         }
     }
-    //public void Fire(Vector2 dir,float force)
-    //{
-    //    if (rb == null)
-    //        rb = GetComponent<Rigidbody2D>();
-    //    rb.velocity = dir.normalized * force;
-    //}
-
     public void Initialize(Vector3 start, Vector3 mid, Vector3 end, float travelTime, int damage)
     {
         attackPoint = start;

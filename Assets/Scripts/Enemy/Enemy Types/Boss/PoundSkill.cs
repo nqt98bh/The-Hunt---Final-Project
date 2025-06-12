@@ -5,6 +5,7 @@ using UnityEngine;
 public class PoundSkill : ISkill
 {
     float coolDown = 2f;
+    private int damage = 30;
     public float CoolDown => coolDown;
     float lastTimeUse = 0f;
     public bool CanUse(BossAI boss, CharacterController player, float attackRange)
@@ -33,7 +34,15 @@ public class PoundSkill : ISkill
         {
             if(hit.gameObject == player.gameObject)
             {
-                player.TakeDamage(boss.GetConfig().damage);
+                if (player.IsFrozen())
+                {
+                    player.OnHitBossFreeze(damage);
+                    boss.isBreakingFreeze = false;
+                }
+                else
+                {
+                    player.TakeDamage(damage);
+                }
             }
         }
     }

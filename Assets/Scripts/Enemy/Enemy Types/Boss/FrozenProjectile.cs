@@ -40,8 +40,8 @@ public class FrozenProjectile : MonoBehaviour
         {
             direction = 0;
 
-            CharacterMovement player = collision.GetComponent<CharacterMovement>();
-            if (player.isBlocking == true)
+            CharacterController player = collision.GetComponent<CharacterController>();
+            if (player.GetComponent<CharacterMovement>().isBlocking == true)
             {
                 animator.SetTrigger("isBlocked");
                 Destroy(gameObject, 0.5f);
@@ -49,9 +49,8 @@ public class FrozenProjectile : MonoBehaviour
             else
             {
                 this.direction = 0;
-                transform.position = player.transform.position;
-                animator.SetTrigger("isFrezingPlayer");
-                player.SetFrezeeing(true);
+                player.EnterFrozen();
+                Destroy(gameObject);
             }
 
         }

@@ -16,6 +16,7 @@ public class CharacterMovement : MonoBehaviour
     CapsuleCollider2D capsuleCollider;
     CharacterAnimController anim;
     CharacterInput input;
+    CharacterController characterController;
 
 
     [SerializeField] Wall_Sensor wallSensor1;
@@ -51,6 +52,7 @@ public class CharacterMovement : MonoBehaviour
         input = GetComponent<CharacterInput>();
         anim = GetComponent<CharacterAnimController>();
         capsuleCollider = GetComponent<CapsuleCollider2D>();
+        characterController = GetComponent<CharacterController>();
        
     }
 
@@ -99,18 +101,19 @@ public class CharacterMovement : MonoBehaviour
 
     void Movement()
     {
-        if(isBlocking || isFreezing)
+        Debug.Log($"Movement(): IsFrozen={characterController.IsFrozen()}, speed={speed}");
+        if (isBlocking || characterController.IsFrozen() ==true)
         {
             
             speed = 0;
         }
         else
         {
-           speed =  GameManager.Instance.CharacterController.maxSpeed;
+           speed =  characterController.maxSpeed;
         }
         rb2d.velocity = new Vector2(input.HorizontalInput * speed, rb2d.velocity.y);
 
-        if ((input.HorizontalInput < 0 && facingRight || input.HorizontalInput > 0 && !facingRight) && !isFreezing)
+        if ((input.HorizontalInput < 0 && facingRight || input.HorizontalInput > 0 && !facingRight) && characterController.IsFrozen() ==false)
         {
             facingRight = !facingRight;
             Vector2 scale = transform.localScale;
@@ -118,7 +121,7 @@ public class CharacterMovement : MonoBehaviour
             transform.localScale = scale;
 
         }
-        if (Mathf.Abs(input.HorizontalInput) > Mathf.Epsilon && !isBlocking && !isFreezing)
+        if (Mathf.Abs(input.HorizontalInput) > Mathf.Epsilon && !isBlocking && characterController.IsFrozen() ==false)
         {
 
             delayToIlde = 0.001f;
@@ -245,10 +248,7 @@ public class CharacterMovement : MonoBehaviour
             rb2d.gravityScale = 1f;
         }
     }
-    public void SetFrezeeing(bool _isFrezeeing)
-    {
-        isFreezing = _isFrezeeing;
-    }
+ 
    
 }
 
