@@ -39,6 +39,7 @@ public class CharacterController : MonoBehaviour ,IDataPersistence
         if(isFrozen) return;
         isFrozen = true;
         animator.SetTriggerFrozen("EnterFrozen");
+        Debug.Log("Enter Frozen State");
     }
 
     public void OnHitBossFreeze(int damage)
@@ -47,6 +48,7 @@ public class CharacterController : MonoBehaviour ,IDataPersistence
         animator.SetTriggerFrozen("Frozen_Destroy");
         isFrozen = false;
         TakeDamage(damage);
+        Debug.Log("Frozen_Destroy");
     }
 
     public void TakeDamage(int damage)

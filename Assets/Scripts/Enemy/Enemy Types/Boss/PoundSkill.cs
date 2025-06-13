@@ -29,15 +29,16 @@ public class PoundSkill : ISkill
     }
     public void PoundAttack(BossAI boss, CharacterController player)
     {
-        Collider2D hit = Physics2D.OverlapBox(boss.PoundAttackPoint.position, boss.punchSize, 0, boss.GetConfig().playerLayer);
+        Collider2D hit = Physics2D.OverlapBox(boss.PoundAttackPoint.position, boss.poundSize, 0, boss.GetConfig().playerLayer);
         if(hit != null)
         {
             if(hit.gameObject == player.gameObject)
             {
-                if (player.IsFrozen())
+                if (player.IsFrozen() == true)
                 {
                     player.OnHitBossFreeze(damage);
                     boss.isBreakingFreeze = false;
+                    Debug.Log("Pound Attack");
                 }
                 else
                 {

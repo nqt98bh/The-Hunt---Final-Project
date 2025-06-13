@@ -1,13 +1,15 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.InteropServices.WindowsRuntime;
 using System.Security.Cryptography;
+using UnityEditor.Networking.PlayerConnection;
 using UnityEditorInternal;
 using UnityEngine;
 
 public class BossAI : EnemyAI
 {
     [SerializeField] List<ISkill> skillList ;
-    [SerializeField] float puchRange = 1.5f;
+    [SerializeField] float puchRange = 2f;
     public Vector2 punchSize = new Vector2(1.5f, 0.5f);
     public Transform PuchAttackPoint;
 
@@ -15,10 +17,11 @@ public class BossAI : EnemyAI
     public Transform frozenAttackPoint;
 
     [SerializeField] float poundRange = 2f;
-    public float poundSize;
+    public Vector2 poundSize;
     public Transform PoundAttackPoint;
 
     public bool isBreakingFreeze = false;
+    private bool isReachHPThreshHold = false;
 
     Vector2Int Vector2Int = new Vector2Int (0, 10);
     private BTNode behaviorTree;
@@ -28,25 +31,29 @@ public class BossAI : EnemyAI
         skillList = new List<ISkill>() { new FrozenSkill(), new PoundSkill(), new PunchSkill() };
 
         Sequence handleFrozenPlayer = new Sequence(
-            new Leaf(() => characterController.IsFrozen() == true),          // nếu player frozen
+            new Leaf(() => characterController.IsFrozen()),          // nếu player frozen
             new Leaf(() => { BossMovement(); return true; }),    // di chuyển gần (luôn true để BT tiếp)
             new Leaf(() => HandleFrozen()));
    
         Sequence frozenNode = new Sequence(
-                new Leaf(() => skillList[0].CanUse(this, characterController, frozenRange)),
-                new Leaf(() => skillList[0].Execute(this, characterController)));
+            new Leaf(() => !characterController.IsFrozen()),
+            new Leaf(() => skillList[0].CanUse(this, characterController, frozenRange)),
+            new Leaf(() => skillList[0].Execute(this, characterController)));
         Sequence poundNode = new Sequence(
-                new Leaf(() => skillList[1].CanUse(this, characterController, poundRange)),
-                new Leaf(() => skillList[1].Execute(this, characterController)));
+            new Leaf(() => skillList[1].CanUse(this, characterController, poundRange)),
+            new Leaf(() => skillList[1].Execute(this, characterController)));
         Sequence bossMovement = new Sequence(
-               new Leaf(() => DetectionPlayer()),
-               new Leaf(() => BossMovement()));
+            new Leaf(() => !characterController.IsFrozen() && DetectionPlayer()),
+            new Leaf(() => BossMovement()));
         Sequence punchNode = new Sequence(
-                new Leaf(() => skillList[2].CanUse(this, characterController, puchRange)),
-                new Leaf(() => skillList[2].Execute(this, characterController)));
-       
+             new Leaf(() => skillList[2].CanUse(this, characterController, puchRange)),
+             new Leaf(() => skillList[2].Execute(this, characterController)));
+        Sequence HandleStaggerStateNode = new Sequence(
+            new Leaf(() => HandleStagger(2/3)  /*currentHP == (config.maxHealth * 2 / 3) || currentHP == (config.maxHealth / 3)*/),
+            new Leaf(() => HandleStaggerState(2f) ));
 
         behaviorTree = new Selector(
+            HandleStaggerStateNode,
             handleFrozenPlayer,
             frozenNode,
             poundNode,
@@ -65,6 +72,40 @@ public class BossAI : EnemyAI
     {
         behaviorTree.Execute();
 
+    }
+
+    private bool BossIntro()
+    {
+        animator.SetTrigger("Boss_Intro");
+        return true;
+    }
+    
+    private bool HandleStagger(float amount)
+    {
+        float previousHP = currentHP;
+        if (!isReachHPThreshHold)
+        {
+            float threshold = config.maxHealth * amount;
+            if(previousHP > threshold && threshold >= currentHP)
+            {
+                isReachHPThreshHold = true;
+                return true;
+            }
+        }
+        return false;
+
+    }
+    private bool HandleStaggerState(float time)
+    {
+        animator.SetBool("isStagger", true);
+        StartCoroutine(Stagger(time));
+        return true;
+    }
+
+    IEnumerator Stagger(float time)
+    {
+        yield return new WaitForSeconds(time);
+        animator.SetBool("isStagger", false);
     }
     private bool HandleFrozen()
     {
@@ -135,12 +176,17 @@ public class BossAI : EnemyAI
     protected override void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(transform.position,config.attackRange);
+        Gizmos.DrawWireSphere(transform.position, config.attackRange);
         Gizmos.DrawWireSphere(transform.position, config.detectionRange);
 
         Gizmos.color = Color.green;
-        Gizmos.DrawWireSphere(PoundAttackPoint.position, poundSize);
+        Gizmos.DrawWireCube(PoundAttackPoint.position, poundSize);
+
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(PoundAttackPoint.position, poundRange);
+        Gizmos.color = Color.yellow;
         Gizmos.DrawWireCube(PuchAttackPoint.position, punchSize);
+
 
 
     }

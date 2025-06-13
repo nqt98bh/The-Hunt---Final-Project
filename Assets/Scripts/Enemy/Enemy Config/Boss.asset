@@ -13,12 +13,12 @@ MonoBehaviour:
   m_Name: Boss
   m_EditorClassIdentifier: 
   enemyName: 
-  maxHealth: 500
+  maxHealth: 600
   damage: 40
   moveSpeed: 2
   chaseSpeed: 2
   detectionRange: 10
-  attackRange: 1
+  attackRange: 3
   attackCooldown: 2
   playerLayer:
     serializedVersion: 2
