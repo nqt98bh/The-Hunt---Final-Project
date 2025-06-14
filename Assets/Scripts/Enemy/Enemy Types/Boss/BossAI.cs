@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Runtime.InteropServices.WindowsRuntime;
 using System.Security.Cryptography;
+using Unity.VisualScripting;
 using UnityEditor.Networking.PlayerConnection;
 using UnityEditorInternal;
 using UnityEngine;
@@ -20,14 +21,21 @@ public class BossAI : EnemyAI
     public Vector2 poundSize;
     public Transform PoundAttackPoint;
 
+    //freezing skill flag
     public bool isBreakingFreeze = false;
-    private bool isReachHPThreshHold = false;
+
+    //Stagger state flag
+    private List<float> HPThresholds;
+    private bool shouldStagger = false;
+    private bool isStaggering = false;
 
     Vector2Int Vector2Int = new Vector2Int (0, 10);
     private BTNode behaviorTree;
 
+    
     private void Start()
     {
+        HPThresholds = new List<float>() { 2f / 3f, 1f / 3f };
         skillList = new List<ISkill>() { new FrozenSkill(), new PoundSkill(), new PunchSkill() };
 
         Sequence handleFrozenPlayer = new Sequence(
@@ -36,21 +44,22 @@ public class BossAI : EnemyAI
             new Leaf(() => HandleFrozen()));
    
         Sequence frozenNode = new Sequence(
-            new Leaf(() => !characterController.IsFrozen()),
+            new Leaf(() => !isStaggering && !characterController.IsFrozen()),
             new Leaf(() => skillList[0].CanUse(this, characterController, frozenRange)),
             new Leaf(() => skillList[0].Execute(this, characterController)));
         Sequence poundNode = new Sequence(
-            new Leaf(() => skillList[1].CanUse(this, characterController, poundRange)),
+            new Leaf(() => !isStaggering && skillList[1].CanUse(this, characterController, poundRange)),
             new Leaf(() => skillList[1].Execute(this, characterController)));
         Sequence bossMovement = new Sequence(
-            new Leaf(() => !characterController.IsFrozen() && DetectionPlayer()),
+            new Leaf(() => !isStaggering && !characterController.IsFrozen() && DetectionPlayer()),
             new Leaf(() => BossMovement()));
         Sequence punchNode = new Sequence(
-             new Leaf(() => skillList[2].CanUse(this, characterController, puchRange)),
+             new Leaf(() => !isStaggering && skillList[2].CanUse(this, characterController, puchRange)),
              new Leaf(() => skillList[2].Execute(this, characterController)));
         Sequence HandleStaggerStateNode = new Sequence(
-            new Leaf(() => HandleStagger(2/3)  /*currentHP == (config.maxHealth * 2 / 3) || currentHP == (config.maxHealth / 3)*/),
-            new Leaf(() => HandleStaggerState(2f) ));
+            new Leaf(() => !isStaggering && /*isReachHPStagger()*/shouldStagger),
+            new Leaf(() => HandleStaggerState(3f)));
+            
 
         behaviorTree = new Selector(
             HandleStaggerStateNode,
@@ -79,33 +88,50 @@ public class BossAI : EnemyAI
         animator.SetTrigger("Boss_Intro");
         return true;
     }
-    
-    private bool HandleStagger(float amount)
-    {
-        float previousHP = currentHP;
-        if (!isReachHPThreshHold)
-        {
-            float threshold = config.maxHealth * amount;
-            if(previousHP > threshold && threshold >= currentHP)
-            {
-                isReachHPThreshHold = true;
-                return true;
-            }
-        }
-        return false;
 
+    void isReachHPStagger(int current, int newHP)
+    {
+        float pre = current / (float)config.maxHealth;
+        float n = newHP / (float)config.maxHealth;
+        shouldStagger = false;
+
+        for (int i = HPThresholds.Count - 1; i >= 0; i--)
+        {
+            if (pre > HPThresholds[i] && HPThresholds[i] >= n)
+            {
+                HPThresholds.Remove(i);
+                shouldStagger = true;
+                break;
+
+            }
+
+            //if(currentHP == (config.maxHealth*2f/3f) || currentHP == config.maxHealth / 3f)
+            //{
+            //    return true;
+            //}
+
+        }
+    }
+    public override void TakeDamage(int damage)
+    {
+        int cur = currentHP;
+        base.TakeDamage(damage);
+        int newHP = currentHP;
+        isReachHPStagger(cur, newHP);
     }
     private bool HandleStaggerState(float time)
     {
-        animator.SetBool("isStagger", true);
-        StartCoroutine(Stagger(time));
+        animator.SetTrigger("isStagger");
+        isStaggering = true;
+        StartCoroutine(EndStaggerState(time));
         return true;
     }
 
-    IEnumerator Stagger(float time)
+    IEnumerator EndStaggerState(float time)
     {
         yield return new WaitForSeconds(time);
-        animator.SetBool("isStagger", false);
+        isStaggering = false;
+        
     }
     private bool HandleFrozen()
     {

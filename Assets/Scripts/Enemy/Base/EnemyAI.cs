@@ -112,7 +112,7 @@ public abstract class EnemyAI : MonoBehaviour
     {
         attack.Attack(attackPoint, attackRadius, characterController, config);
     }
-    public void TakeDamage(int damage)
+    public virtual void TakeDamage(int damage)
     {
         currentHP -= damage;
         animator.SetTrigger("isHitted");
