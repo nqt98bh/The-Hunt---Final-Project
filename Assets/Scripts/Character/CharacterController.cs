@@ -38,16 +38,20 @@ public class CharacterController : MonoBehaviour ,IDataPersistence
     {
         if(isFrozen) return;
         isFrozen = true;
+        animator.ClearTrigger("Frozen_Destroy");
+
         animator.SetTriggerFrozen("EnterFrozen");
         Debug.Log("Enter Frozen State");
     }
 
     public void OnHitBossFreeze(int damage)
     {
-        if(!isFrozen) return;    
+        if(!isFrozen) return;
+        //animator.ClearTrigger("EnterFrozen");
         animator.SetTriggerFrozen("Frozen_Destroy");
-        isFrozen = false;
         TakeDamage(damage);
+
+        isFrozen = false;
         Debug.Log("Frozen_Destroy");
     }
 
@@ -59,15 +63,19 @@ public class CharacterController : MonoBehaviour ,IDataPersistence
             GameManager.Instance.PlaySoundFX(SoundType.collideWithAttack);
             return;
         }
-        currentHP -= damage;
         
+        currentHP -= damage;
+        if (isFrozen == false)
+        {
+            animator.SetTriggerHurt();
+
+        }
         OnHealthChanged?.Invoke((float)currentHP/maxHP);
-        animator.SetTriggerHurt();
         GameManager.Instance.PlaySoundFX(SoundType.playerHit);
         Dead();
         Debug.Log("Current HP: " + currentHP);
     }
-    public void AttackEnemy()
+    public void AttackEnemy() //Attach on Attack Animation of Character
     {
         Collider2D colliderInfo = Physics2D.OverlapCircle(attackPoint.position, attackRadius, enemyLayer);
         if (colliderInfo != null)

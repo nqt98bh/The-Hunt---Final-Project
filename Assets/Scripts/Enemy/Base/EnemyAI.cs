@@ -10,6 +10,7 @@ public abstract class EnemyAI : MonoBehaviour
     [Header("Config & Target")]
     [SerializeField] protected EnemyConfig config;
     [SerializeField] protected CharacterController characterController;
+    [SerializeField] protected PoolManager pool;
 
     
     [SerializeField] protected Transform attackPoint;
@@ -91,14 +92,14 @@ public abstract class EnemyAI : MonoBehaviour
         }
         
     }
-    protected void Flip()
+    protected void Flip() //flip the scale
     {
         facingRight = !facingRight;
         Vector2 scale = transform.localScale;
         scale.x *= -1;
         transform.localScale = scale;
     }
-    protected virtual void AttackPlayer()
+    protected virtual void AttackPlayer()  
     {
         float distance = Vector2.Distance(transform.position, player.position);
         if((distance < config.attackRange) && Time.time > nextAttackTime)
@@ -108,11 +109,11 @@ public abstract class EnemyAI : MonoBehaviour
             
         }
     }
-    public virtual void OnAttackAnimationHit()
+    public virtual void OnAttackAnimationHit()  //Attach on Attack Animation of Enemy
     {
         attack.Attack(attackPoint, attackRadius, characterController, config);
     }
-    public virtual void TakeDamage(int damage)
+    public virtual void TakeDamage(int damage)   //Call when  animation of Character implement
     {
         currentHP -= damage;
         animator.SetTrigger("isHitted");
@@ -122,6 +123,9 @@ public abstract class EnemyAI : MonoBehaviour
             currentHP = 0;
             animator.SetTrigger("isDeaded");
             Destroy(gameObject,0.5f);
+            GameObject coinGO =  pool.GetObject(transform.position,Quaternion.identity);
+            var coin = coinGO.GetComponent<Coin>();
+            coin.ReturnCoin(() => { pool.ReturnToPool(coinGO); });
         }
     }
    public EnemyConfig GetConfig()

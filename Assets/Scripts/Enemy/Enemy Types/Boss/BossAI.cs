@@ -83,12 +83,7 @@ public class BossAI : EnemyAI
 
     }
 
-    private bool BossIntro()
-    {
-        animator.SetTrigger("Boss_Intro");
-        return true;
-    }
-
+  
     void isReachHPStagger(int current, int newHP)
     {
         float pre = current / (float)config.maxHealth;
@@ -115,13 +110,23 @@ public class BossAI : EnemyAI
     public override void TakeDamage(int damage)
     {
         int cur = currentHP;
-        base.TakeDamage(damage);
+        if (!isStaggering)
+        {
+            base.TakeDamage(damage);
+        }
+        else
+        {
+            currentHP -= damage;
+            GameManager.Instance.PlaySoundFX(SoundType.enemyHit);
+        }
+        
         int newHP = currentHP;
         isReachHPStagger(cur, newHP);
     }
-    private bool HandleStaggerState(float time)
+    private bool HandleStaggerState(float time)  
     {
         animator.SetTrigger("isStagger");
+        
         isStaggering = true;
         StartCoroutine(EndStaggerState(time));
         return true;

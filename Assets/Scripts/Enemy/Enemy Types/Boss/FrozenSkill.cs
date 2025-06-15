@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class FrozenSkill : ISkill
 {
-    float coolDown = 3f;
+    float coolDown = 5f;
     public float CoolDown =>coolDown;
     float lastTimeUse = 0f;
    

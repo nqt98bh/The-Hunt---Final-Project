@@ -20,7 +20,7 @@ public static class StrategyFactory
         switch(attackType)
         {
             case AttackType.Melee: return new MeleeAttack();
-            case AttackType.Ranged: return new RangedAttack(config.projectilePrefab,config.projectileSpeed);
+            case AttackType.Ranged: return new ArcherAttack(config.projectilePrefab,config.projectileSpeed);
                 default: throw new ArgumentException();
         }
     }

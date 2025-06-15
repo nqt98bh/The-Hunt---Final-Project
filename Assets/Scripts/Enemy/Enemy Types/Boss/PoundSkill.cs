@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PoundSkill : ISkill
 {
-    float coolDown = 2f;
+    float coolDown = 3f;
     private int damage = 30;
     public float CoolDown => coolDown;
     float lastTimeUse = 0f;

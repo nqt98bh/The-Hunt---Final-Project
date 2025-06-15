@@ -16,6 +16,6 @@ public class Acher_Enemy : EnemyAI
 
     protected override float GetDirection(bool isChasing)
     {
-        return 0;
+        return Mathf.Sign(player.position.x -  transform.position.x);
     }
 }

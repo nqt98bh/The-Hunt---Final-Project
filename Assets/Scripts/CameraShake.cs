@@ -18,7 +18,7 @@ public class CameraShake : MonoBehaviour
     {
         noise = VirtualCamera.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>();
     }
-    void Shake()
+     void Shake()
     {
 
         noise.m_AmplitudeGain = amplitude;
@@ -26,20 +26,20 @@ public class CameraShake : MonoBehaviour
     }
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space) && !isShaking )
-        {
+        //if (Input.GetKeyDown(KeyCode.Space) && !isShaking )
+        //{
 
-            Shake();
-            isShaking = true;
-            if(c_waitShake != null)
-            {
-                StopCoroutine(c_waitShake);
-                c_waitShake = null;
-            }
-            c_waitShake = StartCoroutine(WaitShake());
+        //    Shake();
+        //    isShaking = true;
+        //    if(c_waitShake != null)
+        //    {
+        //        StopCoroutine(c_waitShake);
+        //        c_waitShake = null;
+        //    }
+        //    c_waitShake = StartCoroutine(WaitShake());
 
-           //timer = shakeInterval;
-        }
+        //   //timer = shakeInterval;
+        //}
         //if (timer > 0)
         //{
         //    timer -= Time.deltaTime;
@@ -52,6 +52,24 @@ public class CameraShake : MonoBehaviour
         //}
 
     }
+    public void OnShakingEvent()
+    {
+        if (!isShaking)
+        {
+
+            Shake();
+            isShaking = true;
+            if (c_waitShake != null)
+            {
+                StopCoroutine(c_waitShake);
+                c_waitShake = null;
+            }
+            c_waitShake = StartCoroutine(WaitShake());
+
+            //timer = shakeInterval;
+        }
+    }
+
     IEnumerator WaitShake()
     {
         yield return new WaitForSeconds( shakeInterval );

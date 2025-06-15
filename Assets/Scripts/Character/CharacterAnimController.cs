@@ -59,4 +59,8 @@ public class CharacterAnimController : MonoBehaviour
     {
         animator.SetTrigger(name);
     }
+    public void ClearTrigger(string name)
+    {
+        animator.ResetTrigger(name);
+    }
 }
