@@ -26,5 +26,6 @@ public class Coin : MonoBehaviour
     public void ReturnCoin(Action _recycle)
     {
         RecycleAction = _recycle;
+        
     }
 }

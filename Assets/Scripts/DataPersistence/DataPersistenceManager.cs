@@ -98,8 +98,8 @@ public class DataPersistenceManager : MonoBehaviour
       
         return new List<IDataPersistence>(dataPersistenceObjects);
     }
-    //private void OnApplicationQuit()
-    //{
-    //    SaveGame();
-    //}
+    private void OnApplicationQuit()
+    {
+        SaveGame();
+    }
 }

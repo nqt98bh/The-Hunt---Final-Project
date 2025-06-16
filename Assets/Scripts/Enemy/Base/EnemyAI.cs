@@ -10,7 +10,7 @@ public abstract class EnemyAI : MonoBehaviour
     [Header("Config & Target")]
     [SerializeField] protected EnemyConfig config;
     [SerializeField] protected CharacterController characterController;
-    [SerializeField] protected PoolManager pool;
+    [SerializeField] protected CoinSpawner coinSpawner;
 
     
     [SerializeField] protected Transform attackPoint;
@@ -123,9 +123,7 @@ public abstract class EnemyAI : MonoBehaviour
             currentHP = 0;
             animator.SetTrigger("isDeaded");
             Destroy(gameObject,0.5f);
-            GameObject coinGO =  pool.GetObject(transform.position,Quaternion.identity);
-            var coin = coinGO.GetComponent<Coin>();
-            coin.ReturnCoin(() => { pool.ReturnToPool(coinGO); });
+            coinSpawner.SpawnCoin(transform.position,Quaternion.identity,config.coinDropped);
         }
     }
    public EnemyConfig GetConfig()

@@ -7,7 +7,7 @@ public class GameData
     public CharacterData characterData;
     public Vector3 lastCheckPoint;
     public int version;
-   
+    public int CoinValue;
     
     public GameData(CharacterData characterData)
     {

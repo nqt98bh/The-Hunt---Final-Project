@@ -10,11 +10,11 @@ public class CharacterController : MonoBehaviour ,IDataPersistence
 
     public static Action<float> OnHealthChanged;
     public int maxHP = 100;
+    private int currentHP;
     public int playerDamage = 10;
     public float maxSpeed = 5f;
 
     [SerializeField] float attackRadius;
-    private int currentHP;
     CharacterAnimController animator;
     CharacterMovement characterMovement;
     
@@ -110,6 +110,11 @@ public class CharacterController : MonoBehaviour ,IDataPersistence
         this.maxHP = maxHP;
         currentHP = maxHP;
         OnHealthChanged?.Invoke((float)currentHP/maxHP);
+    }
+    public void Healing(int amount)
+    {
+        currentHP += amount;
+        OnHealthChanged?.Invoke(currentHP);
     }
     public float GetCurrentHP()
     {

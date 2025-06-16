@@ -9,6 +9,7 @@ public class EnemyConfig : ScriptableObject
     public string enemyName;
     public int maxHealth;
     public int damage;
+    public int coinDropped;
     public float moveSpeed;
     public float chaseSpeed;
     public float detectionRange;

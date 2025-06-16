@@ -15,6 +15,7 @@ MonoBehaviour:
   enemyName: 
   maxHealth: 70
   damage: 20
+  coinDropped: 3
   moveSpeed: 1
   chaseSpeed: 2
   detectionRange: 5

@@ -13,6 +13,7 @@ public class SavePoint : MonoBehaviour, IDataPersistence
     public void SaveData(ref GameData data)
     {
         data.lastCheckPoint = this.transform.position;
+        data.CoinValue = GameManager.Instance.CurencyManager.GetCoinCurrentValue();
     }
 
     private void OnTriggerEnter2D(Collider2D other)

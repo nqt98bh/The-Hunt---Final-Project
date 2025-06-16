@@ -11,10 +11,13 @@ public class GameManager : MonoBehaviour
     [SerializeField] private CharacterController characterController;
     [SerializeField] private SoundFXManager soundFXManager;
     [SerializeField] private GameUIManager gameUIManager;
-
+    [SerializeField] private CurrencyManager curencyManager;
+    [SerializeField] private DataPersistenceManager dataPersistenceManager;
     public CharacterController CharacterController => characterController;
     public SoundFXManager SoundFXManager => soundFXManager;
     public GameUIManager GameUIManager => gameUIManager;
+    public CurrencyManager CurencyManager => curencyManager;
+    public DataPersistenceManager DataPersistenceManager => dataPersistenceManager;
     [HideInInspector] public bool isGameOver = false;
   
 
@@ -28,10 +31,12 @@ public class GameManager : MonoBehaviour
         }
         else { Destroy(gameObject); }
 
+
     }
     private void Start()
     {
         DataPersistenceManager.Instance.LoadGame();
+
     }
 
     public void GameFinished()
