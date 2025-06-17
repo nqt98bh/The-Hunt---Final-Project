@@ -35,7 +35,11 @@ public class GameManager : MonoBehaviour
     }
     private void Start()
     {
-        DataPersistenceManager.Instance.LoadGame();
+
+        DataPersistenceManager.Instance.LoadGame(() =>
+        {
+            GameUIManager.refreshUI?.Invoke();
+        });
 
     }
 

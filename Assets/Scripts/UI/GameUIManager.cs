@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -9,14 +10,20 @@ public class GameUIManager : MonoBehaviour
     [SerializeField] private GameObject gameOverPanel;
     [SerializeField] private TextMeshProUGUI gameOverText;
     [SerializeField] private GameObject MenuUI;
+    public static Action refreshUI;
+  
     private void Start()
     {
         gameOverPanel.SetActive(false);
         GameManager.Instance.OnGameOver += ShowGameOverPanel;
+        refreshUI += RefreshUI;
+
     }
     private void OnDestroy()
     {
         GameManager.Instance.OnGameOver -= ShowGameOverPanel;
+        refreshUI -= RefreshUI;
+
     }
 
     public void ShowGameOverPanel()
@@ -31,5 +38,9 @@ public class GameUIManager : MonoBehaviour
         gameOverPanel.SetActive(false);
         MenuUI.SetActive(false);
         
+    }
+    public void RefreshUI()
+    {
+        CurrencyManager.OnCoinChanged?.Invoke();
     }
 }

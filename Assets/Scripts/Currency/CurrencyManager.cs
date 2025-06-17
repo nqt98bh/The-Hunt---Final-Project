@@ -6,7 +6,8 @@ using UnityEngine;
 public class CurrencyManager : MonoBehaviour, IDataPersistence
 {
     private int currentCoin = 0;
-    public static Action<int> OnCoinChanged;
+    public int CurrentCoin => currentCoin;
+    public static Action OnCoinChanged;
    
     private void Start()
     {
@@ -16,7 +17,7 @@ public class CurrencyManager : MonoBehaviour, IDataPersistence
     {
         currentCoin  += amount;
         Debug.Log("Coin value: " + currentCoin);
-        OnCoinChanged?.Invoke(currentCoin);
+        OnCoinChanged?.Invoke();
         
     }
 
@@ -28,7 +29,7 @@ public class CurrencyManager : MonoBehaviour, IDataPersistence
             return;
         } 
         currentCoin -= amount;
-        OnCoinChanged?.Invoke(currentCoin);
+        OnCoinChanged?.Invoke();
 
 
     }

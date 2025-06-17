@@ -18,12 +18,12 @@ public class CurrencyUI : MonoBehaviour
     }
     private void Start()
     {
-        UpdateCurrencyUI(GameManager.Instance.CurencyManager.GetCoinCurrentValue());
+        
 
     }
-    private void UpdateCurrencyUI(int amount)
+    private void UpdateCurrencyUI()
     {
         if (coinText == null) return;
-        coinText.text = amount.ToString();
+        coinText.text = GameManager.Instance.CurencyManager.CurrentCoin.ToString();
     }
 }

@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
@@ -17,6 +18,7 @@ public class DataPersistenceManager : MonoBehaviour
     private FileDataHandler dataHandler;
 
     public static DataPersistenceManager Instance { get; private set; }
+    
     private void Awake()
     {
         if (Instance != null)
@@ -64,9 +66,9 @@ public class DataPersistenceManager : MonoBehaviour
 
 
     }
-    public void LoadGame() 
+    public void LoadGame(Action finish = null) 
     {
-
+       
         //To Do: load any game data from a file by using dataHandler
         //this.gameData = dataHandler.Load();
         //If no data can be load, initialize to a new game
@@ -90,6 +92,9 @@ public class DataPersistenceManager : MonoBehaviour
         {
             dataPersistence.LoadData(gameData);
         }
+
+        finish?.Invoke();
+
     }
     
     private List<IDataPersistence> FindAllDataPersistenceObjects()
