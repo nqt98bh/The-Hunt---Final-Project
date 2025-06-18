@@ -21,7 +21,7 @@ public class Treasure : MonoBehaviour
     }
     public void SpawnCoinFromTreasure()
     {
-        coinSpawner.SpawnCoin(transform.position, Quaternion.identity, Random.Range(coinValue.x, coinValue.y));
+        coinSpawner.SpawnCoin(transform.position + new Vector3(0.5f, 0, 0), Quaternion.identity, Random.Range(coinValue.x, coinValue.y));
 
     }
 }

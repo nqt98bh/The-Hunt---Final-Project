@@ -35,11 +35,10 @@ public class CharacterMovement : MonoBehaviour
     private float delayToIlde = 0f;
     private float currentTimeRolling;
     [SerializeField] private float rollDuration = 2f;
+    private int jumpCount = 0;
     private float timeSinceAttack;
     private int attackIndex = 0;
     [SerializeField] public float dragForce = 30f;
-
-
 
     [SerializeField] private Vector2 colliderSize = new Vector2(0.7f, 0.65f);
     [SerializeField] private Vector2 colliderOffset = new Vector2(0f, 0.45f);
@@ -142,20 +141,30 @@ public class CharacterMovement : MonoBehaviour
     }
     void Jump()
     {
-        if(isGrounded == true && isRolling == false && input.JumpPressed)
+        
+        if(jumpCount <2 || isGrounded == true)
         {
-            isJumping = true;
-            anim.SetTriggerJumping();
-            GameManager.Instance.PlaySoundFX(SoundType.playerJump);
-            isGrounded = false;
-            anim.SetBoolIsGrounded(isGrounded);
-            rb2d.velocity = new Vector2(rb2d.velocity.x, jumpForce);
-            groundSensor.Disable(0.2f);
+            if ( isRolling == false && input.JumpPressed)
+            {
+                isJumping = true;
+                jumpCount++;
+                anim.SetTriggerJumping();
+                GameManager.Instance.PlaySoundFX(SoundType.playerJump);
+                isGrounded = false;
+                anim.SetBoolIsGrounded(isGrounded);
+                rb2d.velocity = new Vector2(rb2d.velocity.x, jumpForce);
+                groundSensor.Disable(0.2f);
+                Debug.Log("Jumpcount: " + jumpCount);
 
+            }
         }
+            
+        
+     
         if(isGrounded == true)
         {
             isJumping = false;
+            jumpCount = 0;
         }
     }
 
@@ -248,7 +257,13 @@ public class CharacterMovement : MonoBehaviour
             rb2d.gravityScale = 1f;
         }
     }
- 
-   
+
+    //private void OnTriggerEnter2D(Collider2D collision)
+    //{
+    //    if (collision.CompareTag("Ground"))
+    //    {
+    //        isGrounded = true;
+    //    }
+    //}
 }
 
