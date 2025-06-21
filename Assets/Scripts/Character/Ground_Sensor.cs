@@ -9,7 +9,7 @@ public class Ground_Sensor : Sensor_Character
    {
         string hitLayer = LayerMask.LayerToName(other.gameObject.layer);
         Debug.Log($"[{layerType}] detected collision with layer “{hitLayer}”");
-        if (other.gameObject.layer == LayerMask.NameToLayer("Ground"))
+        if (other.gameObject.layer == LayerMask.NameToLayer("Ground") || other.gameObject.layer == LayerMask.NameToLayer("OneWayPlatform"))
         {
             
         }

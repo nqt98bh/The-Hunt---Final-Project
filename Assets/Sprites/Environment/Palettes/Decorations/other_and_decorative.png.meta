@@ -186,7 +186,7 @@ TextureImporter:
         serializedVersion: 2
         x: 193
         y: 581
-        width: 41
+        width: 13
         height: 43
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
@@ -1415,6 +1415,27 @@ TextureImporter:
       bones: []
       spriteID: 381eee4ed6bc452468789fecb855c254
       internalID: -1878394734
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: other_and_decorative_31
+      rect:
+        serializedVersion: 2
+        x: 228
+        y: 581
+        width: 6
+        height: 42
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6f2823cf9e9d9254c8f6613100a682c5
+      internalID: -315731893
       vertices: []
       indices: 
       edges: []
