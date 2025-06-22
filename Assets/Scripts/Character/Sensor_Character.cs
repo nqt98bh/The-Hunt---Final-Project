@@ -9,7 +9,7 @@ public abstract class Sensor_Character:MonoBehaviour
     protected int ColliderCount =0;
     protected float DisableTimer;
 
-    [SerializeField] protected LayerMask layerType;
+    [SerializeField] protected LayerMask[] layerType;
 
     protected void OnEnable()
     {
@@ -21,6 +21,7 @@ public abstract class Sensor_Character:MonoBehaviour
         if(DisableTimer > 0) return false;
         return ColliderCount > 0;
     }
+    
     protected virtual void OnTriggerEnter2D(Collider2D other)
     {
         //ColliderCount++;
@@ -37,5 +38,5 @@ public abstract class Sensor_Character:MonoBehaviour
     {
         DisableTimer = duration;
     }
-    protected abstract void CollisionDetect(Collider2D collision);
+  
 }

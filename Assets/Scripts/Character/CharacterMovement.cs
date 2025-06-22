@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.Serialization;
 using UnityEngine;
-using static UnityEditor.Searcher.SearcherWindow.Alignment;
+using UnityEngine.Tilemaps;
 
 [RequireComponent(typeof(Rigidbody2D))]
 public class CharacterMovement : MonoBehaviour
@@ -17,6 +17,7 @@ public class CharacterMovement : MonoBehaviour
     CharacterAnimController anim;
     CharacterInput input;
     CharacterController characterController;
+    [SerializeField] CapsuleCollider2D playerCollider;
 
 
     [SerializeField] Wall_Sensor wallSensor1;
@@ -38,13 +39,14 @@ public class CharacterMovement : MonoBehaviour
     private int jumpCount = 0;
     private float timeSinceAttack;
     private int attackIndex = 0;
-    [SerializeField] public float dragForce = 30f;
+    [SerializeField] float dragForce = 30f;
+    [SerializeField] float disableLayerCollision = 0.2f;
 
     [SerializeField] private Vector2 colliderSize = new Vector2(0.7f, 0.65f);
     [SerializeField] private Vector2 colliderOffset = new Vector2(0f, 0.45f);
     private Vector2 colliderSizeDefault /*=  new Vector2(0.7f, 1.29f)*/;
     private Vector2 colliderOffsetDefault /*= new Vector2(0, 0.7f)*/;
-    
+    Coroutine c_waitForEnableLayerCollision;
     private void Awake()
     {
         rb2d = GetComponent<Rigidbody2D>();
@@ -100,7 +102,7 @@ public class CharacterMovement : MonoBehaviour
 
     void Movement()
     {
-        Debug.Log($"Movement(): IsFrozen={characterController.IsFrozen()}, speed={speed}");
+        //Debug.Log($"Movement(): IsFrozen={characterController.IsFrozen()}, speed={speed}");
         if (isBlocking || characterController.IsFrozen() ==true)
         {
             
@@ -173,10 +175,24 @@ public class CharacterMovement : MonoBehaviour
     {
         if(input.RollPressed && isRolling == false && !isSliding)
         {
-            rb2d.velocity = new Vector2(transform.forward.x*rollForce, rb2d.velocity.y);
-            GameManager.Instance.PlaySoundFX(SoundType.playerRoll);
-            isRolling = true;
-            anim.SetRolling();
+            if (groundSensor.CollisionDetect() != null)
+            {
+                if (c_waitForEnableLayerCollision != null)
+                {
+                    StopCoroutine(c_waitForEnableLayerCollision);
+                    c_waitForEnableLayerCollision = null;
+                }
+                
+                c_waitForEnableLayerCollision = StartCoroutine(EnablePlatformCollision());
+                //StartCoroutine(EnablePlatformCollision(OneWayPlatform));
+            }
+            else
+            {
+                rb2d.velocity = new Vector2(transform.forward.x * rollForce, rb2d.velocity.y);
+                GameManager.Instance.PlaySoundFX(SoundType.playerRoll);
+                isRolling = true;
+                anim.SetRolling();
+            }
             
         }
         currentTimeRolling += Time.deltaTime;
@@ -185,6 +201,14 @@ public class CharacterMovement : MonoBehaviour
             isRolling = false;
             currentTimeRolling = 0;
         }
+    }
+    IEnumerator EnablePlatformCollision()
+    {
+        TilemapCollider2D platformColiider = groundSensor.CollisionDetect().GetComponent<TilemapCollider2D>();
+        Physics2D.IgnoreCollision(playerCollider,platformColiider);
+        yield return new WaitForSeconds(disableLayerCollision);
+        Physics2D.IgnoreCollision(playerCollider,platformColiider,false);
+
     }
     public void OnableRollCollision()
     {
