@@ -6,7 +6,6 @@ using UnityEngine.Rendering;
 public class Thorn : MonoBehaviour
 {
     [SerializeField] int damage;
-    float nextTakeDamageTime = 0f;
     [SerializeField] float timeInterval = 1f;
      private Coroutine coroutine;
     private void OnTriggerEnter2D(Collider2D collision)
