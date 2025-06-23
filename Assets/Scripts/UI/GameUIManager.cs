@@ -8,7 +8,9 @@ public class GameUIManager : MonoBehaviour
 {
 
     [SerializeField] private GameObject gameOverPanel;
-    [SerializeField] private TextMeshProUGUI gameOverText;
+
+    [SerializeField] private GameObject gameFinishPanel;
+
     [SerializeField] private GameObject MenuUI;
     public static Action refreshUI;
   
@@ -16,31 +18,40 @@ public class GameUIManager : MonoBehaviour
     {
         gameOverPanel.SetActive(false);
         GameManager.Instance.OnGameOver += ShowGameOverPanel;
+        GameManager.Instance.OnGameFinish += ShowGameFinishPanel;
+
         refreshUI += RefreshUI;
 
     }
     private void OnDestroy()
     {
+        GameManager.Instance.OnGameFinish -= ShowGameFinishPanel;
         GameManager.Instance.OnGameOver -= ShowGameOverPanel;
         refreshUI -= RefreshUI;
 
     }
 
-    public void ShowGameOverPanel()
+    public void ShowGameOverPanel( )
     {
         gameOverPanel.SetActive(true);
         MenuUI.SetActive(true);
-        gameOverText.text = "Game Over!";
 
     }
-    public void RestartGame()
+    public void ShowGameFinishPanel()
     {
-        gameOverPanel.SetActive(false);
-        MenuUI.SetActive(false);
-        
+        gameFinishPanel.SetActive(true);
+        //MenuUI.SetActive(true);
+
     }
+    //public void RestartGame()
+    //{
+    //    gameOverPanel.SetActive(false);
+    //    MenuUI.SetActive(false);
+
+    //}
     public void RefreshUI()
     {
         CurrencyManager.OnCoinChanged?.Invoke();
+        CharacterController.OnHealthChanged?.Invoke();
     }
 }

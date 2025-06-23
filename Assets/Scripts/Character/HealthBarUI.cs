@@ -16,14 +16,11 @@ public class HealthBarUI : MonoBehaviour
        
         CharacterController.OnHealthChanged -= UpdateHealthBar;
     }
-    private void Start()
+   
+    private void UpdateHealthBar()
     {
-      
-        UpdateHealthBar(GameManager.Instance.CharacterController.GetCurrentHP());
-    }
-    private void UpdateHealthBar(float health)
-    {
-        healthSlider.value = health;
+        healthSlider.value =(float) GameManager.Instance.CharacterController.CurrentHP/ (float)GameManager.Instance.CharacterController.maxHP;
+        
     }
 }
 

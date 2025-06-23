@@ -16,11 +16,7 @@ public class CurrencyUI : MonoBehaviour
     {
         CurrencyManager.OnCoinChanged -= UpdateCurrencyUI;
     }
-    private void Start()
-    {
-        
-
-    }
+ 
     private void UpdateCurrencyUI()
     {
         if (coinText == null) return;

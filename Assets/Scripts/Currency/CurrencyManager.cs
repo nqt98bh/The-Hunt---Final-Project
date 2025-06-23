@@ -9,10 +9,7 @@ public class CurrencyManager : MonoBehaviour, IDataPersistence
     public int CurrentCoin => currentCoin;
     public static Action OnCoinChanged;
    
-    private void Start()
-    {
-        
-    }
+
     public void AddCoin(int amount)
     {
         currentCoin  += amount;

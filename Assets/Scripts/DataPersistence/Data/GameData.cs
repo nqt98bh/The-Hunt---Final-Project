@@ -5,7 +5,6 @@ using UnityEngine;
 public class GameData 
 {
     public CharacterData characterData;
-    public Vector3 lastCheckPoint;
     public int version;
     public int CoinValue;
     
@@ -23,15 +22,27 @@ public class CharacterData
 {
     public float speed;
     public int maxHP;
-    public float currentHP;
+    public int currentHP;
     public int playerDamage;
     public Vector3 playerPosition;
     public CharacterData(CharacterController characterState)
     {
-        maxHP = characterState.maxHP;
-        playerDamage = characterState.playerDamage;
-        currentHP = characterState.GetCurrentHP();
-        playerPosition = characterState.transform.position;
+        if (characterState == null)
+        {
+            maxHP = 100;
+            playerDamage = 20;
+            currentHP = maxHP;
+            playerPosition = new Vector3(-3, -4f, 0);
+        }
+        else
+        {
+
+
+            maxHP = characterState.maxHP;
+            playerDamage = characterState.playerDamage;
+            currentHP = characterState.maxHP;
+            playerPosition = characterState.transform.position;
+        }
 
     }
 }

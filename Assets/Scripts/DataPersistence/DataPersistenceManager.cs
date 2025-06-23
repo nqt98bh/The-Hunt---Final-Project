@@ -35,7 +35,7 @@ public class DataPersistenceManager : MonoBehaviour
     }
     public void NewGame()
     {
-        
+       
         CharacterData characterData = new CharacterData(characterState);
         this.gameData = new GameData(characterData);
     }
@@ -51,10 +51,10 @@ public class DataPersistenceManager : MonoBehaviour
         //To do: pass the data to other scripts so they can update it
         //To do: save data to a file
 
-        //foreach (IDataPersistence dataPersistence in dataPersistenceObjects)
-        //{
-        //    dataPersistence.SaveData(ref gameData);
-        //}
+        foreach (IDataPersistence dataPersistence in dataPersistenceObjects)
+        {
+            dataPersistence.SaveData(ref gameData);
+        }
 
         string json = JsonUtility.ToJson(gameData,true);
         PlayerPrefs.SetString(kSaveKey, json);

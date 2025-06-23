@@ -65,7 +65,10 @@ public class CharacterMovement : MonoBehaviour
     }
     void Update()
     {
-        if (GameManager.Instance.isGameOver || characterController.IsFrozen() == true) return;
+        if (GameManager.Instance.isGameOver || characterController.IsFrozen() == true)
+        {
+            return;
+        }
         anim.SetAirSpeedY(rb2d.velocity.y);
         Jump();
         Roll();

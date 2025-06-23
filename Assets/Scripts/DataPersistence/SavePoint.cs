@@ -12,7 +12,8 @@ public class SavePoint : MonoBehaviour, IDataPersistence
 
     public void SaveData(ref GameData data)
     {
-        data.lastCheckPoint = this.transform.position;
+        //data.lastCheckPoint = this.transform.position;
+        Debug.Log("Save point Position:" + this.transform.position);
         data.CoinValue = GameManager.Instance.CurencyManager.GetCoinCurrentValue();
     }
 
@@ -21,7 +22,7 @@ public class SavePoint : MonoBehaviour, IDataPersistence
         if(other.CompareTag("Player"))
         {
             gameObject.SetActive(false);
-            DataPersistenceManager.Instance.gameData.lastCheckPoint = transform.position;
+            //DataPersistenceManager.Instance.gameData.lastCheckPoint = transform.position;
             DataPersistenceManager.Instance.SaveGame();
             
         }

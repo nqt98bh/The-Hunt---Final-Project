@@ -27,6 +27,7 @@ public class MainMenuUI : MonoBehaviour
 
     private void OnContinue()
     {
+
         string mainMenuScene = "InGame";
         if (Application.CanStreamedLevelBeLoaded(mainMenuScene))
         {
@@ -36,6 +37,9 @@ public class MainMenuUI : MonoBehaviour
     }
     private void OnNewGame()
     {
+
+        PlayerPrefs.DeleteAll();
+    
         string mainMenuScene = "InGame";
         if (Application.CanStreamedLevelBeLoaded(mainMenuScene))
         {

@@ -109,6 +109,7 @@ public class BossAI : EnemyAI
     }
     public override void TakeDamage(int damage)
     {
+      
         int cur = currentHP;
         if (!isStaggering)
         {
@@ -122,6 +123,11 @@ public class BossAI : EnemyAI
         
         int newHP = currentHP;
         isReachHPStagger(cur, newHP);
+        if (currentHP <= 0)
+        {
+            GameManager.Instance.GameFinish();
+            return;
+        }
     }
     private bool HandleStaggerState(float time)  
     {
@@ -203,7 +209,10 @@ public class BossAI : EnemyAI
     {
         animator.SetTrigger(animName);
     }
-  
+    public void KillBoss()
+    {
+        GameManager.Instance.GameFinish();
+    }
     protected override void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.red;

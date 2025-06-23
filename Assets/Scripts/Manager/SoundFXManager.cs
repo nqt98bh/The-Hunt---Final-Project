@@ -23,7 +23,7 @@ public class SoundFXManager : MonoBehaviour
         //    DontDestroyOnLoad(gameObject);
         //}
         //else Destroy(gameObject);
-        musicSource.clip = GetComponent<AudioSource>().clip;
+        musicSource.clip = GetComponentInChildren<AudioSource>().clip;
 
     }
     private void OnEnable()
@@ -32,13 +32,12 @@ public class SoundFXManager : MonoBehaviour
     private void OnDestroy()
     {
         GameManager.Instance.OnGameOver -= PlayGameOverSound;
-
+        GameManager.Instance.OnGameFinish -= PlayFinishSound;
     }
     private void Start()
     {
         GameManager.Instance.OnGameOver += PlayGameOverSound;
-
-      
+        GameManager.Instance.OnGameFinish += PlayFinishSound;
     }
     private AudioClip GetSoundType(SoundType sound)
     {
@@ -72,6 +71,12 @@ public class SoundFXManager : MonoBehaviour
         musicSource.Stop();
         PlaySound(SoundType.gameOver);
     }
+    private void PlayFinishSound()
+    {
+        musicSource.Stop();
+        PlaySound(SoundType.gameFinish);
+
+    }
 }
 public enum SoundType
 {
@@ -95,4 +100,5 @@ public enum SoundType
 
     music,
     gameOver,
+    gameFinish,
 }

@@ -39,6 +39,7 @@ public abstract class EnemyAI : MonoBehaviour
 
     protected virtual void Update()
     {
+        if (GameManager.Instance.isGameOver) return;
        bool isChasing = DetectionPlayer();
         if (isChasing)
         {

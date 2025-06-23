@@ -19,9 +19,10 @@ public class GameManager : MonoBehaviour
     public CurrencyManager CurencyManager => curencyManager;
     public DataPersistenceManager DataPersistenceManager => dataPersistenceManager;
     [HideInInspector] public bool isGameOver = false;
-  
 
     public Action OnGameOver;
+    public Action OnGameFinish;
+
     private void Awake()
     {
         if(Instance == null)
@@ -42,19 +43,23 @@ public class GameManager : MonoBehaviour
         });
 
     }
-
-    public void GameFinished()
+    public void GameFinish()
+    {
+        isGameOver = true;
+        OnGameFinish?.Invoke();
+    }
+        
+    public void GameOver()
     {
         isGameOver = true;
         OnGameOver?.Invoke();
-        
-
     }
     public void RestartGame()
     {
         isGameOver = false;
-        characterController.RestartGame();
-        gameUIManager.RestartGame();
+        dataPersistenceManager.RestartGame();
+        //characterController.RestartGame();
+        //gameUIManager.RestartGame();
     }
     public void PlaySoundFX(SoundType soundType)
     {

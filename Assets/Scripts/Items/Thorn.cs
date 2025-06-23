@@ -30,7 +30,7 @@ public class Thorn : MonoBehaviour
 
     IEnumerator DamageOverTime(float time)
     {
-        while (true)
+        while (!GameManager.Instance.isGameOver)
         {
             ApplyDamage((int) damage);
             yield return new WaitForSeconds(time);

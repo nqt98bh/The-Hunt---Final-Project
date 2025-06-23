@@ -61,7 +61,7 @@ public class InGameMenuUI : MonoBehaviour
 
 
     }
-    private void OnMainMenu()
+    public void OnMainMenu()
     {
         string mainMenuScene = "MainMenu";
         if (Application.CanStreamedLevelBeLoaded(mainMenuScene))
