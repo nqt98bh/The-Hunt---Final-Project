@@ -65,7 +65,7 @@ public class CharacterMovement : MonoBehaviour
     }
     void Update()
     {
-        if (GameManager.Instance.isGameOver || characterController.IsFrozen() == true)
+        if (GameManager.Instance.isGameOver || characterController.IsFrozen() == true || GameManager.Instance.IsPauseGame())
         {
             return;
         }

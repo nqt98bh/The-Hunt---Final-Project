@@ -10,6 +10,8 @@ public class SettingMenu : MonoBehaviour
     public TMP_Dropdown graphicDropDown;
     public Slider masterVol, musicVol, sfxVol;
     public AudioMixer mainAudioMixer;
+    [SerializeField] private GameObject MenuContent;
+    [SerializeField] private GameObject MenuBackground;
     public void ChangeGraphicQuality()
     {
         QualitySettings.SetQualityLevel(graphicDropDown.value);
@@ -25,5 +27,11 @@ public class SettingMenu : MonoBehaviour
     public void ChangeSFXVolume()
     {
         mainAudioMixer.SetFloat("SFX", sfxVol.value);
+    }
+    public void OnBackButton()
+    {
+        gameObject.SetActive(false);
+        MenuContent.SetActive(true);
+        MenuBackground.SetActive(true);
     }
 }

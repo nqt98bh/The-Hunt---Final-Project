@@ -1,5 +1,6 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting.Generated.PropertyProviders;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
@@ -10,20 +11,20 @@ public class InGameMenuUI : MonoBehaviour
     [SerializeField] private GameObject content;
     [SerializeField] private GameObject backGround;
     [SerializeField] private GameObject settingContent;
-    
 
     [SerializeField] public Button buttonResume;
     [SerializeField] public Button buttonMainMenu;
     [SerializeField] public Button buttonSetting;
-    [SerializeField] public Button buttonQuit;
+    //[SerializeField] public Button buttonQuit;
 
     [SerializeField] private bool isPaused;
+    public bool IsPaused => isPaused;   
     private void Start()
     {
         buttonResume.onClick.AddListener(OnResumed);
         buttonMainMenu.onClick.AddListener(OnMainMenu);
         buttonSetting.onClick.AddListener(OnSetting);
-        buttonQuit.onClick.AddListener(OnQuit);
+        //buttonQuit.onClick.AddListener(OnBackButton);
         HideMenuUI(false);
         isPaused = false;
     }
@@ -33,6 +34,7 @@ public class InGameMenuUI : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             isPaused = !isPaused;
+            GameManager.Instance.SetPauseGame(isPaused);
             if (isPaused)
             {
                 Paused();
@@ -45,21 +47,19 @@ public class InGameMenuUI : MonoBehaviour
     private void Paused()
     {
         HideMenuUI(true);
-        Time.timeScale = 0f;
+        //Time.timeScale = 0f;
     }
     private void OnResumed()
     {
         HideMenuUI(false);
         isPaused = false ;
-        Time.timeScale = 1f;
+       //Time.timeScale = 1f;
     }
     private void OnSetting()
     {
         HideMenuUI(false);
 
         settingContent.SetActive(true);
-
-
     }
     public void OnMainMenu()
     {
@@ -68,27 +68,27 @@ public class InGameMenuUI : MonoBehaviour
         {
             SceneManager.LoadScene(mainMenuScene);
         }
-        Time.timeScale = 1f;
-        //SoundFXManager.Instance.StopBackGroundMusic();
+        //Time.timeScale = 1f;
         GameManager.Instance.SoundFXManager.StopBackGroundMusic();
 
 
     }
-    private void OnQuit()
-    {
-#if UNITY_EDITOR
-        UnityEditor.EditorApplication.isPlaying = false;  // Stop play mode in the editor
-#else
-        Application.Quit();  // Quit the game in a build
-#endif
-    }
+    
+    //    private void OnQuit()
+    //    {
+    //#if UNITY_EDITOR
+    //        UnityEditor.EditorApplication.isPlaying = false;  // Stop play mode in the editor
+    //#else
+    //        Application.Quit();  // Quit the game in a build
+    //#endif
+    //    }
 
     public void HideMenuUI(bool state)
     {
         content.SetActive(state);
         backGround.SetActive(state);
-        if (state == false)
-        { EventSystem.current.SetSelectedGameObject(null); }
+        if (state == false)  
+        { EventSystem.current.SetSelectedGameObject(null); }  //bỏ tất cả các selection đã chọn
     }
 
 }

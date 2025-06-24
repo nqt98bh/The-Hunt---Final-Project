@@ -48,8 +48,9 @@ public class MainMenuUI : MonoBehaviour
     }
     private void OnSetting()
     {
-
+        HideAllMenu(false);
         settingContent.SetActive(true);
+
     }
    
 

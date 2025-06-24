@@ -24,6 +24,7 @@ public class SoundFXManager : MonoBehaviour
         //}
         //else Destroy(gameObject);
         musicSource.clip = GetComponentInChildren<AudioSource>().clip;
+        soundFX = GetComponentInChildren<AudioSource>();
 
     }
     private void OnEnable()

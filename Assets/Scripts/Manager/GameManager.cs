@@ -23,6 +23,8 @@ public class GameManager : MonoBehaviour
     public Action OnGameOver;
     public Action OnGameFinish;
 
+    private bool pausedGame; 
+
     private void Awake()
     {
         if(Instance == null)
@@ -64,5 +66,13 @@ public class GameManager : MonoBehaviour
     public void PlaySoundFX(SoundType soundType)
     {
         SoundFXManager.PlaySound(soundType);
+    }
+    public void SetPauseGame(bool isPause)
+    {
+        pausedGame = isPause;
+    }
+    public bool IsPauseGame()
+    {
+        return pausedGame;
     }
 }
