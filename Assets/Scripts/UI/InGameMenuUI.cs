@@ -35,6 +35,7 @@ public class InGameMenuUI : MonoBehaviour
         {
             isPaused = !isPaused;
             GameManager.Instance.SetPauseGame(isPaused);
+
             if (isPaused)
             {
                 Paused();
@@ -49,7 +50,7 @@ public class InGameMenuUI : MonoBehaviour
         HideMenuUI(true);
         //Time.timeScale = 0f;
     }
-    private void OnResumed()
+    private void OnResumed()                                                                                        
     {
         HideMenuUI(false);
         isPaused = false ;
@@ -72,6 +73,10 @@ public class InGameMenuUI : MonoBehaviour
         GameManager.Instance.SoundFXManager.StopBackGroundMusic();
 
 
+    }
+    public void PlayMenuSound(SoundType type)
+    {
+        GameManager.Instance.SoundFXManager.PlaySound(type);
     }
     
     //    private void OnQuit()

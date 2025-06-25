@@ -65,7 +65,8 @@ public class CharacterMovement : MonoBehaviour
     }
     void Update()
     {
-        if (GameManager.Instance.isGameOver || characterController.IsFrozen() == true || GameManager.Instance.IsPauseGame())
+        if (GameManager.Instance.IsPauseGame()) return;
+        if (GameManager.Instance.isGameOver || characterController.IsFrozen() == true )
         {
             return;
         }
@@ -79,6 +80,7 @@ public class CharacterMovement : MonoBehaviour
     }
     private void FixedUpdate()
     {
+        if (GameManager.Instance.IsPauseGame()) return;
         if (GameManager.Instance.isGameOver) return;
         Movement();
         if (isGrounded == false && rb2d.velocity.y > 0.01f && isJumping == false)
@@ -276,7 +278,8 @@ public class CharacterMovement : MonoBehaviour
         if (isSliding)
         {
             rb2d.gravityScale = 0.5f;
-            GameManager.Instance.PlaySoundFX(SoundType.playerWallSliding);
+            //GameManager.Instance.PlaySoundFX(SoundType.playerWallSliding);
+            //Debug.Log("Play Wall sliding Sound");
 
         }
         else 

@@ -64,7 +64,7 @@ public class CharacterController : MonoBehaviour ,IDataPersistence
         if (characterMovement != null && characterMovement.isBlocking)
         {
             Debug.Log("IsBlocking");
-            GameManager.Instance.PlaySoundFX(SoundType.collideWithAttack);
+            GameManager.Instance.PlaySoundFX(SoundType.blockDamage);
             return;
         }
         

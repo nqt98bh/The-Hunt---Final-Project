@@ -92,7 +92,7 @@ public enum SoundType
     playerAttack3,
     playerCollect,
     playerDeath,
-    collideWithAttack,
+    blockDamage,
 
 
     enemyHit,
@@ -102,4 +102,7 @@ public enum SoundType
     music,
     gameOver,
     gameFinish,
+
+    MenuSelected,
+    MenuHighlight,
 }

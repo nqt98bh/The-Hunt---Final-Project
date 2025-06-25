@@ -20,7 +20,7 @@ public class GroundEnemy : EnemyAI
         Vector2 target = player.position + Vector3.up * 0.5f;
         Vector2 direction = new Vector2((target.x - transform.position.x), 0f).normalized; //Đảm bảo raycast luôn hướng về player
 
-        RaycastHit2D hitPlayer = Physics2D.Raycast(transform.position + new Vector3(0f, 0.5f, 0f), direction, config.detectionRange, playerLayer | WallLayer);
+        RaycastHit2D hitPlayer = Physics2D.Raycast(transform.position + new Vector3(0f, 0.5f, 0f), direction, config.detectionRange, playerLayer | WallLayer | groundLayer);
         Debug.DrawRay(transform.position + new Vector3(0f, 0.5f, 0f), direction * config.detectionRange, Color.green);
         bool seePlayer = hitPlayer.collider != null && hitPlayer.collider.transform == player;
         if (seePlayer)

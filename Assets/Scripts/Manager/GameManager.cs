@@ -23,7 +23,7 @@ public class GameManager : MonoBehaviour
     public Action OnGameOver;
     public Action OnGameFinish;
 
-    private bool pausedGame; 
+    private bool pausedGame = false; 
 
     private void Awake()
     {
