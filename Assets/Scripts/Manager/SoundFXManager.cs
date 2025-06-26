@@ -27,9 +27,7 @@ public class SoundFXManager : MonoBehaviour
         soundFX = GetComponentInChildren<AudioSource>();
 
     }
-    private void OnEnable()
-    {
-    }
+  
     private void OnDestroy()
     {
         GameManager.Instance.OnGameOver -= PlayGameOverSound;

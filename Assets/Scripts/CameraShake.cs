@@ -11,7 +11,7 @@ public class CameraShake : MonoBehaviour
 
     public float amplitude;
     public float frequency;
-    float timer = 0;
+    //float timer = 0;
     bool isShaking = false;
     Coroutine c_waitShake;
     private void Start()

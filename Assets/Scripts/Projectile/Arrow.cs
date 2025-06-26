@@ -8,7 +8,7 @@ public class Arrow : MonoBehaviour
 {
     
     Rigidbody2D rb;
-    Collider2D collider2D;
+    Collider2D col;
     public int damage;
 
     public Vector2 attackPoint;
@@ -20,7 +20,7 @@ public class Arrow : MonoBehaviour
 
     private void Awake()
     {
-        collider2D = GetComponent<Collider2D>();    
+        col = GetComponent<Collider2D>();    
     }
     private void Update()
     {
@@ -54,9 +54,9 @@ public class Arrow : MonoBehaviour
             Destroy(gameObject);
             
         }
-        else if (collision.CompareTag("Ground"))
+        else if (collision.CompareTag("Ground") )
         {
-            collider2D.enabled = false;
+            col.enabled = false;
             Destroy(gameObject,2f);
         }
     }

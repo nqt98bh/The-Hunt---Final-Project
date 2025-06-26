@@ -27,7 +27,7 @@ public abstract class EnemyAI : MonoBehaviour
     protected Animator animator;
     public bool FaceingRight => facingRight;
 
-    protected void Awake()
+    protected virtual void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
