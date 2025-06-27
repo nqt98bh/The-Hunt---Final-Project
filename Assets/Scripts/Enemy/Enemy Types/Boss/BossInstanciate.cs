@@ -4,13 +4,24 @@ using UnityEngine;
 
 public class BossInstanciate : MonoBehaviour
 {
-    [SerializeField] GameObject BossPrefab;
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Player"))
         {
-            BossPrefab.gameObject.GetComponent<Animator>().enabled = true;
-            Destroy(gameObject);
+            this.gameObject.GetComponentInParent<Animator>().enabled = true;
+            this.gameObject.GetComponent<BoxCollider2D>().enabled = false;
+            StartCoroutine(ActiveBoss(5f));
+            Debug.Log("Enable Animation");
         }
+    }
+
+    IEnumerator ActiveBoss(float time)
+    {
+        yield return new WaitForSeconds(time);
+        this.gameObject.GetComponentInParent<BossAI>().enabled = true;
+        Debug.Log("Enable BossAI");
+        Destroy(gameObject);
+        Debug.Log("Destroy");
+
     }
 }

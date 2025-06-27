@@ -54,7 +54,9 @@ public class InGameMenuUI : MonoBehaviour
     {
         HideMenuUI(false);
         isPaused = false ;
-       //Time.timeScale = 1f;
+        GameManager.Instance.SetPauseGame(isPaused);
+
+        //Time.timeScale = 1f;
     }
     private void OnSetting()
     {

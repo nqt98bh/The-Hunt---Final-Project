@@ -158,7 +158,6 @@ public class CharacterController : MonoBehaviour ,IDataPersistence
         this.currentHP = data.characterData.currentHP;
         this.transform.position = data.characterData.playerPosition;
         this.maxHP = data.characterData.maxHP;
-        Debug.Log("Character Position:" + this.transform.position);
 
     }
 
