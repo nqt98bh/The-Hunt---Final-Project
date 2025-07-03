@@ -27,9 +27,11 @@ public class BossAI : EnemyAI
     Vector2Int Vector2Int = new Vector2Int (0, 10);
     private BTNode behaviorTree;
 
-    
+    [SerializeField] GameObject entrance;
+    CapsuleCollider2D col;
     private void Start()
     {
+        col = GetComponent<CapsuleCollider2D>();
         HPThresholds = new List<float>() { 2f / 3f, 1f / 3f };
         skillList = new List<ISkill>() { new FrozenSkill(), new PoundSkill(), new PunchSkill() };
 
@@ -108,7 +110,18 @@ public class BossAI : EnemyAI
         int cur = currentHP;
         if (!isStaggering)
         {
-            base.TakeDamage(damage);
+            //base.TakeDamage(damage);
+            currentHP -= damage;
+            animator.SetTrigger("isHitted");
+            GameManager.Instance.PlaySoundFX(SoundType.enemyHit);
+            if (currentHP <= 0)
+            {
+                currentHP = 0;
+                animator.SetTrigger("isDeaded");
+                col.enabled = false;
+                Destroy(gameObject, 2.5f);
+                coinSpawner.SpawnCoin(transform.position, Quaternion.identity, config.coinDropped);
+            }
         }
         else
         {
@@ -120,7 +133,7 @@ public class BossAI : EnemyAI
         isReachHPStagger(cur, newHP);
         if (currentHP <= 0)
         {
-            GameManager.Instance.GameFinish();
+            entrance.SetActive(true);
             return;
         }
     }
@@ -204,10 +217,7 @@ public class BossAI : EnemyAI
     {
         animator.SetTrigger(animName);
     }
-    public void KillBoss()
-    {
-        GameManager.Instance.GameFinish();
-    }
+  
     protected override void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.red;

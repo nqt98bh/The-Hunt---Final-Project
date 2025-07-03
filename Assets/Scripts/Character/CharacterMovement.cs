@@ -288,12 +288,12 @@ public class CharacterMovement : MonoBehaviour
         }
     }
 
-    //private void OnTriggerEnter2D(Collider2D collision)
-    //{
-    //    if (collision.CompareTag("Ground"))
-    //    {
-    //        isGrounded = true;
-    //    }
-    //}
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("DeadZone"))
+        {
+            characterController.TakeDamage(characterController.maxHP);
+        }
+    }
 }
 

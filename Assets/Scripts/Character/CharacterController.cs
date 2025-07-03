@@ -168,4 +168,6 @@ public class CharacterController : MonoBehaviour ,IDataPersistence
         data.characterData.playerDamage = playerDamage;
         
     }
+
+    
 }

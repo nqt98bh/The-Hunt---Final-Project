@@ -12,8 +12,7 @@ public class CoinSpawner : MonoBehaviour
         var coin = coinGO.GetComponent<Coin>();
         coin.ReturnCoin(() => { 
             pool.ReturnToPool(coinGO);
-            GameManager.Instance.PlaySoundFX(SoundType.playerCollect);
-            GameManager.Instance.CurencyManager.AddCoin(coinValue);
+            
         });
     }
    

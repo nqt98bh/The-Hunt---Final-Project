@@ -28,10 +28,6 @@ public class Shop : MonoBehaviour
         HPText.text = HPCost.ToString();
     }
 
-    private void Update()
-    {
-        
-    }
 
     public void BuyDamageUp()
     {

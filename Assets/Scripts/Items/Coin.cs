@@ -18,8 +18,6 @@ public class Coin : MonoBehaviour
         {
             Debug.Log(" Collect Coin");
             RecycleAction?.Invoke();
-
-
         }
     }
 

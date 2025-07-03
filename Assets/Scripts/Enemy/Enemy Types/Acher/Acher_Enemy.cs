@@ -5,11 +5,11 @@ using UnityEngine;
 public class Acher_Enemy : EnemyAI
 {
     private SpriteRenderer sr;
-
     protected override void Awake()
     {
         base.Awake();
         sr = GetComponent<SpriteRenderer>();
+       
     }
     protected override bool DetectionPlayer()
     {

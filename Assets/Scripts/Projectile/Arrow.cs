@@ -1,14 +1,8 @@
-using DG.Tweening.Plugins.Core.PathCore;
-using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
+using System;
 using UnityEngine;
 
 public class Arrow : MonoBehaviour
 {
-    
-    Rigidbody2D rb;
-    Collider2D col;
     public int damage;
 
     public Vector2 attackPoint;
@@ -17,11 +11,8 @@ public class Arrow : MonoBehaviour
     public float timeDuration;
     float elapsed=0;
     [SerializeField] LayerMask GroundLayer;
-
-    private void Awake()
-    {
-        col = GetComponent<Collider2D>();    
-    }
+    Action RecycleAction;
+  
     private void Update()
     {
         elapsed += Time.deltaTime;
@@ -56,8 +47,9 @@ public class Arrow : MonoBehaviour
         }
         else if (collision.CompareTag("Ground") )
         {
-            col.enabled = false;
-            Destroy(gameObject,2f);
+            Destroy(gameObject);
+
         }
     }
+   
 }

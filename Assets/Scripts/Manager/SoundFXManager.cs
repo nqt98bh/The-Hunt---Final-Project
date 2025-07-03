@@ -72,7 +72,7 @@ public class SoundFXManager : MonoBehaviour
     }
     private void PlayFinishSound()
     {
-        musicSource.Stop();
+        StopBackGroundMusic();
         PlaySound(SoundType.gameFinish);
 
     }

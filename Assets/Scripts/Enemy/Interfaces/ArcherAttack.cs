@@ -41,6 +41,5 @@ public class ArcherAttack : IAttackable
         var arrow = arrowGO.GetComponent<Arrow>();
         arrow.Initialize(p0, p1, p2, duration, config.damage);
 
-
     }
 }
