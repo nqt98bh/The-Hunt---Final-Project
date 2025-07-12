@@ -69,6 +69,7 @@ public class InGameMenuUI : MonoBehaviour
         string mainMenuScene = "MainMenu";
         if (Application.CanStreamedLevelBeLoaded(mainMenuScene))
         {
+            GameManager.Instance.DataPersistenceManager.SaveGame();
             SceneManager.LoadScene(mainMenuScene);
         }
         //Time.timeScale = 1f;

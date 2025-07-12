@@ -7,7 +7,7 @@ public class GameData
     public CharacterData characterData;
     public int version;
     public int CoinValue;
-    
+  
     public GameData(CharacterData characterData)
     {
         this.characterData = characterData;
@@ -17,6 +17,9 @@ public class GameData
 
 
 }
+
+
+
 [System.Serializable]
 public class CharacterData
 {

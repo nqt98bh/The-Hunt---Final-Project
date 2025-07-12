@@ -4,6 +4,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
+
 public class CharacterController : MonoBehaviour ,IDataPersistence
 {
     //public static CharacterController Instance;
@@ -19,7 +21,8 @@ public class CharacterController : MonoBehaviour ,IDataPersistence
     [SerializeField] float attackRadius;
     CharacterAnimController animator;
     CharacterMovement characterMovement;
-    
+   
+
     
     public Transform attackPoint;
 
