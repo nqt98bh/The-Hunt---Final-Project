@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d8bc87fe6cfb1784fa050dd79ae0b775, type: 3}
+  m_Name: AcherConfig
+  m_EditorClassIdentifier: 
+  enemyName: 
+  maxHealth: 70
+  damage: 10
+  coinDropped: 2
+  moveSpeed: 1
+  chaseSpeed: 2
+  detectionRange: 10
+  attackRange: 10
+  attackCooldown: 2
+  playerLayer:
+    serializedVersion: 2
+    m_Bits: 8
+  movementType: 0
+  attackType: 1
+  projectilePrefab: {fileID: 2547178967927968254, guid: fa9981c050a1ac3488985d13602a0bef, type: 3}
+  projectileSpeed: 5
