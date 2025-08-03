@@ -49,12 +49,16 @@ public class InGameMenuUI : MonoBehaviour
     {
         HideMenuUI(true);
         //Time.timeScale = 0f;
+        Debug.Log("IsPaused: " + isPaused);
+
     }
     private void OnResumed()                                                                                        
     {
         HideMenuUI(false);
-        isPaused = false ;
+
         GameManager.Instance.SetPauseGame(isPaused);
+        isPaused = false;
+        Debug.Log("IsPaused: " + isPaused);
 
         //Time.timeScale = 1f;
     }
@@ -95,7 +99,9 @@ public class InGameMenuUI : MonoBehaviour
     {
         content.SetActive(state);
         backGround.SetActive(state);
-        if (state == false)  
+
+        
+        if (!state)  
         { EventSystem.current.SetSelectedGameObject(null); }  //bỏ tất cả các selection đã chọn
     }
 

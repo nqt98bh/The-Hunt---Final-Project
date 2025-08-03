@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 2988602415108105587}
   - component: {fileID: 7379598288256731329}
   - component: {fileID: 1582544012794325328}
+  - component: {fileID: 3026949510663494855}
   m_Layer: 0
   m_Name: Torch_Left
   m_TagString: Untagged
@@ -99,7 +100,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: -1
   m_Sprite: {fileID: 21300000, guid: f74433124a3b60644a39600ba5126d5c, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -150,7 +151,7 @@ MonoBehaviour:
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 0.5
-  m_PointLightOuterRadius: 3
+  m_PointLightOuterRadius: 4
   m_ShapeLightParametricSides: 5
   m_ShapeLightParametricAngleOffset: 0
   m_ShapeLightParametricRadius: 1
@@ -161,3 +162,18 @@ MonoBehaviour:
   - {x: 0.5, y: -0.5, z: 0}
   - {x: 0.5, y: 0.5, z: 0}
   - {x: -0.5, y: 0.5, z: 0}
+--- !u!114 &3026949510663494855
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3517902540680445214}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 00c271101c5c8af4c86b1cbe36d7f3a6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  minIntensity: 8
+  maxIntensity: 13
+  timeBetweenIntensity: 0.1

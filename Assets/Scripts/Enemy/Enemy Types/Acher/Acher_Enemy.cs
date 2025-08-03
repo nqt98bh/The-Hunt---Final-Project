@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Acher_Enemy : EnemyAI
+public class Acher_Enemy : EnemyAIBase
 {
     private SpriteRenderer sr;
     protected override void Awake()

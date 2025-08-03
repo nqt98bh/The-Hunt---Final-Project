@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class GroundEnemy : EnemyAI
+public class GroundEnemy : EnemyAIBase
 {
     [Header("Raycast & LayerMask")]
     [SerializeField] LayerMask groundLayer;

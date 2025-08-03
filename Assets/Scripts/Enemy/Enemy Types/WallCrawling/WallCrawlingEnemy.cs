@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class WallCrawlingEnemy : EnemyAI
+public class WallCrawlingEnemy : EnemyAIBase
 {
     [SerializeField] private Transform[] wayPoint;
     int nextWayPoint = 1;

@@ -21,7 +21,8 @@ public class CharacterAnimController : MonoBehaviour
     }
     public void SetTriggerJumping()
     {
-        animator.SetTrigger("isJumping");
+        //animator.SetTrigger("isJumping");
+        animator.Play("Jump");
     }
     public void SetRolling()
     {
@@ -62,5 +63,7 @@ public class CharacterAnimController : MonoBehaviour
     public void ClearTrigger(string name)
     {
         animator.ResetTrigger(name);
+        
     }
+   
 }

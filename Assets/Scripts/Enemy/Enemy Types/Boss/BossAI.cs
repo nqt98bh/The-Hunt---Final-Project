@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BossAI : EnemyAI
+public class BossAI : EnemyAIBase
 {
     [SerializeField] List<ISkill> skillList ;
     [SerializeField] float puchRange = 2f;
